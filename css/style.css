@@ -1,0 +1,173 @@
+*{
+    box-sizing: border-box;
+}
+html,p.body{
+    font: size 1.3em;
+}
+
+nav{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+nav li:hover{
+    background-color: rgba(80, 80, 77, 0.89);
+}
+
+
+.gomb{
+    font-size: 1.2rem;
+    width: 200px;
+    height: 80px;
+    color: black; 
+    background-color: orange; 
+    border: black 2px solid; 
+    font-weight: bold;
+    border-radius: 10%;
+}
+.gomb:hover{
+   background-color:  rgba(80, 80, 77, 0.89);
+   border:rgba(80, 80, 77, 0.89); ;
+}
+a{
+    color:white;
+}
+a:hover{
+    color: white;
+}
+.link{
+    color: white;
+}
+.ikon{
+    font-size:60px;
+    color:orange;
+    padding:50px;
+}
+.ikon:hover{
+    color:blue;
+}
+.logo{
+    padding-top: 25px;
+}
+
+
+
+.table_igazitas{
+    vertical-align: middle;
+    border: 3px orange solid;
+}
+.tablaMeret{
+    width: 80%;
+    margin: 0 auto;
+}
+.urlap{
+    font-size: 2rem;
+}
+
+thead{
+    border: 3px orange solid;
+}
+th{
+    vertical-align: middle;
+    text-align: center;
+}
+td{
+    vertical-align: middle;
+}
+.hatter_mester{
+    background-color: #778899;
+}
+
+.hatter_hlavics{
+    background-color: #00bfff;
+}
+
+.hatter_gal{
+    background-color: #fffacd;
+}
+
+.hatter_kovacs{
+    background-color: #d2691e;
+}
+
+.hatter_toth{
+    background-color: #00ced1;
+}
+
+.hatter_csaba{
+    background-color: lightskyblue;
+}
+
+.hatter_berkes{
+    background-color: #fff8dc;
+}
+
+.hatter_baucsek{
+    background-color: #ff1493;
+}
+
+.hatter_budai{
+    background-color: #f0e68c;
+}
+.hatter_lorincz{
+    background-color:orchid;
+}
+ul{
+    text-align: left;
+}
+li{
+    margin-left: 50px;
+}
+th{
+    vertical-align: middle;
+}
+.szoveg{
+    text-align: justify;
+    font-size: 1rem;
+}
+.kartyaIgazitas{
+    margin: 0px auto;
+    font-size: 10pt;
+}
+.myButton {
+	box-shadow: 6px 10px 0px 0px #fff6af;
+	background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+	background-color:#ffec64;
+	border-radius:18px;
+	border:2px solid #1f1d1b;
+	display:inline-block;
+	cursor:pointer;
+	color:#333333;
+	font-family:Arial;
+	font-size:20px;
+	font-weight:bold;
+	padding:14px 36px;
+	text-decoration:none;
+	text-shadow:1px 0px 0px #ffee66;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+	background-color:#ffab23;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+/*
+.jobbra{
+    list-style-type: none;
+  
+}
+.jobbra li{
+    display: inline-block;
+}*/
+.Tigazitas{
+    top:2rem;
+   
+}
+.JobbraIgazitas{
+    width: 40%;
+    position: top right;
+    margin: 0;
+    padding: 0;
+    float: right;
+}
