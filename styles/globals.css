@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .departments-table {
+    @apply border-collapse table-auto md:table-fixed w-full text-center bg-gray-900 text-white whitespace-nowrap;
+  }
+
+  .departments-table th,
+  .departments-table td {
+    @apply px-4 py-6 border border-2 border-orange-primary;
+  }
+
+  .departments-table a {
+    @apply underline;
+  }
+}

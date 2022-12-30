@@ -1,12 +1,12 @@
-import Image, { StaticImageData } from "next/image";
-import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
 import CarouselImage1 from "@/public/images/carousel/2.jpg";
 import CarouselImage2 from "@/public/images/carousel/3.jpg";
 import CarouselImage3 from "@/public/images/carousel/4.jpg";
 import CarouselImage4 from "@/public/images/carousel/5.jpg";
 import CarouselImage5 from "@/public/images/carousel/6.jpg";
 import CarouselImage6 from "@/public/images/carousel/7.jpg";
+import Autoplay from "embla-carousel-autoplay";
+import useEmblaCarousel from "embla-carousel-react";
+import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 
 const CAROUSEL_IMAGES: StaticImageData[] = [
@@ -33,12 +33,12 @@ const Hero = () => {
         <div className="px-4 sm:px-8 lg:w-1/2 xl:pr-16">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
             <span className="block xl:inline">
-              <span className="text-orange-500">B</span>udai{" "}
-              <span className="text-orange-500">A</span>krobatikus
+              <span className="text-orange-primary">B</span>udai{" "}
+              <span className="text-orange-primary">A</span>krobatikus
             </span>{" "}
             <span className="block xl:inline">
-              <span className="text-orange-500">S</span>port{" "}
-              <span className="text-orange-500">E</span>gyesület
+              <span className="text-orange-primary">S</span>port{" "}
+              <span className="text-orange-primary">E</span>gyesület
             </span>
           </h1>
           <p className="mx-auto mt-3 max-w-md text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl">
@@ -50,9 +50,9 @@ const Hero = () => {
             <div className="rounded-md shadow">
               <Link
                 href="/kapcsolat"
-                className="flex w-full items-center justify-center rounded-md border border-transparent bg-orange-500 px-8 py-3 text-base font-medium text-white hover:bg-orange-600 md:py-4 md:px-10 md:text-lg"
+                className="flex w-full items-center justify-center rounded-md border border-transparent bg-orange-primary px-8 py-3 text-base font-medium text-white hover:bg-orange-accent md:py-4 md:px-10 md:text-lg"
               >
-                Kapcsolat
+                Jelentkezés
               </Link>
             </div>
           </div>
