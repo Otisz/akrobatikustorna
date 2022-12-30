@@ -27,7 +27,7 @@ const Page = () => (
             <tbody>
               <tr>
                 <th>
-                  Akrobatikus Torna <br /> "A" kategória
+                  Akrobatikus Torna <br /> {'"'}A{'"'} kategória
                 </th>
                 <td>
                   16<sup>00</sup> - 19<sup>30</sup>{" "}
@@ -46,7 +46,7 @@ const Page = () => (
               </tr>
               <tr>
                 <th>
-                  Akrobatikus Torna <br /> haladó "B" kategória
+                  Akrobatikus Torna <br /> haladó {'"'}B{'"'} kategória
                 </th>
                 <td></td>
                 <td>
@@ -65,7 +65,7 @@ const Page = () => (
               </tr>
               <tr>
                 <th>
-                  Akrobatikus Torna <br /> kezdő "B" kategória
+                  Akrobatikus Torna <br /> kezdő {'"'}B{'"'} kategória
                 </th>
                 <td></td>
                 <td>
