@@ -13,7 +13,7 @@ const Page = () => (
       <div className="mx-auto w-full max-w-7xl pt-16 pb-20 px-4 sm:px-6">
         <h1 className="text-5xl mb-16">Szakosztályok</h1>
         <div className="overflow-x-auto">
-          <table className="departments-table overflow-x-scroll">
+          <table className="table-primary overflow-x-scroll">
             <thead>
               <tr>
                 <th>Sportág megnevezése</th>

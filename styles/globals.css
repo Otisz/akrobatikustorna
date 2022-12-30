@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 @layer components {
-  .departments-table {
+  .table-primary {
     @apply border-collapse table-auto md:table-fixed w-full text-center bg-gray-900 text-white whitespace-nowrap;
   }
 
-  .departments-table th,
-  .departments-table td {
+  .table-primary th,
+  .table-primary td {
     @apply px-4 py-6 border border-2 border-orange-primary;
   }
 
-  .departments-table a {
+  .table-primary a {
     @apply underline;
   }
 }
