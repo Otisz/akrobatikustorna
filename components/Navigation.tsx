@@ -143,8 +143,6 @@ const RECOMMENDED_PAGES = [
 const Navigation = () => {
   const router = useRouter();
 
-  console.log(router);
-
   return (
     <Popover className="relative bg-gray-900 shadow">
       {({ close: closeMainMenu }) => (
@@ -157,7 +155,7 @@ const Navigation = () => {
                     Budai Akrobatikus Sport Egyesület
                   </span>
                   <Image
-                    className="h-16 w-auto"
+                    className="h-14 w-auto"
                     src={LogoBase}
                     alt="BASE Logo"
                   />
@@ -278,22 +276,22 @@ const Navigation = () => {
           <Transition
             as={Fragment}
             enter="duration-200 ease-out"
-            enterFrom="opacity-0 scale-95"
-            enterTo="opacity-100 scale-100"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
             leave="duration-100 ease-in"
-            leaveFrom="opacity-100 scale-100"
-            leaveTo="opacity-0 scale-95"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
           >
             <Popover.Panel
               focus
-              className="absolute inset-x-0 top-0 z-10 origin-top-right transform p-2 transition md:hidden"
+              className="absolute inset-x-0 top-0 z-10 origin-top-right transform transition md:hidden"
             >
               <div className="divide-y-2 divide-gray-700 rounded-lg bg-gray-900 shadow-lg ring-1 ring-orange-primary ring-opacity-5">
-                <div className="px-5 pt-5 pb-6">
+                <div className="px-4 pt-4 pb-6">
                   <div className="flex items-center justify-between">
                     <Link href="/" onClick={closeMainMenu}>
                       <Image
-                        className="h-8 w-auto"
+                        className="h-14 w-auto"
                         src={LogoBase}
                         alt="BASE Logo"
                       />
