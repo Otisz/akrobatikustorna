@@ -1,5 +1,12 @@
+import {
+  AtSymbolIcon,
+  EnvelopeIcon,
+  MapPinIcon,
+  PhoneIcon,
+} from "@heroicons/react/24/outline";
 import Head from "next/head";
-import Hero from "@/components/Hero";
+import Link from "next/link";
+import { FaFacebookSquare, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const Page = () => (
   <>
@@ -10,7 +17,118 @@ const Page = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <main className="lg:relative">
-      <h1>Kapcsolat</h1>
+      <div className="mx-auto w-full max-w-7xl pt-16 pb-20 px-4 sm:px-6">
+        <h1 className="text-5xl mb-16">Kapcsolat</h1>
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col md:flex-row gap-4 bg-white rounded-md shadow-md p-4 w-full justify-center items-center">
+            <div className="w-auto md:w-24">
+              <EnvelopeIcon className="h-8 w-8 text-gray-500 mx-auto" />
+            </div>
+            <div className="flex-grow">
+              <span>1038 Budapest Határ út 15.</span>
+            </div>
+          </div>
+          <div className="flex flex-col md:flex-row gap-4 bg-white rounded-md shadow-md p-4 w-full justify-center items-center">
+            <div className="w-auto md:w-24">
+              <PhoneIcon className="h-8 w-8 text-gray-500 mx-auto" />
+            </div>
+            <div className="flex flex-col gap-4 flex-grow">
+              <div className="flex flex-col md:flex-row gap-1 text-center">
+                <Link
+                  href="tel:+36 20 311 1919"
+                  className="underline text-orange-primary"
+                >
+                  +36 20 311 1919
+                </Link>
+                <span>(Mester Gábor elnök)</span>
+              </div>
+              <div className="flex flex-col md:flex-row gap-1 text-center">
+                <Link
+                  href="tel:+36 20 983 1741"
+                  className="underline text-orange-primary"
+                >
+                  +36 20 983 1741
+                </Link>
+                <span>(Szücsi Ildikó alelnök)</span>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col md:flex-row gap-4 bg-white rounded-md shadow-md p-4 w-full justify-center items-center">
+            <div className="w-auto md:w-24">
+              <AtSymbolIcon className="h-8 w-8 text-gray-500 mx-auto" />
+            </div>
+            <div className="flex flex-col gap-4 flex-grow">
+              <span>
+                <Link
+                  href="mailto:akrobatikustorna@gmail.com"
+                  className="underline text-orange-primary"
+                >
+                  akrobatikustorna@gmail.com
+                </Link>
+              </span>
+              <span>
+                <Link
+                  href="mailto:info@akrobatikustorna.hu"
+                  className="underline text-orange-primary"
+                >
+                  info@akrobatikustorna.hu
+                </Link>
+              </span>
+            </div>
+          </div>
+          <div className="flex flex-col md:flex-row gap-4 bg-white rounded-md shadow-md p-4 w-full justify-center items-center">
+            <div className="w-auto md:w-24">
+              <MapPinIcon className="h-8 w-8 text-gray-500 mx-auto" />
+            </div>
+            <div className="flex flex-col gap-4 flex-grow">
+              <div className="flex flex-col md:flex-row gap-1 text-center">
+                <Link
+                  href="https://goo.gl/maps/BxvvHhFyhV3GWPcS9"
+                  className="underline text-orange-primary"
+                >
+                  1032 Budapest, Bécsi út 134
+                </Link>
+                <span>(BMSZC Bláthy Ottó Titusz Informatikai Technikum)</span>
+              </div>
+              <div className="flex flex-col md:flex-row gap-1 text-center">
+                <Link
+                  href="https://goo.gl/maps/UkcACG5V98Q6KXab7"
+                  className="underline text-orange-primary"
+                >
+                  2016 Leányfalu, Móricz Zsigmond út 124/a
+                </Link>
+                <span>(Faluház)</span>
+              </div>
+            </div>
+          </div>
+          <div className="flex items-center gap-4 justify-center">
+            <Link
+              href="https://www.facebook.com/akrobatikustorna"
+              target="_blank"
+              title="Facebook"
+            >
+              <FaFacebookSquare className="h-16 w-16 hover:fill-[#4267B2]" />
+              <span className="sr-only">Facebook</span>
+            </Link>
+            <Link
+              href="https://www.instagram.com/base_akrobatikus_torna/"
+              target="_blank"
+              title="Instagram"
+            >
+              <FaInstagram className="h-16 w-16 hover:fill-[#833ab4]" />
+              <span className="sr-only">Instagram</span>
+            </Link>
+            <Link
+              href="https://www.youtube.com/channel/UCVvzN2bTBlYqpjPkYgdMtog"
+              target="_blank"
+              title="Youtube"
+            >
+              <FaYoutube className="h-16 w-16 hover:fill-[#ff0000]" />
+              <span className="sr-only">YouTube</span>
+            </Link>
+          </div>
+        </div>
+      </div>
     </main>
   </>
 );

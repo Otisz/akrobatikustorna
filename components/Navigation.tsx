@@ -1,20 +1,21 @@
-import Image from "next/image";
 import LogoBase from "@/public/images/logo_base.png";
 import { Popover, Transition } from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import {
   AcademicCapIcon,
+  ArrowTopRightOnSquareIcon,
   Bars3BottomRightIcon,
   CalendarDaysIcon,
+  DocumentTextIcon,
   IdentificationIcon,
   PhotoIcon,
   XMarkIcon,
-  DocumentTextIcon,
-  ArrowTopRightOnSquareIcon,
 } from "@heroicons/react/24/outline";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { Fragment } from "react";
-import Link from "next/link";
 import cn from "classnames";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { Fragment } from "react";
 
 const MAIN_NAVIGATIONS = [
   {
@@ -140,8 +141,10 @@ const RECOMMENDED_PAGES = [
 ];
 
 const Navigation = () => {
+  const router = useRouter();
+
   return (
-    <Popover className="relative bg-white shadow">
+    <Popover className="relative bg-gray-900 shadow">
       {({ close: closeMainMenu }) => (
         <>
           <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -152,17 +155,17 @@ const Navigation = () => {
                     Budai Akrobatikus Sport Egyesület
                   </span>
                   <Image
-                    className="h-16 w-auto"
+                    className="h-14 w-auto"
                     src={LogoBase}
                     alt="BASE Logo"
                   />
                 </Link>
               </div>
               <div className="-my-2 -mr-2 md:hidden">
-                <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                <Popover.Button className="inline-flex items-center justify-center rounded-md p-2 hover:bg-gray-700 text-gray-50 hover:text-orange-primary focus:outline-none focus:ring-2 focus:ring-inset">
                   <span className="sr-only">Menü megnyitása</span>
                   <Bars3BottomRightIcon
-                    className="h-6 w-6"
+                    className="h-8 w-8"
                     aria-hidden="true"
                   />
                 </Popover.Button>
@@ -173,7 +176,13 @@ const Navigation = () => {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="text-base font-medium text-gray-500 hover:text-gray-900"
+                      className={cn(
+                        "text-base font-medium hover:text-orange-accent",
+                        {
+                          "text-orange-primary": router.pathname === item.href,
+                          "text-gray-50": router.pathname !== item.href,
+                        }
+                      )}
                     >
                       {item.name}
                     </Link>
@@ -185,20 +194,20 @@ const Navigation = () => {
                     <>
                       <Popover.Button
                         className={cn(
-                          "group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2",
+                          "group inline-flex rounded-sm items-center text-base font-medium hover:text-orange-accent focus:outline-none focus:ring-2 focus:ring-offset-2",
                           {
-                            "text-gray-900": open,
-                            "text-gray-500": !open,
+                            "text-orange-primary": open,
+                            "text-gray-50": !open,
                           }
                         )}
                       >
                         <span>Továbbiak</span>
                         <ChevronDownIcon
                           className={cn(
-                            "ml-2 h-5 w-5 group-hover:text-gray-500",
+                            "ml-2 h-5 w-5 group-hover:text-orange-accent",
                             {
-                              "text-gray-600": open,
-                              "text-gray-400": !open,
+                              "text-orange-accent": open,
+                              "text-orange-primary": !open,
                             }
                           )}
                           aria-hidden="true"
@@ -215,35 +224,33 @@ const Navigation = () => {
                         leaveTo="opacity-0 translate-y-1"
                       >
                         <Popover.Panel className="absolute z-10 -ml-4 mt-3 w-screen max-w-md transform px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2">
-                          <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                            <div className="relative bg-white px-5 pt-6 sm:gap-8 sm:px-8 font-bold">
+                          <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-orange-primary ring-opacity-5 bg-gray-900 text-gray-50">
+                            <div className="relative px-5 pt-6 sm:gap-8 sm:px-8 font-bold">
                               Dokumentumok
                             </div>
-                            <div className="relative grid grid-cols-2 gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+                            <div className="relative grid grid-cols-2 gap-6 px-5 py-6 sm:p-8">
                               {DOCUMENTS.map((item) => (
                                 <Link
                                   key={item.name}
                                   href={item.href}
                                   target="_blank"
-                                  className="-m-3 flex flex-col space-y-2 rounded-lg p-3 hover:bg-gray-50"
+                                  className="-m-3 flex flex-col space-y-2 rounded-lg p-3 text-sm font-medium hover:text-orange-accent"
                                 >
-                                  <p className="text-sm font-medium text-gray-900">
-                                    {item.name}
-                                  </p>
+                                  {item.name}
                                 </Link>
                               ))}
                             </div>
-                            <div className="relative bg-white px-5 pt-6 sm:gap-8 sm:px-8 font-bold">
+                            <div className="relative px-5 pt-6 sm:gap-4 sm:px-8 font-bold">
                               Ajánlott oldalak
                             </div>
-                            <div className="relative bg-white px-5 pt-6 sm:p-8">
+                            <div className="relative grid grid-cols-2 gap-6 px-5 py-6 sm:p-8">
                               {RECOMMENDED_PAGES.map((item) => (
                                 <a
                                   key={item.name}
                                   href={item.href}
-                                  className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50 text-sm"
+                                  className="-m-3 flex items-start rounded-lg p-3 text-sm text-sm font-medium hover:text-orange-accent"
                                 >
-                                  <p className="text-gray-900">{item.name}</p>
+                                  {item.name}
                                 </a>
                               ))}
                             </div>
@@ -258,9 +265,9 @@ const Navigation = () => {
               <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
                 <Link
                   href="/kapcsolat"
-                  className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-orange-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-orange-600"
+                  className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-orange-primary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-orange-accent"
                 >
-                  Kapcsolat
+                  Jelentkezés
                 </Link>
               </div>
             </div>
@@ -269,28 +276,28 @@ const Navigation = () => {
           <Transition
             as={Fragment}
             enter="duration-200 ease-out"
-            enterFrom="opacity-0 scale-95"
-            enterTo="opacity-100 scale-100"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
             leave="duration-100 ease-in"
-            leaveFrom="opacity-100 scale-100"
-            leaveTo="opacity-0 scale-95"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
           >
             <Popover.Panel
               focus
-              className="absolute inset-x-0 top-0 z-10 origin-top-right transform p-2 transition md:hidden"
+              className="absolute inset-x-0 top-0 z-10 origin-top-right transform transition md:hidden"
             >
-              <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
-                <div className="px-5 pt-5 pb-6">
+              <div className="divide-y-2 divide-gray-700 rounded-lg bg-gray-900 shadow-lg ring-1 ring-orange-primary ring-opacity-5">
+                <div className="px-4 pt-4 pb-6">
                   <div className="flex items-center justify-between">
                     <Link href="/" onClick={closeMainMenu}>
                       <Image
-                        className="h-8 w-auto"
+                        className="h-14 w-auto"
                         src={LogoBase}
                         alt="BASE Logo"
                       />
                     </Link>
                     <div className="-mr-2">
-                      <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                      <Popover.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-50 hover:bg-gray-700 hover:text-orange-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                         <span className="sr-only">Menü bezárás</span>
                         <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                       </Popover.Button>
@@ -303,13 +310,13 @@ const Navigation = () => {
                           onClick={closeMainMenu}
                           key={item.name}
                           href={item.href}
-                          className="flex flex-col items-center rounded-md p-3 hover:bg-gray-50"
+                          className="flex flex-col gap-4 items-center rounded-md p-3 hover:bg-gray-700"
                         >
                           <item.icon
-                            className="h-6 w-6 flex-shrink-0 text-orange-500"
+                            className="h-6 w-6 flex-shrink-0 text-orange-primary"
                             aria-hidden="true"
                           />
-                          <span className="text-base font-medium text-gray-900">
+                          <span className="text-base font-medium text-gray-50">
                             {item.name}
                           </span>
                         </Link>
@@ -322,9 +329,9 @@ const Navigation = () => {
                     <Link
                       onClick={closeMainMenu}
                       href="/kapcsolat"
-                      className="flex w-full items-center justify-center rounded-md border border-transparent bg-orange-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-orange-600"
+                      className="flex w-full items-center justify-center rounded-md border border-transparent bg-orange-primary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-orange-accent"
                     >
-                      Kapcsolat
+                      Jelentkezés
                     </Link>
                   </div>
                 </div>
