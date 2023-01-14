@@ -37,5 +37,6 @@
     "globby": "^11.0.1",
     "prettier": "^2.8.1",
     "prettier-plugin-tailwindcss": "^0.2.1"
-  }
+  },
+  "packageManager": "yarn@3.3.1"
 }
