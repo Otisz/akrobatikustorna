@@ -2,7 +2,7 @@ import { Head, Html, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html lang="hu">
+    <Html lang="hu" className="min-h-screen bg-gray-100">
       <Head>
         <meta
           property="og:url"
@@ -60,7 +60,7 @@ export default function Document() {
         />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      <body>
+      <body className="min-h-screen">
         <Main />
         <NextScript />
       </body>

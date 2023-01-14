@@ -49,7 +49,8 @@ const Hero = () => {
           <div className="mt-10 sm:flex sm:justify-center lg:justify-start">
             <div className="rounded-md shadow">
               <Link
-                href="/kapcsolat"
+                href="https://forms.gle/gFjANWnUzEeeQAyn7"
+                target="_blank"
                 className="flex w-full items-center justify-center rounded-md border border-transparent bg-orange-primary px-8 py-3 text-base font-medium text-white hover:bg-orange-accent md:py-4 md:px-10 md:text-lg"
               >
                 Jelentkezés
