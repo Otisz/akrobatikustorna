@@ -8,6 +8,7 @@ import {
   CalendarDaysIcon,
   DocumentTextIcon,
   IdentificationIcon,
+  PaperAirplaneIcon,
   PhotoIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
@@ -37,12 +38,6 @@ const MAIN_NAVIGATIONS = [
     onlyOnMobile: false,
   },
   {
-    name: "Galéria",
-    href: "/galeria",
-    icon: PhotoIcon,
-    onlyOnMobile: false,
-  },
-  {
     name: "Dokumentumok",
     href: "/dokumentumok",
     icon: DocumentTextIcon,
@@ -54,89 +49,34 @@ const MAIN_NAVIGATIONS = [
     icon: ArrowTopRightOnSquareIcon,
     onlyOnMobile: true,
   },
-];
-const DOCUMENTS = [
   {
-    name: "GDPR - Adatkezelési hozzájárulási nyilatkozat",
-    href: "/documents/GDPR%20nyilatkozat.pdf",
+    name: "Galéria",
+    href: "/galeria",
+    icon: PhotoIcon,
+    onlyOnMobile: true,
   },
   {
-    name: "GDPR - Szabályzata",
-    href: "/documents/GDPR%20szabalyzat.pdf",
-  },
-  {
-    name: "1 %",
-    href: "/documents/2022_adoszam.pdf",
-  },
-  {
-    name: "Házirend",
-    href: "/documents/2011hazirend.pdf",
-  },
-  {
-    name: "Alapszabályzat",
-    href: "/documents/BASE%20alapszabalyzata.pdf",
-  },
-  {
-    name: "Belépési kérelem",
-    href: "/documents/tagfelveteltkerolap.pdf",
-  },
-  {
-    name: "Pártoló tagsági kérelem",
-    href: "/documents/partoloitagfelveteltkerolap.pdf",
-  },
-  {
-    name: "Tagnyilvántartó adatlap",
-    href: "/documents/tagnyilvantartoadatlap.pdf",
+    name: "Kapcsolat",
+    href: "/kapcsolat",
+    icon: PaperAirplaneIcon,
+    onlyOnMobile: false,
   },
 ];
-const RECOMMENDED_PAGES = [
+const DROPDOWN_NAVIGATIONS = [
   {
-    name: "Internationale de Gymnastique",
-    href: "https://www.gymnastics.sport/site/",
+    name: "Galéria",
+    href: "/galeria",
+    icon: PhotoIcon,
   },
   {
-    name: "Magyar Látványtánc Szövetség",
-    href: "https://www.latvanytancok.hu/hu/",
+    name: "Dokumentumok",
+    href: "/dokumentumok",
+    icon: DocumentTextIcon,
   },
   {
-    name: "Magyar Szabadidősport Szövetség",
-    href: "https://masport.hu/",
-  },
-  {
-    name: "Magyar Cheer Szövetség",
-    href: "https://hungariancheerfederation.hu/",
-  },
-  {
-    name: "Magyar Torna Szövetség",
-    href: "https://matsz.hu/",
-  },
-  {
-    name: "ACCADEMIA ACROBATICA SRL",
-    href: "https://www.villaggioaccademia.it/en/",
-  },
-  {
-    name: "Érdi Torna Club",
-    href: "https://erditornaclub.hu/",
-  },
-  {
-    name: "Puente",
-    href: "https://puente.hu/",
-  },
-  {
-    name: "TFSe acro",
-    href: "http://tfse.sport.hu/akrobatikus-torna/",
-  },
-  {
-    name: "Pfeifer Ferenc: Az akrobatikus torna Magyarországon.",
-    href: "https://mutargy.com/egyeb-mutargy/pfeifer-ferenc-az-akrobatikus-torna-magyarorszagon-a-szerzo-altal-dedikalt-peldany-bp-2010-budaors-epc-ny-szines-kepekkel-es-fotokkal-illusztralt-kiadoi-kartonalt-papirkotes-/",
-  },
-  {
-    name: "Akrobatikus torna A. M. Ignasenko Sport Lap- és Könyvkiadó, 1953",
-    href: "https://antikvarium.hu/konyv/a-m-ignasenko-akrobatikus-torna-917149-0?gclid=CjwKCAjwx7GYBhB7EiwA0d8oe-EaAz75af5_9pPDyc9Hw9_jfHZjNJEcYxFCvMMQd1iEW0r1Dghs0BoCOzEQAvD_BwE/",
-  },
-  {
-    name: "Akrobatikus torna - 1958 Garzol Sándor, Kaszper Lászlóné, Szabó Dániel",
-    href: "https://www.libri.hu/konyv/Akrobatikus-torna-2.html?ordered&amp;utm_source=hirlevel-system&amp;utm_medium=email&amp;utm_campaign=Vasarlas+visszaigazolasa+-+7987092",
+    name: "Ajánlott oldalak",
+    href: "/ajanlott-oldalak",
+    icon: ArrowTopRightOnSquareIcon,
   },
 ];
 
@@ -190,7 +130,7 @@ const Navigation = () => {
                 )}
 
                 <Popover className="relative">
-                  {({ open }) => (
+                  {({ open, close }) => (
                     <>
                       <Popover.Button
                         className={cn(
@@ -223,35 +163,24 @@ const Navigation = () => {
                         leaveFrom="opacity-100 translate-y-0"
                         leaveTo="opacity-0 translate-y-1"
                       >
-                        <Popover.Panel className="absolute z-10 -ml-4 mt-3 w-screen max-w-md transform px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2">
+                        <Popover.Panel className="absolute z-10 -ml-4 mt-3 w-screen max-w-sm transform px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2">
                           <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-orange-primary ring-opacity-5 bg-gray-900 text-gray-50">
-                            <div className="relative px-5 pt-6 sm:gap-8 sm:px-8 font-bold">
-                              Dokumentumok
-                            </div>
-                            <div className="relative grid grid-cols-2 gap-6 px-5 py-6 sm:p-8">
-                              {DOCUMENTS.map((item) => (
+                            <div className="relative grid gap-6 px-5 py-6 sm:gap-8 sm:p-8">
+                              {DROPDOWN_NAVIGATIONS.map((item) => (
                                 <Link
+                                  onClick={close}
                                   key={item.name}
                                   href={item.href}
-                                  target="_blank"
-                                  className="-m-3 flex flex-col space-y-2 rounded-lg p-3 text-sm font-medium hover:text-orange-accent"
+                                  className="-m-3 flex items-center gap-4 rounded-md p-3 text-gray-100 hover:text-orange-primary"
                                 >
-                                  {item.name}
+                                  <item.icon
+                                    className="h-6 w-6 flex-shrink-0 text-orange-primary"
+                                    aria-hidden="true"
+                                  />
+                                  <p className="text-base font-medium">
+                                    {item.name}
+                                  </p>
                                 </Link>
-                              ))}
-                            </div>
-                            <div className="relative px-5 pt-6 sm:gap-4 sm:px-8 font-bold">
-                              Ajánlott oldalak
-                            </div>
-                            <div className="relative grid grid-cols-2 gap-6 px-5 py-6 sm:p-8">
-                              {RECOMMENDED_PAGES.map((item) => (
-                                <a
-                                  key={item.name}
-                                  href={item.href}
-                                  className="-m-3 flex items-start rounded-lg p-3 text-sm text-sm font-medium hover:text-orange-accent"
-                                >
-                                  {item.name}
-                                </a>
                               ))}
                             </div>
                           </div>
@@ -264,7 +193,8 @@ const Navigation = () => {
 
               <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
                 <Link
-                  href="/kapcsolat"
+                  href="https://forms.gle/gFjANWnUzEeeQAyn7"
+                  target="_blank"
                   className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-orange-primary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-orange-accent"
                 >
                   Jelentkezés
@@ -328,7 +258,8 @@ const Navigation = () => {
                   <div>
                     <Link
                       onClick={closeMainMenu}
-                      href="/kapcsolat"
+                      href="https://forms.gle/gFjANWnUzEeeQAyn7"
+                      target="_blank"
                       className="flex w-full items-center justify-center rounded-md border border-transparent bg-orange-primary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-orange-accent"
                     >
                       Jelentkezés
