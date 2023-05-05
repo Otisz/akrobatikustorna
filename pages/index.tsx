@@ -1,3 +1,4 @@
+import CurrentResults from "@/components/CurrentResults.mdx";
 import Hero from "@/components/Hero";
 import Head from "next/head";
 
@@ -27,6 +28,7 @@ const Page = () => (
         </div>
       </div>
       <Hero />
+      <CurrentResults />
     </main>
   </>
 );

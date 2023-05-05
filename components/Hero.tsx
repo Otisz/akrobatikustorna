@@ -29,7 +29,7 @@ const Hero = () => {
 
   return (
     <div className="relative">
-      <div className="mx-auto w-full max-w-7xl pt-16 pb-20 text-center lg:py-48 lg:text-left">
+      <div className="mx-auto w-full max-w-7xl pt-6 pb-6 text-center lg:py-48 lg:text-left">
         <div className="px-4 sm:px-8 lg:w-1/2 xl:pr-16">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
             <span className="block xl:inline">
@@ -46,7 +46,7 @@ const Hero = () => {
             lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
             fugiat aliqua.
           </p>
-          <div className="mt-10 sm:flex sm:justify-center lg:justify-start">
+          <div className="mt-10 flex justify-center lg:justify-start gap-6">
             <div className="rounded-md shadow">
               <Link
                 href="https://forms.gle/gFjANWnUzEeeQAyn7"
@@ -54,6 +54,14 @@ const Hero = () => {
                 className="flex w-full items-center justify-center rounded-md border border-transparent bg-orange-primary px-8 py-3 text-base font-medium text-white hover:bg-orange-accent md:py-4 md:px-10 md:text-lg"
               >
                 Jelentkezés
+              </Link>
+            </div>
+            <div className="rounded-md shadow">
+              <Link
+                href=""
+                className="flex w-full items-center justify-center rounded-md border border-orange-primary px-8 py-3 text-base font-medium text-black hover:text-white hover:bg-orange-primary md:py-4 md:px-10 md:text-lg"
+              >
+                Adományozás
               </Link>
             </div>
           </div>

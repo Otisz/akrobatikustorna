@@ -91,8 +91,8 @@ const Page = () => (
         content="Edzők - Budai Akrobatikus Sport Egyesület"
       />
     </Head>
-    <main className="lg:relative">
-      <div className="mx-auto w-full max-w-7xl pt-16 pb-20 px-4 sm:px-6">
+    <main>
+      <div className="mx-auto w-full max-w-7xl pt-8 pb-20 px-4 sm:px-6 space-y-8">
         <h1 className="text-5xl mb-16">Edzőink</h1>
         <div className="flex flex-wrap justify-center gap-4">
           {TRAINERS.map((trainer) => (

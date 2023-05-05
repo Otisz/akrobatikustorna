@@ -105,7 +105,7 @@ const Page = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="lg:relative">
+      <main>
         <div className="mx-auto w-full max-w-7xl pt-8 pb-20 px-4 sm:px-6 space-y-8">
           <h1 className="text-5xl">Galéria</h1>
           <div className="relative mx-auto max-w-7xl">
