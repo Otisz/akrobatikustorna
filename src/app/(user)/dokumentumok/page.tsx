@@ -7,13 +7,13 @@ import Link from "next/link";
 import { useState } from "react";
 import Highlighter from "react-highlight-words";
 
-export default () => {
+export default function Page() {
   const [query, setQuery] = useState("");
 
   return (
     <>
       <Head>
-        <title>Dokumentumok - Budai Akrobatikus Sport Egyesület</title>
+        <title>Dokumentumok</title>
         <meta name="description" content="Dokumentumok - Budai Akrobatikus Sport Egyesület" />
       </Head>
       <main>
@@ -51,4 +51,4 @@ export default () => {
       </main>
     </>
   );
-};
+}

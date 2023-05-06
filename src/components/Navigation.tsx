@@ -82,7 +82,7 @@ const DROPDOWN_NAVIGATIONS = [
   },
 ];
 
-const Navigation = () => {
+export default function Navigation() {
   const pathname = usePathname();
 
   return (
@@ -244,6 +244,4 @@ const Navigation = () => {
       )}
     </Popover>
   );
-};
-
-export default Navigation;
+}

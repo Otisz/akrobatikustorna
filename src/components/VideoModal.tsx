@@ -5,7 +5,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Fragment } from "react";
 
-export default () => {
+export default function VideoModal() {
   const query = useSearchParams();
   const router = useRouter();
 
@@ -51,4 +51,4 @@ export default () => {
       </Dialog>
     </Transition.Root>
   );
-};
+}

@@ -20,7 +20,7 @@ const CAROUSEL_IMAGES: StaticImageData[] = [
   CarouselImage6,
 ];
 
-const Hero = () => {
+export default function Hero() {
   const [emblaRef] = useEmblaCarousel(
     {
       loop: true,
@@ -81,6 +81,4 @@ const Hero = () => {
       </div>
     </div>
   );
-};
-
-export default Hero;
+}
