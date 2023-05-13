@@ -4,59 +4,47 @@ import Navigation from "@/components/Navigation";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 
+function url(path: string): string {
+  return process.env.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}${path}`
+    : `http://localhost:3000${path}`;
+}
+
 export const metadata: Metadata = {
-  metadataBase: {
-    // host: process.env.NEXT_PUBLIC_VERCEL_URL || "localhost:3000",
-    hash: "",
-    host: process.env.NEXT_PUBLIC_VERCEL_URL || "localhost:3000",
-    hostname: process.env.NEXT_PUBLIC_VERCEL_URL || "localhost",
-    href: process.env.NEXT_PUBLIC_VERCEL_URL || "localhost:3000",
-    toString: () =>
-      process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` : "http://localhost:3000",
-    origin: "",
-    password: "",
-    pathname: "",
-    port: "",
-    protocol: process.env.NEXT_PUBLIC_VERCEL_URL ? "https" : "http",
-    search: "",
-    searchParams: new URLSearchParams(),
-    username: "",
-    toJSON: () => "",
-  },
   title: {
     default: "Budai Akrobatikus Sport Egyesület",
     template: "%s - Budai Akrobatikus Sport Egyesület",
   },
   description: "Budai Akrobatikus Sport Egyesület",
-  manifest: "/site.webmanifest",
+  manifest: url("/site.webmanifest"),
   openGraph: {
     type: "website",
     title: "Budai Akrobatikus Sport Egyesület",
     description: "Budai Akrobatikus Sport Egyesület",
-    images: "/images/logo_base.png",
+    images: url("/images/logo_base.png"),
   },
   twitter: {
     title: "Budai Akrobatikus Sport Egyesület",
     description: "Budai Akrobatikus Sport Egyesület",
-    images: "/images/logo_base.png",
+    images: url("/images/logo_base.png"),
   },
   icons: [
     {
       rel: "apple-touch-icon",
       sizes: "180x180",
-      url: "/apple-touch-icon.png",
+      url: url("/apple-touch-icon.png"),
     },
     {
       rel: "icon",
       type: "image/png",
       sizes: "32x32",
-      url: "/favicon-32x32.png",
+      url: url("/favicon-32x32.png"),
     },
     {
       rel: "icon",
       type: "image/png",
       sizes: "16x16",
-      url: "/favicon-16x16.png",
+      url: url("/favicon-16x16.png"),
     },
   ],
 };
