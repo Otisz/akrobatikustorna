@@ -12,6 +12,7 @@ import {
   IdentificationIcon,
   PaperAirplaneIcon,
   PhotoIcon,
+  ShoppingBagIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import cn from "classnames";
@@ -46,6 +47,12 @@ const MAIN_NAVIGATIONS = [
     onlyOnMobile: true,
   },
   {
+    name: "Piactér",
+    href: "https://docs.google.com/forms/d/e/1FAIpQLSfxqbN-Tqeu1bqkKUQ4vJ7jMvdqtB2fsZ2wip9MUHs3NiOA8Q/viewform?fbclid=IwAR1VH7xnhpJqUwz3vq2YDNZP-JWo_f43E8l7UyMTS7Yrtakfwyo8ATEeFo4",
+    icon: ShoppingBagIcon,
+    onlyOnMobile: true,
+  },
+  {
     name: "Ajánlott oldalak",
     href: "/ajanlott-oldalak",
     icon: ArrowTopRightOnSquareIcon,
@@ -65,6 +72,11 @@ const MAIN_NAVIGATIONS = [
   },
 ];
 const DROPDOWN_NAVIGATIONS = [
+  {
+    name: "Piactér",
+    href: "https://docs.google.com/forms/d/e/1FAIpQLSfxqbN-Tqeu1bqkKUQ4vJ7jMvdqtB2fsZ2wip9MUHs3NiOA8Q/viewform?fbclid=IwAR1VH7xnhpJqUwz3vq2YDNZP-JWo_f43E8l7UyMTS7Yrtakfwyo8ATEeFo4",
+    icon: ShoppingBagIcon,
+  },
   {
     name: "Galéria",
     href: "/galeria",
@@ -148,7 +160,7 @@ export default function Navigation() {
                         leaveFrom="opacity-100 translate-y-0"
                         leaveTo="opacity-0 translate-y-1"
                       >
-                        <Popover.Panel className="absolute z-10 -ml-4 mt-3 w-screen max-w-sm transform px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2">
+                        <Popover.Panel className="absolute right-0 z-10 -ml-4 mt-3 w-screen max-w-sm transform px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2">
                           <div className="overflow-hidden rounded-lg bg-gray-900 text-gray-50 shadow-lg ring-1 ring-orange-primary ring-opacity-5">
                             <div className="relative grid gap-6 px-5 py-6 sm:gap-8 sm:p-8">
                               {DROPDOWN_NAVIGATIONS.map((item) => (
@@ -171,7 +183,7 @@ export default function Navigation() {
                 </Popover>
               </Popover.Group>
 
-              <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
+              <div className="hidden items-center justify-end lg:flex lg:w-0 lg:flex-1">
                 <Link
                   href="https://forms.gle/gFjANWnUzEeeQAyn7"
                   target="_blank"

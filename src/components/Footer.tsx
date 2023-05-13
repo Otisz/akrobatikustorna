@@ -4,27 +4,27 @@ import Link from "next/link";
 import { FaFacebookSquare, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const navigation = {
-  solutions: [
-    { name: "Marketing", href: "#" },
-    { name: "Analytics", href: "#" },
-    { name: "Commerce", href: "#" },
-    { name: "Insights", href: "#" },
+  association: [
+    { name: "Edzők", href: "/edzok" },
+    { name: "Edzéseink", href: "/edzeseink" },
+    { name: "Szakosztályok", href: "/szakosztalyok" },
+    { name: "Kapcsolat", href: "/kapcsolat" },
   ],
-  support: [
-    { name: "Pricing", href: "#" },
-    { name: "Documentation", href: "#" },
-    { name: "Guides", href: "#" },
-    { name: "API Status", href: "#" },
+  collection: [
+    { name: "Galéria", href: "/galeria" },
+    { name: "Dokumentumok", href: "/dokumentumok" },
+    { name: "Ajánlott oldalak", href: "/ajanlott-oldalak" },
+    {
+      name: "Piactér",
+      href: "https://docs.google.com/forms/d/e/1FAIpQLSfxqbN-Tqeu1bqkKUQ4vJ7jMvdqtB2fsZ2wip9MUHs3NiOA8Q/viewform?fbclid=IwAR1VH7xnhpJqUwz3vq2YDNZP-JWo_f43E8l7UyMTS7Yrtakfwyo8ATEeFo4",
+    },
   ],
-  company: [
-    { name: "About", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Jobs", href: "#" },
-    { name: "Press", href: "#" },
-    { name: "Partners", href: "#" },
+  posts: [
+    { name: "Hírek", href: "/hirek" },
+    { name: "Eredményeink", href: "/eredmenyek" },
   ],
   logins: [
-    { name: "Synology", href: "http://account.synology.com" },
+    { name: "Tárhely", href: "http://account.synology.com" },
     { name: "Studio", href: "/studio" },
   ],
 };
@@ -60,25 +60,25 @@ export default function Footer() {
           <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold leading-6 text-white">Solutions</h3>
+                <h3 className="text-sm font-semibold leading-6 text-white">Egyesület</h3>
                 <ul role="list" className="mt-6 space-y-4">
-                  {navigation.solutions.map((item) => (
+                  {navigation.association.map((item) => (
                     <li key={item.name}>
-                      <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
+                      <Link href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
                         {item.name}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-white">Support</h3>
+                <h3 className="text-sm font-semibold leading-6 text-white">Gyűtemény</h3>
                 <ul role="list" className="mt-6 space-y-4">
-                  {navigation.support.map((item) => (
+                  {navigation.collection.map((item) => (
                     <li key={item.name}>
-                      <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
+                      <Link href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
                         {item.name}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -86,13 +86,13 @@ export default function Footer() {
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold leading-6 text-white">Company</h3>
+                <h3 className="text-sm font-semibold leading-6 text-white">Tartalmak</h3>
                 <ul role="list" className="mt-6 space-y-4">
-                  {navigation.company.map((item) => (
+                  {navigation.posts.map((item) => (
                     <li key={item.name}>
-                      <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
+                      <Link href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
                         {item.name}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
