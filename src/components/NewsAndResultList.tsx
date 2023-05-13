@@ -3,11 +3,14 @@ import { News } from "@/types/sanity";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function NewsList(props: { news: News[] }) {
+export default function NewsAndResultList(props: {
+  news: Pick<News, "title" | "mainImage" | "summary" | "slug" | "publishedAt" | "_createdAt">[];
+  prefix: "hirek" | "eredmenyek";
+}) {
   return (
     <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
       {props.news.map((news) => (
-        <article key={news._id} className="flex flex-col items-start">
+        <article key={news.slug.current} className="flex flex-col items-start">
           <div className="relative w-full">
             <Image
               src={urlFor(news.mainImage).url()}
@@ -26,7 +29,7 @@ export default function NewsList(props: { news: News[] }) {
             </div>
             <div className="group relative align-top">
               <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-orange-primary">
-                <Link href={`/hirek/${news.slug.current}`}>
+                <Link href={`/${props.prefix}/${news.slug.current}`}>
                   <span className="absolute inset-0" />
                   {news.title}
                 </Link>

@@ -1,3 +1,4 @@
-import news from './news'
+import news from "./news";
+import results from "./results";
 
-export const schemaTypes = [news]
+export const schemaTypes = [news, results];

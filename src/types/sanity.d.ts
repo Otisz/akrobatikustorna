@@ -16,3 +16,12 @@ interface News extends SanityBase {
   summary: string;
   body: PortableTextTextBlock[];
 }
+
+interface Result extends SanityBase {
+  title: string;
+  slug: Slug;
+  mainImage: Image;
+  publishedAt?: string;
+  summary: string;
+  body: PortableTextTextBlock[];
+}
