@@ -25,7 +25,7 @@ export default function Page() {
               <div className="px-4 py-5 text-center sm:px-6">
                 <h3 className="text-xl font-medium leading-6 text-gray-900">{trainer.name}</h3>
                 <p className="my-1 max-w-2xl text-sm italic">{trainer.title}</p>
-                <Image className="mx-auto sm:rounded-md" src={trainer.image} alt={trainer.name} />
+                <Image className="mx-auto sm:rounded-md" src={trainer.image} alt={trainer.name} loading="lazy" />
               </div>
             </div>
           ))}

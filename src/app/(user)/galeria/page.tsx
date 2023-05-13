@@ -35,6 +35,7 @@ export default function Page() {
                       className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-110"
                       src={`/images/youtube_thumbnails/${video.v}.png`}
                       alt={video.name!.toString()}
+                      loading="lazy"
                     />
                   </div>
                   <div className="flex flex-1 flex-col justify-between bg-white p-6">
