@@ -15,7 +15,7 @@ export default function Page() {
     <main>
       <div className="mx-auto w-full max-w-7xl space-y-8 px-4 pb-20 pt-8 sm:px-6">
         <h1 className="mb-16 text-5xl">Edzőink</h1>
-        <div className="flex flex-wrap justify-center gap-7 md:justify-between">
+        <div className="flex flex-wrap justify-center gap-4">
           {TRAINERS.map((trainer) => (
             <div
               key={trainer.name}
