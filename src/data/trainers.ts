@@ -11,7 +11,7 @@ import szucsi_ildiko from "@/../public/images/trainers/szucsi_ildiko.jpg";
 import toth_vivien from "@/../public/images/trainers/toth_vivien.jpg";
 import { StaticImageData } from "next/image";
 
-interface Trainer {
+export interface Trainer {
   name: string;
   title: string;
   image: StaticImageData;

@@ -4,47 +4,42 @@ import Navigation from "@/components/Navigation";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 
-function url(path: string): string {
-  return process.env.NEXT_PUBLIC_VERCEL_URL
-    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}${path}`
-    : `http://localhost:3000${path}`;
-}
-
 export const metadata: Metadata = {
   title: {
     default: "Budai Akrobatikus Sport Egyesület",
     template: "%s - Budai Akrobatikus Sport Egyesület",
   },
   description: "Budai Akrobatikus Sport Egyesület",
-  manifest: url("/site.webmanifest"),
+  manifest: "/site.webmanifest",
+  metadataBase: new URL("https://budaiakrobatikus.hu/"),
   openGraph: {
     type: "website",
     title: "Budai Akrobatikus Sport Egyesület",
     description: "Budai Akrobatikus Sport Egyesület",
-    images: url("/images/logo_base.png"),
+    images: "/images/logo_base.png",
   },
   twitter: {
     title: "Budai Akrobatikus Sport Egyesület",
     description: "Budai Akrobatikus Sport Egyesület",
-    images: url("/images/logo_base.png"),
+    images: "/images/logo_base.png",
   },
   icons: [
     {
       rel: "apple-touch-icon",
       sizes: "180x180",
-      url: url("/apple-touch-icon.png"),
+      url: "/apple-touch-icon.png",
     },
     {
       rel: "icon",
       type: "image/png",
       sizes: "32x32",
-      url: url("/favicon-32x32.png"),
+      url: "/favicon-32x32.png",
     },
     {
       rel: "icon",
       type: "image/png",
       sizes: "16x16",
-      url: url("/favicon-16x16.png"),
+      url: "/favicon-16x16.png",
     },
   ],
 };
@@ -53,7 +48,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="relative min-h-screen bg-gray-100">
       <Navigation />
-      <Banner />
+      <Banner hide={true} />
       {children}
       <Footer />
     </div>

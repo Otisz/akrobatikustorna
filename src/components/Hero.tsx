@@ -44,8 +44,10 @@ export default function Hero() {
             </span>
           </h1>
           <p className="mx-auto mt-3 max-w-md text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl">
-            Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
-            fugiat veniam occaecat fugiat aliqua.
+            Gázművek MTE: Gázműveken belül az akkori akrobatikus torna szakosztály vezetője, vezető edzője Kuti Lajos,
+            segítő Füzér István és Zátrok Béla edzők voltak. Sajnos Kuti Lajos És Füzér István halálával a szakosztály
+            is elveszett, megszűnt. Viszont felneveltek egy generációt, akik egy életre megszerették, életformának
+            tekintik a tornának ezt a különleges változatát, az akrobatikát.
           </p>
           <div className="mt-10 flex justify-center gap-6 lg:justify-start">
             <div className="rounded-md shadow">

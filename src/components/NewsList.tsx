@@ -3,9 +3,8 @@ import { News } from "@/types/sanity";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function NewsAndResultList(props: {
+export default function NewsList(props: {
   news: Pick<News, "title" | "mainImage" | "summary" | "slug" | "publishedAt" | "_createdAt">[];
-  prefix: "hirek" | "eredmenyek";
 }) {
   return (
     <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
@@ -29,7 +28,7 @@ export default function NewsAndResultList(props: {
             </div>
             <div className="group relative align-top">
               <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-orange-primary">
-                <Link href={`/${props.prefix}/${news.slug.current}`}>
+                <Link href={`/hirek/${news.slug.current}`}>
                   <span className="absolute inset-0" />
                   {news.title}
                 </Link>

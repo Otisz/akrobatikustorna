@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FaFacebookSquare, FaInstagram, FaYoutube } from "react-icons/fa";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Kapcsolat",
   description: "Kapcsolat - Budai Akrobatikus Sport Egyesület",

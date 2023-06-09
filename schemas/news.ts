@@ -38,7 +38,7 @@ export default {
       name: "body",
       title: "Szöveg",
       type: "array",
-      of: [{ type: "block" }],
+      of: [{ type: "block" }, { type: "image" }],
     },
   ],
 };

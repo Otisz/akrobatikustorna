@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useState } from "react";
 import Highlighter from "react-highlight-words";
 
+export const revalidate = 3600;
+
 export default function Page() {
   const [query, setQuery] = useState("");
 

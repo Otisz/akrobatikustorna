@@ -1,6 +1,7 @@
 import { client } from "@/lib/sanity.client";
 import { urlFor } from "@/lib/sanity.image";
 import { News } from "@/types/sanity";
+import type { Metadata } from "next";
 import { groq } from "next-sanity";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -12,7 +13,7 @@ type Props = {
   };
 };
 
-export const revalidate = 60;
+export const revalidate = 900;
 
 export async function generateStaticParams() {
   const query = groq`*[_type == "news"]{slug}`;
@@ -25,24 +26,37 @@ export async function generateStaticParams() {
 }
 
 const getData = async (slug: string) => {
-  return await client.fetch<News | null>(groq`*[_type == "news" && slug.current == $slug][0]`, { slug });
+  const news = await client.fetch<News | null>(groq`*[_type == "news" && slug.current == $slug][0]`, { slug });
+
+  if (!news) {
+    notFound();
+  }
+
+  return news;
 };
 
-export async function generateMetadata(props: Props) {
+export async function generateMetadata(props: Props): Promise<Metadata> {
   const news = await getData(props.params.slug);
 
   return {
-    title: `${news?.title} - Hírek`,
-    description: news?.summary,
+    title: `${news.title} - Hírek`,
+    description: news.summary,
+    openGraph: {
+      type: "article",
+      title: `${news.title} - Budai Akrobatikus Sport Egyesület`,
+      description: `${news.summary}`,
+      images: urlFor(news.mainImage).url(),
+    },
+    twitter: {
+      title: `${news.title} - Budai Akrobatikus Sport Egyesület`,
+      description: `${news.summary}`,
+      images: urlFor(news.mainImage).url(),
+    },
   };
 }
 
 export default async function Page(props: Props) {
   const news = await getData(props.params.slug);
-
-  if (!news) {
-    notFound();
-  }
 
   return (
     <div className="mx-auto max-w-4xl p-6 lg:px-8">
@@ -57,7 +71,7 @@ export default async function Page(props: Props) {
             <span className="ml-3">{new Date(news.publishedAt || news._createdAt).toLocaleDateString("hu")}</span>
           </time>
         </header>
-        <div className="prose mt-8 prose-a:text-orange-primary">
+        <div className="prose mt-8 marker:text-orange-primary prose-a:text-orange-primary prose-img:rounded-xl prose-img:shadow">
           <p>{news.summary}</p>
 
           <Image
@@ -65,10 +79,14 @@ export default async function Page(props: Props) {
             alt=""
             width={384}
             height={256}
-            className="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover object-center shadow sm:aspect-[2/1] lg:aspect-[3/2]"
+            className="not-prose aspect-[16/9] w-full bg-gray-100 object-cover object-center sm:aspect-[2/1] lg:aspect-[3/2]"
           />
 
-          <PortableText content={news.body} />
+          <PortableText
+            content={news.body}
+            projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}
+            dataset={process.env.NEXT_PUBLIC_SANITY_DATASET}
+          />
         </div>
       </article>
     </div>

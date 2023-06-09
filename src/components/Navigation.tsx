@@ -1,98 +1,15 @@
 "use client";
 
 import LogoBase from "@/../public/images/logo_base.png";
+import { DROPDOWN_NAVIGATIONS, MAIN_NAVIGATIONS } from "@/data/navigation";
 import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import {
-  AcademicCapIcon,
-  ArrowTopRightOnSquareIcon,
-  Bars3BottomRightIcon,
-  CalendarDaysIcon,
-  DocumentTextIcon,
-  IdentificationIcon,
-  PaperAirplaneIcon,
-  PhotoIcon,
-  ShoppingBagIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { Bars3BottomRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
-
-const MAIN_NAVIGATIONS = [
-  {
-    name: "Edzők",
-    href: "/edzok",
-    icon: IdentificationIcon,
-    onlyOnMobile: false,
-  },
-  {
-    name: "Szakosztályok",
-    href: "/szakosztalyok",
-    icon: AcademicCapIcon,
-    onlyOnMobile: false,
-  },
-  {
-    name: "Edzéseink",
-    href: "/edzeseink",
-    icon: CalendarDaysIcon,
-    onlyOnMobile: false,
-  },
-  {
-    name: "Dokumentumok",
-    href: "/dokumentumok",
-    icon: DocumentTextIcon,
-    onlyOnMobile: true,
-  },
-  {
-    name: "Piactér",
-    href: "https://docs.google.com/forms/d/e/1FAIpQLSfxqbN-Tqeu1bqkKUQ4vJ7jMvdqtB2fsZ2wip9MUHs3NiOA8Q/viewform?fbclid=IwAR1VH7xnhpJqUwz3vq2YDNZP-JWo_f43E8l7UyMTS7Yrtakfwyo8ATEeFo4",
-    icon: ShoppingBagIcon,
-    onlyOnMobile: true,
-  },
-  {
-    name: "Ajánlott oldalak",
-    href: "/ajanlott-oldalak",
-    icon: ArrowTopRightOnSquareIcon,
-    onlyOnMobile: true,
-  },
-  {
-    name: "Galéria",
-    href: "/galeria",
-    icon: PhotoIcon,
-    onlyOnMobile: true,
-  },
-  {
-    name: "Kapcsolat",
-    href: "/kapcsolat",
-    icon: PaperAirplaneIcon,
-    onlyOnMobile: false,
-  },
-];
-const DROPDOWN_NAVIGATIONS = [
-  {
-    name: "Piactér",
-    href: "https://docs.google.com/forms/d/e/1FAIpQLSfxqbN-Tqeu1bqkKUQ4vJ7jMvdqtB2fsZ2wip9MUHs3NiOA8Q/viewform?fbclid=IwAR1VH7xnhpJqUwz3vq2YDNZP-JWo_f43E8l7UyMTS7Yrtakfwyo8ATEeFo4",
-    icon: ShoppingBagIcon,
-  },
-  {
-    name: "Galéria",
-    href: "/galeria",
-    icon: PhotoIcon,
-  },
-  {
-    name: "Dokumentumok",
-    href: "/dokumentumok",
-    icon: DocumentTextIcon,
-  },
-  {
-    name: "Ajánlott oldalak",
-    href: "/ajanlott-oldalak",
-    icon: ArrowTopRightOnSquareIcon,
-  },
-];
 
 export default function Navigation() {
   const pathname = usePathname();
@@ -169,6 +86,7 @@ export default function Navigation() {
                                   key={item.name}
                                   href={item.href}
                                   className="-m-3 flex items-center gap-4 rounded-md p-3 text-gray-100 hover:text-orange-primary"
+                                  target={item.newTab ? "_blank" : undefined}
                                 >
                                   <item.icon className="h-6 w-6 flex-shrink-0 text-orange-primary" aria-hidden="true" />
                                   <p className="text-base font-medium">{item.name}</p>
@@ -229,6 +147,7 @@ export default function Navigation() {
                           key={item.name}
                           href={item.href}
                           className="flex flex-col items-center gap-4 rounded-md p-3 hover:bg-gray-700"
+                          target={item.newTab ? "_blank" : undefined}
                         >
                           <item.icon className="h-6 w-6 flex-shrink-0 text-orange-primary" aria-hidden="true" />
                           <span className="text-base font-medium text-gray-50">{item.name}</span>

@@ -1,6 +1,14 @@
 import Link from "next/link";
 
-export default function Banner() {
+type Props = {
+  hide?: boolean;
+};
+
+export default function Banner(props: Props) {
+  if (props.hide) {
+    return null;
+  }
+
   return (
     <div className="bg-orange-primary">
       <div className="mx-auto max-w-7xl px-3 py-3 sm:px-6 lg:px-8">

@@ -6,6 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Galéria",
   description: "Galéria - Budai Akrobatikus Sport Egyesület",

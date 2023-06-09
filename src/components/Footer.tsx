@@ -5,6 +5,7 @@ import { FaFacebookSquare, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const navigation = {
   association: [
+    { name: "Jelentkezés", href: "https://forms.gle/gFjANWnUzEeeQAyn7" },
     { name: "Edzők", href: "/edzok" },
     { name: "Edzéseink", href: "/edzeseink" },
     { name: "Szakosztályok", href: "/szakosztalyok" },
@@ -19,10 +20,7 @@ const navigation = {
       href: "https://docs.google.com/forms/d/e/1FAIpQLSfxqbN-Tqeu1bqkKUQ4vJ7jMvdqtB2fsZ2wip9MUHs3NiOA8Q/viewform?fbclid=IwAR1VH7xnhpJqUwz3vq2YDNZP-JWo_f43E8l7UyMTS7Yrtakfwyo8ATEeFo4",
     },
   ],
-  posts: [
-    { name: "Hírek", href: "/hirek" },
-    { name: "Eredményeink", href: "/eredmenyek" },
-  ],
+  posts: [{ name: "Hírek", href: "/hirek" }],
   logins: [
     { name: "Tárhely", href: "http://account.synology.com" },
     { name: "Studio", href: "/studio" },
@@ -40,7 +38,8 @@ export default function Footer() {
           <div className="space-y-8">
             <Image className="mx-auto h-14 w-auto" src={LogoBase} alt="BASE Logo" />
             <p className="text-center text-sm leading-6 text-gray-300">
-              Making the world a better place through constructing elegant hierarchies.
+              <q>Nem mindig lehet megtenni, amit kell, de mindig meg kell tenni, amit lehet.</q>
+              <span>- (Bethlen Gábor)</span>
             </p>
             <div className="flex justify-around">
               <Link href="https://www.facebook.com/akrobatikustorna" target="_blank" title="Facebook">

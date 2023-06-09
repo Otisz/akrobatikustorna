@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import ReactCountryFlag from "react-country-flag";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Szakosztályok",
   description: "Szakosztályok - Budai Akrobatikus Sport Egyesület",
