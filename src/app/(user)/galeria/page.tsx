@@ -38,6 +38,8 @@ export default function Page() {
                       src={`/images/youtube_thumbnails/${video.v}.png`}
                       alt={video.name!.toString()}
                       loading="lazy"
+                      placeholder="blur"
+                      blurDataURL={`/images/youtube_thumbnails/10p_${video.v}.png`}
                     />
                   </div>
                   <div className="flex flex-1 flex-col justify-between bg-white p-6">
