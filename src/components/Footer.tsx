@@ -117,7 +117,7 @@ export default function Footer() {
           </p>
           <p className="text-xs leading-5 text-gray-400" lang="en">
             Made with ❤️ by{" "}
-            <Link href="https://github.com/Otisz" target="_blank">
+            <Link href="https://github.com/Otisz" target="_blank" className="hover:underline">
               Levente Otta
             </Link>
           </p>

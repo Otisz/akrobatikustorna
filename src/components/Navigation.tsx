@@ -105,7 +105,7 @@ export default function Navigation() {
                 <Link
                   href="https://forms.gle/gFjANWnUzEeeQAyn7"
                   target="_blank"
-                  className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-orange-primary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-orange-accent"
+                  className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-orange-primary px-4 py-2 text-base font-medium text-gray-900 shadow-sm transition hover:bg-orange-accent hover:text-white"
                 >
                   Jelentkezés
                 </Link>
