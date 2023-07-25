@@ -1,12 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  webpack: (config, { isServer }) => {
-    if (isServer) {
-      require("./scripts/generate-sitemap");
-    }
-
-    return config;
+  images: {
+    domains: ["cdn.sanity.io"],
   },
 };
 
