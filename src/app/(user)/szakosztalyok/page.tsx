@@ -123,25 +123,6 @@ export default function Page() {
                 </td>
               </tr>
               <tr>
-                <td rowSpan={2}>
-                  CheerLeading <br /> (
-                  <Link href="https://hu.wikipedia.org/wiki/Cheerleading#T%C3%B6rt%C3%A9nete" target="_blank">
-                    Története
-                  </Link>
-                  )
-                </td>
-                <td>
-                  Cheer {'"'}acro{'"'}
-                </td>
-                <td>Versenynaptár (szabályzat)</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Cheerdance</td>
-                <td>Versenynaptár (szabályzat)</td>
-                <td></td>
-              </tr>
-              <tr>
                 <td>Látványtánc</td>
                 <td>Akrobatikus látványtánc</td>
                 <td>
