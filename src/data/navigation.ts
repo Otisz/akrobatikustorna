@@ -38,7 +38,7 @@ export const MAIN_NAVIGATIONS = [
     name: "Piactér",
     href: "https://docs.google.com/forms/d/e/1FAIpQLSfxqbN-Tqeu1bqkKUQ4vJ7jMvdqtB2fsZ2wip9MUHs3NiOA8Q/viewform?fbclid=IwAR1VH7xnhpJqUwz3vq2YDNZP-JWo_f43E8l7UyMTS7Yrtakfwyo8ATEeFo4",
     icon: ShoppingBagIcon,
-    onlyOnMobile: true,
+    onlyOnMobile: false,
     newTab: true,
   },
   {
@@ -61,12 +61,6 @@ export const MAIN_NAVIGATIONS = [
   },
 ];
 export const DROPDOWN_NAVIGATIONS = [
-  {
-    name: "Piactér",
-    href: "https://docs.google.com/forms/d/e/1FAIpQLSfxqbN-Tqeu1bqkKUQ4vJ7jMvdqtB2fsZ2wip9MUHs3NiOA8Q/viewform?fbclid=IwAR1VH7xnhpJqUwz3vq2YDNZP-JWo_f43E8l7UyMTS7Yrtakfwyo8ATEeFo4",
-    icon: ShoppingBagIcon,
-    newTab: true,
-  },
   {
     name: "Galéria",
     href: "/galeria",

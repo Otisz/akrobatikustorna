@@ -28,26 +28,90 @@ export default function Page() {
             <tbody>
               <tr>
                 <th>
-                  Akrobatikus Torna <br /> {'"'}A{'"'} kategória
+                  <div className="flex flex-col gap-2">
+                    <span>
+                      Akrobatikus Torna <br /> &quot;A&quot; kategória
+                    </span>
+                    <span className="text-sky-500">Nemzetközi kategória</span>
+                    <span className="text-orange-primary">
+                      Legenda team EB VB
+                      <br />
+                      és Kiemelt nemzetközi versenyek
+                    </span>
+                  </div>
                 </th>
                 <td>
-                  16<sup>00</sup> - 19<sup>30</sup>{" "}
+                  <div className="flex flex-col gap-4">
+                    <span>
+                      16<sup>00</sup> - 19<sup>00</sup>
+                    </span>
+                    <span className="text-sky-500">
+                      16<sup>00</sup> - 19<sup>30</sup>
+                    </span>
+                    <span className="text-orange-primary">
+                      16<sup>00</sup> - 19<sup>30</sup>
+                    </span>
+                  </div>
                 </td>
-                <td></td>
                 <td>
-                  16<sup>00</sup> - 19<sup>30</sup>
+                  <div className="flex flex-col gap-4">
+                    <span className="select-none opacity-0">-</span>
+                    <span className="select-none opacity-0">-</span>
+                    <span className="text-orange-primary">
+                      18<sup>00</sup> - 20<sup>00</sup>
+                    </span>
+                  </div>
                 </td>
-                <td></td>
                 <td>
-                  17<sup>00</sup> - 2030
+                  <div className="flex flex-col gap-4">
+                    <span>
+                      16<sup>00</sup> - 19<sup>00</sup>
+                    </span>
+                    <span className="text-sky-500">
+                      16<sup>00</sup> - 19<sup>30</sup>
+                    </span>
+                    <span className="text-orange-primary">
+                      16<sup>00</sup> - 19<sup>30</sup>
+                    </span>
+                  </div>
                 </td>
                 <td>
-                  10<sup>00</sup> - 13<sup>00</sup>
+                  <div className="flex flex-col gap-4">
+                    <span className="select-none opacity-0">-</span>
+                    <span className="select-none opacity-0">-</span>
+                    <span className="text-orange-primary">
+                      18<sup>00</sup> - 20<sup>00</sup>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div className="flex flex-col gap-4">
+                    <span>
+                      17<sup>00</sup> - 20<sup>00</sup>
+                    </span>
+                    <span className="text-sky-500">
+                      17<sup>00</sup> - 20<sup>30</sup>
+                    </span>
+                    <span className="text-orange-primary">
+                      18<sup>00</sup> - 20<sup>30</sup>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div className="flex flex-col gap-4">
+                    <span className="select-none opacity-0">-</span>
+                    <span className="text-sky-500">
+                      10<sup>00</sup> - 13<sup>00</sup>
+                    </span>
+                    <span className="text-orange-primary">
+                      10<sup>00</sup> - 13<sup>00</sup>
+                    </span>
+                  </div>
                 </td>
               </tr>
               <tr>
                 <th>
-                  Akrobatikus Torna <br /> haladó {'"'}B{'"'} kategória
+                  Akrobatikus Torna <br /> rekreációs csoport <br /> és haladó {'"'}B{'"'} kategória
                 </th>
                 <td></td>
                 <td>
@@ -115,12 +179,34 @@ export default function Page() {
                 <td></td>
               </tr>
               <tr>
-                <th>Látványtánc</th>
-                <td></td>
-                <td></td>
+                <th>
+                  <div className="flex flex-col gap-2">
+                    <span>Látványtánc</span>
+                    <span className="text-orange-primary">A kategória</span>
+                    <span>B kategória</span>
+                  </div>
+                </th>
                 <td></td>
                 <td>
-                  18<sup>00</sup> - 20<sup>00</sup>
+                  <div className="flex flex-col gap-2">
+                    <span className="select-none opacity-0">-</span>
+                    <span className="select-none opacity-0">-</span>
+                    <span>
+                      16<sup>00</sup> - 18<sup>00</sup>
+                    </span>
+                  </div>
+                </td>
+                <td></td>
+                <td>
+                  <div className="flex flex-col gap-2">
+                    <span className="select-none opacity-0">-</span>
+                    <span className="text-orange-primary">
+                      18<sup>00</sup> - 20<sup>00</sup>
+                    </span>
+                    <span>
+                      16<sup>00</sup> - 18<sup>00</sup>
+                    </span>
+                  </div>
                 </td>
                 <td></td>
                 <td></td>
