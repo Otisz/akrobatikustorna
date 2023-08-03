@@ -21,7 +21,7 @@ export default async function Page() {
   return (
     <main className="lg:relative">
       <div className="relative">
-        <div className="mx-auto w-full max-w-7xl pb-6 pt-6 text-center lg:py-48 lg:text-left">
+        <div className="mx-auto w-full max-w-7xl py-6 text-center lg:py-32 lg:text-left">
           <div className="px-4 sm:px-8 lg:w-1/2 xl:pr-16">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
               <span className="block xl:inline">

@@ -9,7 +9,7 @@ export default function NewsList(props: {
   return (
     <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
       {props.news.map((news) => (
-        <article key={news.slug.current} className="flex flex-col items-start">
+        <article key={news.slug.current} className="relative flex flex-col items-start">
           <div className="relative w-full">
             <Image
               src={urlFor(news.mainImage).url()}
@@ -26,7 +26,7 @@ export default function NewsList(props: {
                 {new Date(news.publishedAt || news._createdAt).toLocaleDateString("hu")}
               </time>
             </div>
-            <div className="group relative align-top">
+            <div className="group align-top">
               <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-orange-primary">
                 <Link href={`/hirek/${news.slug.current}`}>
                   <span className="absolute inset-0" />
