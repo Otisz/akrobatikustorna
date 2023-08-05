@@ -34,10 +34,14 @@ export default async function Page() {
               </span>
             </h1>
             <p className="mx-auto mt-3 max-w-md text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl">
-              Gázművek MTE: Gázműveken belül az akkori akrobatikus torna szakosztály vezetője, vezető edzője Kuti Lajos,
-              segítő Füzér István és Zátrok Béla edzők voltak. Sajnos Kuti Lajos És Füzér István halálával a szakosztály
-              is elveszett, megszűnt. Viszont felneveltek egy generációt, akik egy életre megszerették, életformának
-              tekintik a tornának ezt a különleges változatát, az akrobatikát.
+              BASE = Gázművek MTE sportakrobatika szakosztály folytatása: 1970-től a 90-es évek végéig az „akrobatikus
+              torna” akkori nevén sportakrobatika szakosztály vezetője, vezető edzője Kuti Lajos, segítő Füzér István és
+              Zátrok Béla edzők voltak. Sajnos Kuti Lajos És Füzér István halálával a szakosztály is elveszett,
+              megszűnt. Viszont felneveltek egy generációt, akik egy életre megszerették a tornának ezt a különleges
+              változatát, az akrobatikát. Nem csak Óbudán, de egész Budán nem volt már ez a sportág. Így 2005 év végén
+              úttörőként hozta vissza Szücsi Ildikó (aki ma a BASE vezető- szakedzője), keltette életre a régi
+              sporttársak támogatásával ezt a nagyszerű sportágat és megszületett a Budai Akrobatikus Sport Egyesület a
+              BASE!
             </p>
             <div className="mt-10 flex justify-center gap-6 lg:justify-start">
               <div className="rounded-md shadow">
