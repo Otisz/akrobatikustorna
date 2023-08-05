@@ -48,7 +48,7 @@ export const MAIN_NAVIGATIONS = [
     onlyOnMobile: true,
   },
   {
-    name: "Galéria",
+    name: "Történelmi kitekintés",
     href: "/galeria",
     icon: PhotoIcon,
     onlyOnMobile: true,
@@ -62,7 +62,7 @@ export const MAIN_NAVIGATIONS = [
 ];
 export const DROPDOWN_NAVIGATIONS = [
   {
-    name: "Galéria",
+    name: "Történelmi kitekintés",
     href: "/galeria",
     icon: PhotoIcon,
   },

@@ -89,10 +89,10 @@ export default function Page() {
                 <td>
                   <div className="flex flex-col gap-8">
                     <span>
-                      17<sup>00</sup> - 20<sup>00</sup>
+                      18<sup>00</sup> - 20<sup>00</sup>
                     </span>
                     <span className="text-sky-500">
-                      17<sup>00</sup> - 20<sup>30</sup>
+                      18<sup>00</sup> - 20<sup>30</sup>
                     </span>
                     <span className="text-orange-primary">
                       18<sup>00</sup> - 20<sup>30</sup>
@@ -113,46 +113,54 @@ export default function Page() {
               </tr>
               <tr>
                 <th>
-                  Akrobatikus Torna &quot;B&quot; kategória <br /> rekreációs csoport <br /> és kezdő versenyzők
+                  Akrobatikus Torna &quot;B&quot; kategória <br /> haladó versenyzők
                 </th>
                 <td></td>
                 <td>
                   16<sup>00</sup> - 18<sup>00</sup>
                 </td>
                 <td>
-                  ugróedzés <br /> 16<sup>00</sup> - 17<sup>00</sup>
+                  16<sup>00</sup> - 17<sup>00</sup>
+                  <br />
+                  <span className="text-sm">ugróedzés</span>
                 </td>
                 <td></td>
                 <td>
                   16<sup>00</sup> - 18<sup>00</sup>
                 </td>
                 <td>
-                  felvehető <br /> 10<sup>00</sup> - 12<sup>00</sup>
+                  10<sup>00</sup> - 12<sup>00</sup>
+                  <br />
+                  <span className="text-sm">felvehető</span>
                 </td>
               </tr>
               <tr>
                 <th>
-                  Akrobatikus Torna &quot;B&quot; kategória <br /> haladó versenyzők
+                  Akrobatikus Torna &quot;B&quot; kategória <br /> rekreációs csoport <br /> és kezdő versenyzők
                 </th>
                 <td></td>
                 <td>
                   18<sup>00</sup> - 20<sup>00</sup>
                 </td>
                 <td>
-                  ugróedzés <br /> 16<sup>00</sup> - 17<sup>00</sup>
+                  16<sup>00</sup> - 17<sup>00</sup>
+                  <br />
+                  <span className="text-sm">ugróedzés</span>
                 </td>
                 <td>
                   16<sup>00</sup> - 18<sup>00</sup>
                 </td>
                 <td></td>
                 <td>
-                  felvehető <br /> 10<sup>00</sup> - 12<sup>00</sup>
+                  10<sup>00</sup> - 12<sup>00</sup>
+                  <br />
+                  <span className="text-sm">felvehető</span>
                 </td>
               </tr>
               <tr>
                 <th>
                   Szertorna, <br /> akrobatikus torna előkészítő <br />
-                  {'"'}Gyémánt{'"'}csoport
+                  &quot;Gyémánt&quot; csoport
                 </th>
                 <td></td>
                 <td>
@@ -225,7 +233,13 @@ export default function Page() {
                 <td></td>
               </tr>
               <tr>
-                <th>Balett</th>
+                <th>
+                  Balett
+                  <br />
+                  <span className="text-sm font-normal">
+                    (Haladó és Legend Team <br /> versenyzőknek kötelező)
+                  </span>
+                </th>
                 <td></td>
                 <td></td>
                 <td></td>

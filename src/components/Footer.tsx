@@ -12,7 +12,7 @@ const navigation = {
     { name: "Kapcsolat", href: "/kapcsolat" },
   ],
   collection: [
-    { name: "Galéria", href: "/galeria" },
+    { name: "Történelmi kitekintés", href: "/galeria" },
     { name: "Dokumentumok", href: "/dokumentumok" },
     { name: "Ajánlott oldalak", href: "/ajanlott-oldalak" },
     {
