@@ -53,9 +53,7 @@ export default function Page() {
                   </Link>
                   )
                 </td>
-                <td>
-                  {'"'}A{'"'} kategória
-                </td>
+                <td>&quot;A&quot; kategória</td>
                 <td>
                   Versenynaptár (
                   <Link href="/documents/Versenyszabalyzat_2022.pdf" target="_blank">
@@ -77,12 +75,8 @@ export default function Page() {
                   Utánpótlás versenyrendszere
                   <ul className="mt-2 list-inside list-disc pl-8 text-left">
                     <li>Rekreáció</li>
-                    <li>
-                      {'"'}B{'"'} kategória
-                    </li>
-                    <li>
-                      {'"'}A{'"'} kategória
-                    </li>
+                    <li>&quot;B&quot; kategória</li>
+                    <li>&quot;A&quot; kategória</li>
                   </ul>
                 </td>
                 <td>
@@ -124,7 +118,7 @@ export default function Page() {
               </tr>
               <tr>
                 <td>Látványtánc</td>
-                <td>Akrobatikus látványtánc</td>
+                <td>Sportakrobatika</td>
                 <td>
                   Versenynaptár (
                   <Link href="/documents/latvanytanc%20Versenyszabalyzat-2022.pdf" target="_blank">
@@ -135,28 +129,15 @@ export default function Page() {
                 <td></td>
               </tr>
               <tr>
-                <td rowSpan={3}>
+                <td>
                   Szertorna <br /> (
                   <Link href="https://hu.wikipedia.org/wiki/Torna_(sport)#T%C3%B6rt%C3%A9nete" target="_blank">
                     Története
                   </Link>
                   )
                 </td>
-                <td>Férfi Torna</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Női Torna</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>
-                  Női Torna {'"'}Zsebibaba{'"'}
-                </td>
-                <td></td>
-                <td></td>
+                <td>Szertorna előkészítő</td>
+                <td colSpan={2} />
               </tr>
             </tbody>
           </table>
