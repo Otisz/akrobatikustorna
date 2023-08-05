@@ -30,18 +30,20 @@ export default function Page() {
                 <th>
                   <div className="flex flex-col gap-2">
                     <span>
-                      Akrobatikus Torna <br /> &quot;A&quot; kategória
-                    </span>
-                    <span className="text-sky-500">Nemzetközi kategória</span>
-                    <span className="text-orange-primary">
-                      Legenda team EB VB
+                      Akrobatikus Torna &quot;A&quot; kategória
                       <br />
-                      és Kiemelt nemzetközi versenyek
+                      Hazai versenyzők
+                    </span>
+                    <span className="text-sky-500">Nemzetközi versenyzők</span>
+                    <span className="text-orange-primary">
+                      Legend Team EB VB
+                      <br />
+                      és Kiemelt nemzetközi <br /> versenyek versenyzői
                     </span>
                   </div>
                 </th>
                 <td>
-                  <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-8">
                     <span>
                       16<sup>00</sup> - 19<sup>00</sup>
                     </span>
@@ -54,7 +56,7 @@ export default function Page() {
                   </div>
                 </td>
                 <td>
-                  <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-8">
                     <span className="select-none opacity-0">-</span>
                     <span className="select-none opacity-0">-</span>
                     <span className="text-orange-primary">
@@ -63,7 +65,7 @@ export default function Page() {
                   </div>
                 </td>
                 <td>
-                  <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-8">
                     <span>
                       16<sup>00</sup> - 19<sup>00</sup>
                     </span>
@@ -76,7 +78,7 @@ export default function Page() {
                   </div>
                 </td>
                 <td>
-                  <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-8">
                     <span className="select-none opacity-0">-</span>
                     <span className="select-none opacity-0">-</span>
                     <span className="text-orange-primary">
@@ -85,7 +87,7 @@ export default function Page() {
                   </div>
                 </td>
                 <td>
-                  <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-8">
                     <span>
                       17<sup>00</sup> - 20<sup>00</sup>
                     </span>
@@ -98,7 +100,7 @@ export default function Page() {
                   </div>
                 </td>
                 <td>
-                  <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-8">
                     <span className="select-none opacity-0">-</span>
                     <span className="text-sky-500">
                       10<sup>00</sup> - 13<sup>00</sup>
@@ -111,7 +113,7 @@ export default function Page() {
               </tr>
               <tr>
                 <th>
-                  Akrobatikus Torna <br /> rekreációs csoport <br /> és haladó {'"'}B{'"'} kategória
+                  Akrobatikus Torna &quot;B&quot; kategória <br /> rekreációs csoport <br /> és kezdő versenyzők
                 </th>
                 <td></td>
                 <td>
@@ -130,7 +132,7 @@ export default function Page() {
               </tr>
               <tr>
                 <th>
-                  Akrobatikus Torna <br /> kezdő {'"'}B{'"'} kategória
+                  Akrobatikus Torna &quot;B&quot; kategória <br /> haladó versenyzők
                 </th>
                 <td></td>
                 <td>
