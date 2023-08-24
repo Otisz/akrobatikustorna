@@ -71,12 +71,6 @@ export default function Page() {
                 </Link>
                 <span>(BMSZC Bláthy Ottó Titusz Informatikai Technikum)</span>
               </div>
-              <div className="flex flex-col gap-1 text-center md:flex-row">
-                <Link href="https://goo.gl/maps/UkcACG5V98Q6KXab7" className="text-orange-primary underline">
-                  2016 Leányfalu, Móricz Zsigmond út 124/a
-                </Link>
-                <span>(Faluház)</span>
-              </div>
             </div>
           </div>
           <div className="flex items-center justify-center gap-4">
