@@ -117,8 +117,10 @@ export default function Page() {
                 </td>
               </tr>
               <tr>
-                <td>Látványtánc</td>
-                <td>Sportakrobatika</td>
+                <td>Tánc</td>
+                <td>
+                  Akrobatikus tánc <br /> Modern tánc
+                </td>
                 <td>
                   Versenynaptár (
                   <Link href="/documents/latvanytanc%20Versenyszabalyzat-2022.pdf" target="_blank">
@@ -137,7 +139,8 @@ export default function Page() {
                   )
                 </td>
                 <td>Szertorna előkészítő</td>
-                <td colSpan={2} />
+                <td />
+                <td />
               </tr>
             </tbody>
           </table>
