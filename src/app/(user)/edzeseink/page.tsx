@@ -222,12 +222,14 @@ export default function Page() {
                 <td></td>
               </tr>
               <tr>
-                <th>Felnőtt ugróedzés</th>
+                <th>Modern Tánc</th>
                 <td>
-                  19<sup>00</sup> - 20<sup>00</sup>
+                  17<sup>00</sup> - 18<sup>30</sup>
                 </td>
                 <td></td>
-                <td></td>
+                <td>
+                  17<sup>00</sup> - 18<sup>30</sup>
+                </td>
                 <td></td>
                 <td></td>
                 <td></td>
