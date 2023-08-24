@@ -1,5 +1,5 @@
-import baucsek_monika from "@/../public/images/trainers/baucsek_monika.jpg";
 import berkes_kornelia from "@/../public/images/trainers/berkes_kornelia.jpg";
+import biro_laura from "@/../public/images/trainers/biro_laura.jpg";
 import budai_tunde from "@/../public/images/trainers/budai_tunde.jpg";
 import csabai_balint from "@/../public/images/trainers/csabai_balint.jpg";
 import gal_borbala from "@/../public/images/trainers/gal_borbala.jpg";
@@ -74,9 +74,9 @@ const TRAINERS: Array<Trainer> = [
     color: "bg-[#da70d6]",
   },
   {
-    name: "Baucsek Mónika",
-    title: "Edző",
-    image: baucsek_monika,
+    name: "Bíró Laura",
+    title: "Tánctanár",
+    image: biro_laura,
     color: "bg-[#ff1493]",
   },
   {
