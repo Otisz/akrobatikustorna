@@ -222,13 +222,26 @@ export default function Page() {
                 <td></td>
               </tr>
               <tr>
-                <th>Modern Tánc</th>
+                <th>Szabadidős - örömtorna</th>
                 <td>
-                  17<sup>00</sup> - 18<sup>30</sup>
+                  17<sup>30</sup> - 19<sup>00</sup>
                 </td>
                 <td></td>
                 <td>
-                  17<sup>00</sup> - 18<sup>30</sup>
+                  17<sup>30</sup> - 19<sup>00</sup>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Modern Tánc</th>
+                <td>
+                  16<sup>00</sup> - 17<sup>30</sup>
+                </td>
+                <td></td>
+                <td>
+                  16<sup>00</sup> - 17<sup>30</sup>
                 </td>
                 <td></td>
                 <td></td>
@@ -236,11 +249,9 @@ export default function Page() {
               </tr>
               <tr>
                 <th>
-                  Balett
+                  Mozgásképzés, alap balett
                   <br />
-                  <span className="text-sm font-normal">
-                    (Haladó és Legend Team <br /> versenyzőknek kötelező)
-                  </span>
+                  <span className="text-sm font-normal">(Legend Team versenyzőknek kötelező)</span>
                 </th>
                 <td></td>
                 <td></td>
