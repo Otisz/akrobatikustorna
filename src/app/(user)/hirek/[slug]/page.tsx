@@ -83,7 +83,7 @@ export default async function Page(props: Props) {
           />
 
           <PortableText
-            content={news.body}
+            content={news.body ?? []}
             projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}
             dataset={process.env.NEXT_PUBLIC_SANITY_DATASET}
           />
