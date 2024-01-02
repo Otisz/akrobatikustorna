@@ -1,41 +1,56 @@
-import TRAINERS from "@/data/trainers";
+import { client } from "@/lib/sanity.client";
+import { urlFor } from "@/lib/sanity.image";
+import { Trainer } from "@/types/sanity";
 import cn from "classnames";
 import type { Metadata } from "next";
+import { groq } from "next-sanity";
 import Image from "next/image";
+import Link from "next/link";
+import type { CSSProperties } from "react";
 
-export const revalidate = 3600;
+export const revalidate = 900;
 
 export const metadata: Metadata = {
   title: "Edzőink",
   description: "Edzőink - Budai Akrobatikus Sport Egyesület",
 };
 
-export default function Page() {
+const query = groq`
+  *[_type == "trainers"]{name,slug,role,mainImage,color} | order(name asc)
+`;
+
+export default async function Page() {
+  const trainers = await client.fetch<Pick<Trainer, "name" | "slug" | "role" | "mainImage" | "color">[]>(query);
+
   return (
     <main>
       <div className="mx-auto w-full max-w-7xl space-y-8 px-4 pb-20 pt-8 sm:px-6">
         <h1 className="mb-16 text-5xl">Edzőink</h1>
         <div className="flex flex-wrap justify-center gap-4">
-          {TRAINERS.map((trainer) => (
-            <div
+          {trainers.map((trainer) => (
+            <Link
+              style={
+                {
+                  "--trainer-color": trainer.color.hex,
+                } as CSSProperties
+              }
               key={trainer.name}
-              className={cn(
-                "flex-[0_0_100%] overflow-hidden shadow-lg sm:flex-[0_0_calc(50%_-_16px)] sm:rounded-md md:flex-[0_0_calc(33%_-_16px)]",
-                trainer.color,
-              )}
+              href={`/edzok/${trainer.slug.current}`}
+              className="flex-[0_0_100%] overflow-hidden bg-[var(--trainer-color)] shadow-lg sm:flex-[0_0_calc(50%_-_16px)] sm:rounded-md md:flex-[0_0_calc(33%_-_16px)]"
             >
               <div className="px-4 py-5 text-center sm:px-6">
                 <h3 className="text-xl font-medium leading-6 text-gray-900">{trainer.name}</h3>
-                <p className="my-1 max-w-2xl text-sm italic">{trainer.title}</p>
+                <p className="my-1 max-w-2xl text-sm italic">{trainer.role}</p>
                 <Image
                   className="mx-auto sm:rounded-md"
-                  src={trainer.image}
+                  width={342}
+                  height={456}
+                  src={urlFor(trainer.mainImage).url()}
                   alt={trainer.name}
                   loading="lazy"
-                  placeholder="blur"
                 />
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

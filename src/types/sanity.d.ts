@@ -1,3 +1,4 @@
+import { ColorValue } from "@sanity/color-input";
 import type { Image, PortableTextTextBlock, Slug } from "sanity";
 
 type SanityBase = {
@@ -23,5 +24,14 @@ interface Result extends SanityBase {
   mainImage: Image;
   publishedAt?: string;
   summary: string;
+  body: PortableTextTextBlock[];
+}
+
+interface Trainer extends SanityBase {
+  name: string;
+  slug: Slug;
+  role: string;
+  mainImage: Image;
+  color: ColorValue;
   body: PortableTextTextBlock[];
 }

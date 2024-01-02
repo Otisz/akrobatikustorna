@@ -1,16 +1,23 @@
 import { client } from "@/lib/sanity.client";
-import { News } from "@/types/sanity";
+import { News, Trainer } from "@/types/sanity";
 import { MetadataRoute } from "next";
 import { groq } from "next-sanity";
 
 export const revalidate = 86_400;
 
-const query = groq`
+const newsQuery = groq`
   *[_type == "news"]{slug,publishedAt,_createdAt} | order(publishedAt desc, _createdAt desc)
 `;
 
+const trainersQuery = groq`
+  *[_type == "trainers"]{slug,_createdAt}
+`;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const newsResult = await client.fetch<Pick<News, "slug" | "publishedAt" | "_createdAt">[]>(query);
+  const [newsResult, trainerResult] = await Promise.allSettled([
+    client.fetch<Pick<News, "slug" | "publishedAt" | "_createdAt">[]>(newsQuery),
+    client.fetch<Pick<Trainer, "slug" | "_createdAt">[]>(trainersQuery),
+  ]);
 
   const payload = [
     {
@@ -51,12 +58,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  newsResult.forEach((news) => {
-    payload.push({
-      url: `https://akrobatikustorna.hu/hirek/${news.slug.current}`,
-      lastModified: new Date(news.publishedAt || news._createdAt),
+  if (newsResult.status === "fulfilled") {
+    newsResult.value.forEach((news) => {
+      payload.push({
+        url: `https://akrobatikustorna.hu/hirek/${news.slug.current}`,
+        lastModified: new Date(news.publishedAt || news._createdAt),
+      });
     });
-  });
+  }
+
+  if (trainerResult.status === "fulfilled") {
+    trainerResult.value.forEach((trainer) => {
+      payload.push({
+        url: `https://akrobatikustorna.hu/edzok/${trainer.slug.current}`,
+        lastModified: new Date(trainer._createdAt),
+      });
+    });
+  }
 
   return payload;
 }
