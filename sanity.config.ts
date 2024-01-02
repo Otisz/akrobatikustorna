@@ -1,6 +1,7 @@
 import { schemaTypes } from "./schemas";
 import Logo from "@/components/sanity/Logo";
 import StudioNavbar from "@/components/sanity/StudioNavbar";
+import { colorInput } from "@sanity/color-input";
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
@@ -17,7 +18,7 @@ export default defineConfig({
   projectId,
   dataset,
 
-  plugins: [deskTool(), visionTool()],
+  plugins: [deskTool(), visionTool(), colorInput()],
 
   studio: {
     components: {
