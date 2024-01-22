@@ -18,7 +18,7 @@ const DOCUMENTS: Array<Document> = [
   },
   {
     name: "Házirend",
-    href: "/documents/2011hazirend.pdf",
+    href: "/documents/hazirend.pdf",
   },
   {
     name: "Alapszabályzat",
