@@ -20,11 +20,6 @@ export default {
       },
     },
     {
-      name: "publishedAt",
-      title: "Megjelenés dátuma",
-      type: "datetime",
-    },
-    {
       name: "mainImage",
       title: "Kép",
       type: "image",

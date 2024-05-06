@@ -1,3 +1,5 @@
+import { orderRankField, orderRankOrdering } from "@sanity/orderable-document-list";
+
 /** @type {import('sanity').Schema} */
 export default {
   name: "trainers",
@@ -43,5 +45,7 @@ export default {
       type: "array",
       of: [{ type: "block" }],
     },
+    orderRankField({ type: "trainers" }),
   ],
+  orderings: [orderRankOrdering],
 };

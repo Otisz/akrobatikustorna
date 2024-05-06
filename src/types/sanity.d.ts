@@ -13,7 +13,6 @@ interface News extends SanityBase {
   title: string;
   slug: Slug;
   mainImage: Image;
-  publishedAt?: string;
   summary: string;
   body: PortableTextTextBlock[];
 }
