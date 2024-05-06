@@ -66,7 +66,7 @@ export default async function Page(props: Props) {
           <div
             style={
               {
-                "--trainer-color": trainer.color.hex,
+                "--trainer-color": trainer.color?.hex ?? "white",
               } as CSSProperties
             }
             className="flex-[0_0_100%] overflow-hidden bg-[var(--trainer-color)] shadow-lg sm:flex-[0_0_calc(50%_-_16px)] sm:rounded-md md:flex-[0_0_calc(33%_-_16px)]"
