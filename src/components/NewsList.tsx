@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function NewsList(props: {
-  news: Pick<News, "title" | "mainImage" | "summary" | "slug" | "publishedAt" | "_createdAt">[];
+  news: Pick<News, "title" | "mainImage" | "summary" | "slug" | "_createdAt">[];
 }) {
   return (
     <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
@@ -22,8 +22,8 @@ export default function NewsList(props: {
           </div>
           <div className="max-w-xl">
             <div className="mt-8 flex items-center gap-x-4 text-xs">
-              <time dateTime={news.publishedAt || news._createdAt} className="text-gray-500">
-                {new Date(news.publishedAt || news._createdAt).toLocaleDateString("hu")}
+              <time dateTime={news._createdAt} className="text-gray-500">
+                {new Date(news._createdAt).toLocaleDateString("hu")}
               </time>
             </div>
             <div className="group align-top">
