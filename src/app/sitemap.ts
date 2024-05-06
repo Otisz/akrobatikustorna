@@ -15,7 +15,7 @@ const trainersQuery = groq`
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [newsResult, trainerResult] = await Promise.allSettled([
-    client.fetch<Pick<News, "slug" | "publishedAt" | "_createdAt">[]>(newsQuery),
+    client.fetch<Pick<News, "slug" | "_createdAt">[]>(newsQuery),
     client.fetch<Pick<Trainer, "slug" | "_createdAt">[]>(trainersQuery),
   ]);
 
@@ -62,7 +62,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     newsResult.value.forEach((news) => {
       payload.push({
         url: `https://akrobatikustorna.hu/hirek/${news.slug.current}`,
-        lastModified: new Date(news.publishedAt || news._createdAt),
+        lastModified: new Date(news._createdAt),
       });
     });
   }
