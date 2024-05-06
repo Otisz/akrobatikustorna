@@ -1,14 +1,13 @@
 import { client } from "@/lib/sanity.client";
 import { urlFor } from "@/lib/sanity.image";
 import { Trainer } from "@/types/sanity";
-import cn from "classnames";
 import type { Metadata } from "next";
 import { groq } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 
-export const revalidate = 900;
+export const revalidate = 1;
 
 export const metadata: Metadata = {
   title: "Edzőink",
@@ -16,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 const query = groq`
-  *[_type == "trainers"]{name,slug,role,mainImage,color} | order(name asc)
+  *[_type == "trainers"]{name,slug,role,mainImage,color,orderRank} | order(orderRank)
 `;
 
 export default async function Page() {
@@ -31,7 +30,7 @@ export default async function Page() {
             <Link
               style={
                 {
-                  "--trainer-color": trainer.color.hex,
+                  "--trainer-color": trainer.color?.hex ?? "white",
                 } as CSSProperties
               }
               key={trainer.name}
