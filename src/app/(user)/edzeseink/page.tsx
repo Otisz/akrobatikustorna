@@ -235,19 +235,6 @@ export default function Page() {
                 <td></td>
               </tr>
               <tr>
-                <th>Modern Tánc</th>
-                <td>
-                  16<sup>00</sup> - 17<sup>30</sup>
-                </td>
-                <td></td>
-                <td>
-                  16<sup>00</sup> - 17<sup>30</sup>
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
                 <th>
                   Mozgásképzés, alap balett
                   <br />
