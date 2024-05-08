@@ -1,11 +1,12 @@
 "use client";
 
-import CarouselImage1 from "@/../public/images/carousel/2.jpg";
-import CarouselImage2 from "@/../public/images/carousel/3.jpg";
-import CarouselImage3 from "@/../public/images/carousel/4.jpg";
-import CarouselImage4 from "@/../public/images/carousel/5.jpg";
-import CarouselImage5 from "@/../public/images/carousel/6.jpg";
-import CarouselImage6 from "@/../public/images/carousel/7.jpg";
+import CarouselImage1 from "@/../public/images/carousel/1.jpg";
+import CarouselImage2 from "@/../public/images/carousel/2.jpg";
+import CarouselImage3 from "@/../public/images/carousel/3.jpg";
+import CarouselImage4 from "@/../public/images/carousel/4.jpg";
+import CarouselImage5 from "@/../public/images/carousel/5.jpg";
+import CarouselImage6 from "@/../public/images/carousel/6.jpg";
+import CarouselImage7 from "@/../public/images/carousel/7.jpg";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import Image, { StaticImageData } from "next/image";
@@ -17,6 +18,7 @@ const CAROUSEL_IMAGES: StaticImageData[] = [
   CarouselImage4,
   CarouselImage5,
   CarouselImage6,
+  CarouselImage7,
 ];
 
 export default function Carousel() {
