@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import ReactCountryFlag from "react-country-flag";
 
 export const revalidate = 3600;
@@ -48,26 +47,26 @@ export default function Page() {
               <tr>
                 <td rowSpan={2}>
                   Akrobatikus Torna <br />(
-                  <Link href="https://hu.frwiki.wiki/wiki/Gymnastique_acrobatique" target="_blank">
+                  <a href="https://hu.frwiki.wiki/wiki/Gymnastique_acrobatique" target="_blank">
                     Története
-                  </Link>
+                  </a>
                   )
                 </td>
                 <td>&quot;A&quot; kategória</td>
                 <td>
                   Versenynaptár (
-                  <Link href="/documents/Versenyszabalyzat_2022.pdf" target="_blank">
+                  <a href="/documents/Versenyszabályzat_2024_v_1_1.pdf" target="_blank">
                     szabályzat
-                  </Link>
+                  </a>
                   )
                 </td>
                 <td>
-                  <Link
+                  <a
                     href="https://www.sportsacrobatics.info/sacalend.shtml?fbclid=IwAR1lo74G1DiIIjTr_ccNDMepAtzPAhEilZbpefDIj3v7Zp45qcGdvemnML0"
                     target="_blank"
                   >
                     acrobatic gymnastics calendar
-                  </Link>
+                  </a>
                 </td>
               </tr>
               <tr>
@@ -81,51 +80,49 @@ export default function Page() {
                 </td>
                 <td>
                   Versenynaptár (
-                  <Link href="/documents/1Viktoria-Kupa-versenyszabalyzat.pdf" target="_blank">
+                  <a href="/documents/1Viktoria-Kupa-versenyszabalyzat.pdf" target="_blank">
                     szabályzat
-                  </Link>
+                  </a>
                   )
                   <br />
                   Kiegészítő szabályzatok:
                   <ul className="mt-2 list-inside list-disc pl-8 text-left">
                     <li>
-                      <Link href="/documents/Akro-freestlye-kategoria-szabalyai-2022.pdf" target="_blank">
+                      <a href="/documents/Akro-freestlye-kategoria-szabalyai-2022.pdf" target="_blank">
                         Freestyle
-                      </Link>
+                      </a>
                     </li>
                     <li>
-                      <Link href="/documents/Gula_torna_szabalyok.pdf" target="_blank">
+                      <a href="/documents/Gula_torna_szabalyok.pdf" target="_blank">
                         Gúlatorna
-                      </Link>
+                      </a>
                     </li>
                     <li>
-                      <Link href="/documents/Kezallas_szabalyzat.pdf" target="_blank">
+                      <a href="/documents/Kezallas_szabalyzat.pdf" target="_blank">
                         Kézállófa
-                      </Link>
+                      </a>
                     </li>
                   </ul>
                 </td>
                 <td>
                   <div className="flex flex-col gap-4">
-                    <Link href="/documents/Acro-Calendar-2022-2023.pdf" target="_blank" lang="en">
+                    <a href="/documents/Acro-Calendar-2022-2023.pdf" target="_blank" lang="en">
                       <ReactCountryFlag countryCode="GB" aria-label="Nagy Britannia" /> UK
-                    </Link>
-                    <Link href="https://www.csitgymnasticschampionships.com/acrobatic/" target="_blank" lang="en">
+                    </a>
+                    <a href="https://www.csitgymnasticschampionships.com/acrobatic/" target="_blank" lang="en">
                       <ReactCountryFlag countryCode="IT" aria-label="Olaszország" /> Italy
-                    </Link>
+                    </a>
                   </div>
                 </td>
               </tr>
               <tr>
                 <td>Tánc</td>
-                <td>
-                  Akrobatikus tánc <br /> Modern tánc
-                </td>
+                <td>Akrobatikus tánc</td>
                 <td>
                   Versenynaptár (
-                  <Link href="/documents/latvanytanc%20Versenyszabalyzat-2022.pdf" target="_blank">
+                  <a href="/documents/Szabályzat%202024%20MLTSZ.pdf" target="_blank">
                     szabályzat
-                  </Link>
+                  </a>
                   )
                 </td>
                 <td></td>
@@ -133,9 +130,9 @@ export default function Page() {
               <tr>
                 <td>
                   Szertorna <br /> (
-                  <Link href="https://hu.wikipedia.org/wiki/Torna_(sport)#T%C3%B6rt%C3%A9nete" target="_blank">
+                  <a href="https://hu.wikipedia.org/wiki/Torna_(sport)#T%C3%B6rt%C3%A9nete" target="_blank">
                     Története
-                  </Link>
+                  </a>
                   )
                 </td>
                 <td>Szertorna előkészítő</td>
