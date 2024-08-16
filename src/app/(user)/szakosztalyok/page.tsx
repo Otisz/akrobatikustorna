@@ -127,18 +127,6 @@ export default function Page() {
                 </td>
                 <td></td>
               </tr>
-              <tr>
-                <td>
-                  Szertorna <br /> (
-                  <a href="https://hu.wikipedia.org/wiki/Torna_(sport)#T%C3%B6rt%C3%A9nete" target="_blank">
-                    Története
-                  </a>
-                  )
-                </td>
-                <td>Szertorna előkészítő</td>
-                <td />
-                <td />
-              </tr>
             </tbody>
           </table>
         </div>
