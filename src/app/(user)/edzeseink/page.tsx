@@ -158,10 +158,7 @@ export default function Page() {
                 </td>
               </tr>
               <tr>
-                <th>
-                  Szertorna, <br /> akrobatikus torna előkészítő <br />
-                  &quot;Gyémánt&quot; csoport
-                </th>
+                <th>Torna előkészítő &quot;Gyémánt&quot; csoport</th>
                 <td></td>
                 <td>
                   16<sup>00</sup> - 17<sup>30</sup>

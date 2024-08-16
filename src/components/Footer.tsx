@@ -71,7 +71,7 @@ export default function Footer() {
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-white">Gyűtemény</h3>
+                <h3 className="text-sm font-semibold leading-6 text-white">Gyűjtemény</h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {navigation.collection.map((item) => (
                     <li key={item.name}>
@@ -117,7 +117,7 @@ export default function Footer() {
           </p>
           <p className="text-xs leading-5 text-gray-400" lang="en">
             Made with ❤️ by{" "}
-            <Link href="https://github.com/Otisz" target="_blank" className="hover:underline">
+            <Link href="https://leventeotta.com" target="_blank" className="hover:underline">
               Levente Otta
             </Link>
           </p>
