@@ -71,7 +71,7 @@ export default function Footer() {
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-white">Gyűtemény</h3>
+                <h3 className="text-sm font-semibold leading-6 text-white">Gyűjtemény</h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {navigation.collection.map((item) => (
                     <li key={item.name}>
