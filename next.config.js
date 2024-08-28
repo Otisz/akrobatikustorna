@@ -2,7 +2,14 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["cdn.sanity.io"],
+    remotePatterns: [
+      {
+        hostname: "cdn.sanity.io",
+        protocol: "https",
+        port: "",
+        pathname: "/**",
+      },
+    ],
   },
   eslint: {
     ignoreDuringBuilds: true,

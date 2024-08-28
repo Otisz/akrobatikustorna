@@ -15,11 +15,11 @@ export const metadata: Metadata = {
 };
 
 const query = groq`
-  *[_type == "trainers"]{name,slug,role,mainImage,color,orderRank} | order(orderRank)
+  *[_type == "trainers"]{_id,name,slug,role,mainImage,color,orderRank} | order(orderRank)
 `;
 
 export default async function Page() {
-  const trainers = await client.fetch<Pick<Trainer, "name" | "slug" | "role" | "mainImage" | "color">[]>(query);
+  const trainers = await client.fetch<Pick<Trainer, "_id" | "name" | "slug" | "role" | "mainImage" | "color">[]>(query);
 
   return (
     <main>

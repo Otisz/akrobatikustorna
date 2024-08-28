@@ -10,11 +10,12 @@ import { FaArrowRight } from "react-icons/fa";
 export const revalidate = 900;
 
 const query = groq`
-  *[_type == "news"]{title,mainImage,summary,slug,_createdAt} | order(publishedAt desc, _createdAt desc)[0..5]
+  *[_type == "news"]{_id,title,mainImage,summary,slug,_createdAt} | order(publishedAt desc, _createdAt desc)[0..5]
 `;
 
 export default async function Page() {
-  const newsResult = await client.fetch<Pick<News, "title" | "mainImage" | "summary" | "slug" | "_createdAt">[]>(query);
+  const newsResult =
+    await client.fetch<Pick<News, "_id" | "title" | "mainImage" | "summary" | "slug" | "_createdAt">[]>(query);
 
   return (
     <main className="lg:relative">
