@@ -7,7 +7,7 @@ import { groq } from "next-sanity";
 export const revalidate = 900;
 
 const query = groq`
-  *[_type == "news"]{title,mainImage,summary,slug,_createdAt} | order(_createdAt desc)
+  *[_type == "news"]{_id,title,mainImage,summary,slug,_createdAt} | order(_createdAt desc)
 `;
 
 export const metadata: Metadata = {
@@ -15,7 +15,8 @@ export const metadata: Metadata = {
   description: "Hírek - Budai Akrobatikus Sport Egyesület",
 };
 export default async function Page() {
-  const newsList = await client.fetch<Pick<News, "title" | "mainImage" | "summary" | "slug" | "_createdAt">[]>(query);
+  const newsList =
+    await client.fetch<Pick<News, "_id" | "title" | "mainImage" | "summary" | "slug" | "_createdAt">[]>(query);
 
   return (
     <main>
