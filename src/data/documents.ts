@@ -42,7 +42,7 @@ const DOCUMENTS: Array<Document> = [
   },
   {
     name: "Egyesületi igazolás: Iskola időben történő rendkívüli edzésen, versenyen való részvételre igazolás/ kikérő",
-    href: "/documents/base_kikero_igazolas.doc",
+    href: "/documents/BASE-kikero-igazolas.doc",
   },
   {
     name: "BASE körlogó",
