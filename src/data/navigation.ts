@@ -35,11 +35,9 @@ export const MAIN_NAVIGATIONS = [
     onlyOnMobile: true,
   },
   {
-    name: "Piactér",
-    href: "https://docs.google.com/forms/d/e/1FAIpQLSfxqbN-Tqeu1bqkKUQ4vJ7jMvdqtB2fsZ2wip9MUHs3NiOA8Q/viewform?fbclid=IwAR1VH7xnhpJqUwz3vq2YDNZP-JWo_f43E8l7UyMTS7Yrtakfwyo8ATEeFo4",
-    icon: ShoppingBagIcon,
-    onlyOnMobile: false,
-    newTab: true,
+    name: "Dokumentumok",
+    href: "/dokumentumok",
+    icon: DocumentTextIcon,
   },
   {
     name: "Ajánlott oldalak",
@@ -67,9 +65,11 @@ export const DROPDOWN_NAVIGATIONS = [
     icon: PhotoIcon,
   },
   {
-    name: "Dokumentumok",
-    href: "/dokumentumok",
-    icon: DocumentTextIcon,
+    name: "Piactér",
+    href: "https://docs.google.com/forms/d/e/1FAIpQLSfxqbN-Tqeu1bqkKUQ4vJ7jMvdqtB2fsZ2wip9MUHs3NiOA8Q/viewform?fbclid=IwAR1VH7xnhpJqUwz3vq2YDNZP-JWo_f43E8l7UyMTS7Yrtakfwyo8ATEeFo4",
+    icon: ShoppingBagIcon,
+    onlyOnMobile: false,
+    newTab: true,
   },
   {
     name: "Ajánlott oldalak",

@@ -21,7 +21,7 @@ const DOCUMENTS: Array<Document> = [
     href: "/documents/partoloitagfelveteltkerolap.pdf",
   },
   {
-    name: "Belépési kérelem",
+    name: "„Rendes” tagsági kérelem",
     href: "/documents/tagfelveteltkerolap.pdf",
   },
   {
