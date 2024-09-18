@@ -122,6 +122,7 @@ export default function Navigation() {
                                     key={item.name}
                                     href={item.href}
                                     className="-m-3 flex items-center gap-4 rounded-md p-3 text-gray-100 hover:text-orange-primary"
+                                    target={item.newTab ? "_blank" : undefined}
                                   >
                                     <item.icon
                                       className="h-6 w-6 flex-shrink-0 text-orange-primary"
@@ -175,10 +176,9 @@ export default function Navigation() {
                             key={item.name}
                             href={item.href}
                             className="flex flex-col items-center gap-4 rounded-md p-3 hover:bg-gray-700"
-                            target={item.newTab ? "_blank" : undefined}
                           >
                             <item.icon className="h-6 w-6 flex-shrink-0 text-orange-primary" aria-hidden="true" />
-                            <span className="text-base font-medium text-gray-50">{item.name}</span>
+                            <span className="text-center text-base font-medium text-gray-50">{item.name}</span>
                           </Link>
                         ))}
                       </nav>
