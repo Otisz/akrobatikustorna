@@ -1,9 +1,3 @@
 {
-  "extends": "next/core-web-vitals",
-  "plugins": [
-    "prettier"
-  ],
-  "rules": {
-    "import/no-anonymous-default-export": "off"
-  }
+  "extends": ["next/core-web-vitals", "next/typescript"]
 }
