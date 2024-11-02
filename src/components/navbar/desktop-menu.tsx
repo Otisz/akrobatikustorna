@@ -73,6 +73,19 @@ export default function DesktopMenu() {
                 <NavigationMenuLink asChild>
                   <Link
                     className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors"
+                    href={LINKS.news}
+                  >
+                    <div className="font-medium leading-none">Hírek</div>
+                    <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                      Legfrissebb hírek és információk.
+                    </p>
+                  </Link>
+                </NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink asChild>
+                  <Link
+                    className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors"
                     href={LINKS.store}
                     target="_blank"
                   >
