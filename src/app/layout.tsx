@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import React from "react";
 
 import "@/styles/globals.css";
 import Header from "@/components/header/header";
+import Navbar from "@/components/navbar/navbar";
 
 export const metadata: Metadata = {
   title: {
@@ -12,6 +14,12 @@ export const metadata: Metadata = {
   description: "Budai Akrobatikus Sport Egyesület",
 };
 
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-sans",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -19,8 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="hu">
-      <body>
+      <body className={`${inter.variable} bg-background text-foreground font-sans antialiased`}>
         <Header />
+        <Navbar />
         {children}
       </body>
     </html>

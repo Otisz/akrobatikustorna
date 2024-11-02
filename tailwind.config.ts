@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { fontFamily } from "tailwindcss/defaultTheme";
 import tailwindcssAnimate from "tailwindcss-animate";
 
 const config: Config = {
@@ -9,6 +10,9 @@ const config: Config = {
       container: {
         center: true,
         padding: "1rem",
+      },
+      fontFamily: {
+        sans: ["var(--font-sans)", ...fontFamily.sans],
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -2,6 +2,7 @@ import { LuPhone } from "react-icons/lu";
 import { SiFacebook, SiInstagram, SiYoutube } from "react-icons/si";
 
 import { Button } from "@/components/ui/button";
+import LINKS from "@/data/links";
 
 export default function Header() {
   return (
@@ -29,7 +30,7 @@ export default function Header() {
           </Button>
           <div className="hidden gap-x-4 md:flex">
             <a
-              href="https://www.facebook.com/akrobatikustorna"
+              href={LINKS.facebook}
               target="_blank"
               aria-label="Tekintse meg a Facebook oldalunkat"
               className="group"
@@ -38,7 +39,7 @@ export default function Header() {
               <SiFacebook className="size-8 group-hover:fill-[#4267b2]" />
             </a>
             <a
-              href="https://www.instagram.com/base_akrobatikus_torna/"
+              href={LINKS.instagram}
               target="_blank"
               aria-label="Tekintse meg a Instagram oldalunkat"
               className="group"
@@ -176,7 +177,7 @@ export default function Header() {
               </svg>
             </a>
             <a
-              href="https://www.youtube.com/channel/UCVvzN2bTBlYqpjPkYgdMtog"
+              href={LINKS.youtube}
               target="_blank"
               aria-label="Tekintse meg a Youtube oldalunkat"
               className="group"
