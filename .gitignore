@@ -19,6 +19,7 @@
 
 # production
 /build
+akrobatikustorna.db
 
 # misc
 .DS_Store
@@ -31,6 +32,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+.env
 .env*.local
 
 # vercel

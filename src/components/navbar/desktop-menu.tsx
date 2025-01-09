@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LuCalendar, LuMedal, LuUsers2 } from "react-icons/lu";
+import { LuCalendar, LuMedal, LuUsers } from "react-icons/lu";
 
 import {
   NavigationMenu,
@@ -23,12 +23,12 @@ export default function DesktopMenu() {
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
                   <Link
-                    className="from-muted/50 to-muted border-border flex h-full w-full select-none flex-col justify-end rounded-md border p-6 no-underline outline-none transition-all hover:border-transparent hover:bg-gradient-to-b focus:shadow-md"
+                    className="flex h-full w-full select-none flex-col justify-end rounded-md border border-border from-muted/50 to-muted p-6 no-underline outline-none transition-all hover:border-transparent hover:bg-gradient-to-b focus:shadow-md"
                     href={LINKS.trainers}
                   >
-                    <LuUsers2 className="size-12" />
+                    <LuUsers className="size-12" />
                     <div className="mb-2 mt-4 text-lg font-medium">Edzők</div>
-                    <p className="text-muted-foreground text-balance text-sm leading-tight">
+                    <p className="text-balance text-sm leading-tight text-muted-foreground">
                       Ismerje meg az edzőinket és a vezetőséget.
                     </p>
                   </Link>
@@ -37,12 +37,12 @@ export default function DesktopMenu() {
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
                   <Link
-                    className="from-muted/50 to-muted border-border flex h-full w-full select-none flex-col justify-end rounded-md border p-6 no-underline outline-none transition-all hover:border-transparent hover:bg-gradient-to-b focus:shadow-md"
+                    className="flex h-full w-full select-none flex-col justify-end rounded-md border border-border from-muted/50 to-muted p-6 no-underline outline-none transition-all hover:border-transparent hover:bg-gradient-to-b focus:shadow-md"
                     href={LINKS.departments}
                   >
                     <LuMedal className="size-12" />
                     <div className="mb-2 mt-4 text-lg font-medium">Szakosztályok</div>
-                    <p className="text-muted-foreground text-balance text-sm leading-tight">
+                    <p className="text-balance text-sm leading-tight text-muted-foreground">
                       Tekintse meg a sportágakat és kategóriát.
                     </p>
                   </Link>
@@ -51,12 +51,12 @@ export default function DesktopMenu() {
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
                   <Link
-                    className="from-muted/50 to-muted border-border flex h-full w-full select-none flex-col justify-end rounded-md border p-6 no-underline outline-none transition-all hover:border-transparent hover:bg-gradient-to-b focus:shadow-md"
+                    className="flex h-full w-full select-none flex-col justify-end rounded-md border border-border from-muted/50 to-muted p-6 no-underline outline-none transition-all hover:border-transparent hover:bg-gradient-to-b focus:shadow-md"
                     href={LINKS.calendar}
                   >
                     <LuCalendar className="size-12" />
                     <div className="mb-2 mt-4 text-lg font-medium">Edzéseink</div>
-                    <p className="text-muted-foreground text-sm leading-tight">
+                    <p className="text-sm leading-tight text-muted-foreground">
                       Nézze meg, hogy mikor tartunk edzéseket.
                     </p>
                   </Link>
@@ -72,11 +72,11 @@ export default function DesktopMenu() {
               <li>
                 <NavigationMenuLink asChild>
                   <Link
-                    className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors"
+                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                     href={LINKS.news}
                   >
                     <div className="font-medium leading-none">Hírek</div>
-                    <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                       Legfrissebb hírek és információk.
                     </p>
                   </Link>
@@ -85,12 +85,12 @@ export default function DesktopMenu() {
               <li>
                 <NavigationMenuLink asChild>
                   <Link
-                    className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors"
+                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                     href={LINKS.store}
                     target="_blank"
                   >
                     <div className="font-medium leading-none">Piactér</div>
-                    <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                       BASE-s pulcsik, tollak és felszerelések.
                     </p>
                   </Link>
@@ -99,11 +99,11 @@ export default function DesktopMenu() {
               <li>
                 <NavigationMenuLink asChild>
                   <Link
-                    className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors"
+                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                     href={LINKS.gallery}
                   >
                     <div className="font-medium leading-none">Történelmy kitekintés</div>
-                    <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                       Videók az akrobatikus tornáról és történetéről.
                     </p>
                   </Link>
@@ -112,11 +112,11 @@ export default function DesktopMenu() {
               <li>
                 <NavigationMenuLink asChild>
                   <Link
-                    className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors"
+                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                     href={LINKS.recommendations}
                   >
                     <div className="font-medium leading-none">Ajánlott oldalak</div>
-                    <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                       Általunk ajánlott könyvek, cikkek és szövetségek.
                     </p>
                   </Link>
