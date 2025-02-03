@@ -1,16 +1,17 @@
-// storage-adapter-import-placeholder
 import path from "path";
 import { fileURLToPath } from "url";
 
 import { sqliteAdapter } from "@payloadcms/db-sqlite";
 import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { s3Storage } from "@payloadcms/storage-s3";
 import { en } from "@payloadcms/translations/languages/en";
 import { hu } from "@payloadcms/translations/languages/hu";
 import { buildConfig } from "payload";
 import sharp from "sharp";
 
 import { Media } from "@/collections/Media";
+import { Posts } from "@/collections/Posts";
 import { Users } from "@/collections/Users";
 
 const filename = fileURLToPath(import.meta.url);
@@ -23,7 +24,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media],
+  collections: [Users, Media, Posts],
   i18n: {
     supportedLanguages: { en, hu },
   },
@@ -40,6 +41,18 @@ export default buildConfig({
   sharp,
   plugins: [
     payloadCloudPlugin(),
-    // storage-adapter-placeholder
+    s3Storage({
+      collections: {
+        media: true,
+      },
+      bucket: process.env.S3_BUCKET!,
+      config: {
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID!,
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY!,
+        },
+        region: process.env.S3_REGION,
+      },
+    }),
   ],
 });

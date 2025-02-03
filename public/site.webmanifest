@@ -1,0 +1,24 @@
+{
+  "name": "Budai Akrobatikus Sport Egyesület",
+  "short_name": "BASE",
+  "theme_color": "#e27c2f",
+  "background_color": "#2196f3",
+  "display": "standalone",
+  "dir": "left",
+  "orientation": "any",
+  "lang": "hu-HU",
+  "scope": "https://www.akrobatikustorna.hu/",
+  "start_url": "https://www.akrobatikustorna.hu/",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

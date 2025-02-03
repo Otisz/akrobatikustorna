@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { LuCalendar, LuMedal, LuUsers } from "react-icons/lu";
 
+import Link from "@/components/ui/link";
 import {
   NavigationMenu,
   NavigationMenuContent,

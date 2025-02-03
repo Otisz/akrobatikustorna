@@ -9,9 +9,41 @@ import Navbar from "@/components/navbar/navbar";
 export const metadata: Metadata = {
   title: {
     default: "Budai Akrobatikus Sport Egyesület",
-    template: "%s - Budai Akrobatikus Sport Egyesület",
+    template: "%s | Budai Akrobatikus Sport Egyesület",
   },
   description: "Budai Akrobatikus Sport Egyesület",
+  manifest: "/site.webmanifest",
+  metadataBase: new URL("https://www.akrobatikustorna.hu"),
+  openGraph: {
+    type: "website",
+    title: "Budai Akrobatikus Sport Egyesület",
+    description: "Budai Akrobatikus Sport Egyesület",
+    images: "/logo_base.png",
+  },
+  twitter: {
+    title: "Budai Akrobatikus Sport Egyesület",
+    description: "Budai Akrobatikus Sport Egyesület",
+    images: "/logo_base.png",
+  },
+  icons: [
+    {
+      rel: "apple-touch-icon",
+      sizes: "180x180",
+      url: "/apple-touch-icon.png",
+    },
+    {
+      rel: "icon",
+      type: "image/png",
+      sizes: "32x32",
+      url: "/favicon-32x32.png",
+    },
+    {
+      rel: "icon",
+      type: "image/png",
+      sizes: "16x16",
+      url: "/favicon-16x16.png",
+    },
+  ],
 };
 
 const inter = Inter({
@@ -27,7 +59,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="hu">
-      <body className={`${inter.variable} bg-background text-foreground font-sans antialiased`}>
+      <body className={`${inter.variable} bg-background font-sans text-foreground antialiased`}>
         <Header />
         <Navbar />
         {children}
