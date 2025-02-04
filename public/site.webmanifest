@@ -4,11 +4,10 @@
   "theme_color": "#e27c2f",
   "background_color": "#2196f3",
   "display": "standalone",
-  "dir": "left",
   "orientation": "any",
   "lang": "hu-HU",
-  "scope": "https://www.akrobatikustorna.hu/",
-  "start_url": "https://www.akrobatikustorna.hu/",
+  "scope": "/",
+  "start_url": "/",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
