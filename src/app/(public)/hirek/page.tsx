@@ -26,7 +26,7 @@ export default async function Page(props: Props) {
 
   return (
     <main>
-      <div className="mx-auto w-full max-w-7xl space-y-8 px-4 pb-20 pt-8 sm:px-6">
+      <div className="mx-auto w-full max-w-7xl space-y-8 px-4 pt-8 pb-20 sm:px-6">
         <h1 className="text-5xl">Hírek</h1>
         <div className="flex flex-wrap justify-center gap-4">
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
@@ -40,7 +40,7 @@ export default async function Page(props: Props) {
                     height={256}
                     className="aspect-16/9 w-full rounded-2xl bg-gray-100 object-cover object-center sm:aspect-2/1 lg:aspect-3/2"
                   />
-                  <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
+                  <div className="absolute inset-0 rounded-2xl ring-1 ring-gray-900/10 ring-inset" />
                 </div>
                 <div className="max-w-xl">
                   <div className="mt-8 flex items-center gap-x-4 text-xs">
@@ -49,12 +49,12 @@ export default async function Page(props: Props) {
                     </time>
                   </div>
                   <div className="group align-top">
-                    <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-primary">
+                    <h2 className="group-hover:text-primary mt-3 text-lg leading-6 font-semibold text-gray-900">
                       <Link href={`/hirek/${post.slug}`}>
                         <span className="absolute inset-0" />
                         {post.title}
                       </Link>
-                    </h3>
+                    </h2>
                     <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">{post.excerpt}</p>
                   </div>
                 </div>
