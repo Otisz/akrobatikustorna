@@ -23,7 +23,7 @@ export default function DesktopMenu() {
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
                   <Link
-                    className="flex h-full w-full select-none flex-col justify-end rounded-md border border-border from-muted/50 to-muted p-6 no-underline outline-none transition-all hover:border-transparent hover:bg-gradient-to-b focus:shadow-md"
+                    className="flex h-full w-full select-none flex-col justify-end rounded-md border border-border from-muted/50 to-muted p-6 no-underline outline-hidden transition-all hover:border-transparent hover:bg-linear-to-b focus:shadow-md"
                     href={LINKS.trainers}
                   >
                     <LuUsers className="size-12" />
@@ -37,7 +37,7 @@ export default function DesktopMenu() {
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
                   <Link
-                    className="flex h-full w-full select-none flex-col justify-end rounded-md border border-border from-muted/50 to-muted p-6 no-underline outline-none transition-all hover:border-transparent hover:bg-gradient-to-b focus:shadow-md"
+                    className="flex h-full w-full select-none flex-col justify-end rounded-md border border-border from-muted/50 to-muted p-6 no-underline outline-hidden transition-all hover:border-transparent hover:bg-linear-to-b focus:shadow-md"
                     href={LINKS.departments}
                   >
                     <LuMedal className="size-12" />
@@ -51,7 +51,7 @@ export default function DesktopMenu() {
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
                   <Link
-                    className="flex h-full w-full select-none flex-col justify-end rounded-md border border-border from-muted/50 to-muted p-6 no-underline outline-none transition-all hover:border-transparent hover:bg-gradient-to-b focus:shadow-md"
+                    className="flex h-full w-full select-none flex-col justify-end rounded-md border border-border from-muted/50 to-muted p-6 no-underline outline-hidden transition-all hover:border-transparent hover:bg-linear-to-b focus:shadow-md"
                     href={LINKS.calendar}
                   >
                     <LuCalendar className="size-12" />
@@ -72,7 +72,7 @@ export default function DesktopMenu() {
               <li>
                 <NavigationMenuLink asChild>
                   <Link
-                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-hidden transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                     href={LINKS.news}
                   >
                     <div className="font-medium leading-none">Hírek</div>
@@ -85,7 +85,7 @@ export default function DesktopMenu() {
               <li>
                 <NavigationMenuLink asChild>
                   <Link
-                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-hidden transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                     href={LINKS.store}
                     target="_blank"
                   >
@@ -99,7 +99,7 @@ export default function DesktopMenu() {
               <li>
                 <NavigationMenuLink asChild>
                   <Link
-                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-hidden transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                     href={LINKS.gallery}
                   >
                     <div className="font-medium leading-none">Történelmy kitekintés</div>
@@ -112,7 +112,7 @@ export default function DesktopMenu() {
               <li>
                 <NavigationMenuLink asChild>
                   <Link
-                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-hidden transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                     href={LINKS.recommendations}
                   >
                     <div className="font-medium leading-none">Ajánlott oldalak</div>

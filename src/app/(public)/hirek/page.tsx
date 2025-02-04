@@ -38,7 +38,7 @@ export default async function Page(props: Props) {
                     alt={(post.picture as Media).alt}
                     width={384}
                     height={256}
-                    className="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover object-center sm:aspect-[2/1] lg:aspect-[3/2]"
+                    className="aspect-16/9 w-full rounded-2xl bg-gray-100 object-cover object-center sm:aspect-2/1 lg:aspect-3/2"
                   />
                   <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
                 </div>

@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  serverExternalPackages: ["@payloadcms/db-sqlite"],
 };
 
 export default withPayload(nextConfig);

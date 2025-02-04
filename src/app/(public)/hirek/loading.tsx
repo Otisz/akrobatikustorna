@@ -8,7 +8,7 @@ export default function Loading() {
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {[...Array(12)].map((_, i) => (
             <article key={i} className="relative flex w-full flex-col items-start">
-              <Skeleton className="aspect-[16/9] w-full rounded-2xl sm:aspect-[2/1] lg:aspect-[3/2]" />
+              <Skeleton className="aspect-16/9 w-full rounded-2xl sm:aspect-2/1 lg:aspect-3/2" />
               <div className="min-h-32 w-full">
                 <Skeleton className="mt-8 h-4 w-full" />
                 <div className="group align-top">

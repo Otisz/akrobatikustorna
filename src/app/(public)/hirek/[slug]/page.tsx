@@ -50,7 +50,7 @@ export default async function Home(props: Props) {
               <span className="ml-3">{new Date(post.publishedAt!).toLocaleDateString("hu")}</span>
             </time>
           </header>
-          <div className="prose mt-8 marker:text-primary prose-a:text-primary prose-img:rounded-xl prose-img:shadow">
+          <div className="prose mt-8 marker:text-primary prose-a:text-primary prose-img:rounded-xl prose-img:shadow-sm">
             <p>{post.excerpt}</p>
 
             <Image

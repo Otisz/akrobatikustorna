@@ -24,7 +24,7 @@ export default function MobileMenu() {
         <SheetHeader className="m-4 flex h-20 flex-row divide-x divide-background">
           <SheetTitle className="flex flex-1 items-center px-4 text-2xl font-bold">Menü</SheetTitle>
           <SheetClose
-            className="!m-0 inline-flex aspect-square h-full items-center justify-center rounded-xl border-2 border-border bg-accent/30 transition-all hover:border-orange-500 hover:bg-accent"
+            className="m-0! inline-flex aspect-square h-full items-center justify-center rounded-xl border-2 border-border bg-accent/30 transition-all hover:border-orange-500 hover:bg-accent"
             aria-labelledby="close-navitaion-menu"
           >
             <FaRegCircleXmark className="h-8 w-8" />
