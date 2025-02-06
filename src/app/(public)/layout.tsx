@@ -58,8 +58,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="hu">
-      <body className={`${inter.variable} bg-background font-sans text-foreground antialiased`}>
+    <html lang="hu" className="scroll-smooth">
+      <body className={`${inter.variable} bg-background text-foreground font-sans antialiased`}>
         <Header />
         <Navbar />
         {children}
