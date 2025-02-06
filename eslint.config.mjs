@@ -15,7 +15,7 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: ["components/ui/**/*"],
+    ignores: ["components/ui/**/*", "src/app/(payload)/studio/importMap.js"],
   },
   ...compat.extends("next/core-web-vitals", "next/typescript", "standard", "prettier"),
   {
