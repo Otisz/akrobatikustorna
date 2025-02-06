@@ -1,7 +1,18 @@
 import kebabCase from "lodash/kebabCase";
 import type { FieldHook } from "payload";
 
-export const formatSlug = (val: string): string => kebabCase(val);
+export function formatSlug(val: string): string {
+  let sanitized;
+
+  sanitized = val.replace(
+    /([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g,
+    "",
+  );
+
+  sanitized = kebabCase(sanitized);
+
+  return sanitized;
+}
 
 export const formatSlugHook =
   (fallback: string): FieldHook =>
