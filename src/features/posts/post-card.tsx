@@ -1,0 +1,40 @@
+import Image from "next/image";
+import * as React from "react";
+
+import Link from "@/components/ui/link";
+import type { Media as MediaType, Post as PostType } from "@/types/payload";
+type Props = Readonly<{
+  post: PostType;
+  loading: React.ComponentProps<typeof Image>["loading"];
+}>;
+
+export default function PostCard(props: Props) {
+  return (
+    <Link href={`/hirek/${props.post.slug}`}>
+      <article className="group flex flex-col gap-2">
+        <div className="relative aspect-video w-full overflow-hidden rounded-2xl">
+          <Image
+            loading={props.loading}
+            decoding="sync"
+            src={(props.post.picture as MediaType).url!}
+            alt={(props.post.picture as MediaType).alt}
+            width={384}
+            height={256}
+            className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+            quality={65}
+          />
+          <time
+            dateTime={props.post.publishedAt!}
+            className="bg-primary absolute top-2 right-2 rounded-lg p-0.5 text-sm"
+          >
+            {new Date(props.post.publishedAt!).toLocaleDateString("hu")}
+          </time>
+        </div>
+        <h2 className="group-hover:text-primary text-lg leading-6 font-semibold transition-colors duration-300">
+          {props.post.title}
+        </h2>
+        <p className="text-sm leading-6 text-gray-600">{props.post.excerpt}</p>
+      </article>
+    </Link>
+  );
+}
