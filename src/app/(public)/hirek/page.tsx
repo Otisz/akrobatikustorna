@@ -9,6 +9,8 @@ import { cn } from "@/lib/utils";
 import { Media } from "@/types/payload";
 import config from "@payload-config";
 
+export const revalidate = 86_400;
+
 type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
@@ -24,6 +26,8 @@ export default async function Page(props: Props) {
 
   const posts = await queryPosts({ page: +page });
 
+  let imageCount = 0;
+
   return (
     <main>
       <div className="mx-auto w-full max-w-7xl space-y-8 px-4 pt-8 pb-20 sm:px-6">
@@ -34,11 +38,14 @@ export default async function Page(props: Props) {
               <article key={post.slug} className="relative flex flex-col items-start">
                 <div className="relative w-full">
                   <Image
+                    loading={imageCount++ < 9 ? "eager" : "lazy"}
+                    decoding="sync"
                     src={(post.picture as Media).url!}
                     alt={(post.picture as Media).alt}
                     width={384}
                     height={256}
                     className="aspect-16/9 w-full rounded-2xl bg-gray-100 object-cover object-center sm:aspect-2/1 lg:aspect-3/2"
+                    quality={65}
                   />
                   <div className="absolute inset-0 rounded-2xl ring-1 ring-gray-900/10 ring-inset" />
                 </div>

@@ -14,6 +14,9 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   serverExternalPackages: ["@payloadcms/db-sqlite"],
+  images: {
+    minimumCacheTTL: 86_400,
+  },
 };
 
 export default withPayload(nextConfig);

@@ -1,4 +1,4 @@
-import { RichText } from "@payloadcms/richtext-lexical/react";
+import { type JSXConvertersFunction, RichText } from "@payloadcms/richtext-lexical/react";
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 import Image from "next/image";
@@ -6,8 +6,10 @@ import { notFound } from "next/navigation";
 import { getPayload } from "payload";
 import React, { cache } from "react";
 
-import { Media } from "@/types/payload";
+import type { Media as MediaType, Post as PostType } from "@/types/payload";
 import config from "@payload-config";
+
+export const revalidate = 86_400;
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config });
@@ -34,8 +36,6 @@ export default async function Home(props: Props) {
   const { slug = "" } = params;
   const post = await queryPostBySlug({ slug });
 
-  if (!post) notFound();
-
   return (
     <main>
       <div className="mx-auto max-w-4xl p-6 lg:px-8">
@@ -53,14 +53,16 @@ export default async function Home(props: Props) {
             <p>{post.excerpt}</p>
 
             <Image
-              src={(post.picture as Media).url!}
-              alt={(post.picture as Media).alt}
-              width={(post.picture as Media).width!}
-              height={(post.picture as Media).height!}
+              loading="eager"
+              decoding="sync"
+              src={(post.picture as MediaType).url!}
+              alt={(post.picture as MediaType).alt}
+              width={(post.picture as MediaType).width!}
+              height={(post.picture as MediaType).height!}
               className="not-prose w-full rounded-xl bg-gray-100 object-cover object-center"
             />
 
-            <RichText data={post.content} />
+            <RichText data={post.content} converters={jsxConverters} />
           </div>
         </article>
       </div>
@@ -79,17 +81,17 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       type: "article",
       title: `${post.title} - Budai Akrobatikus Sport Egyesület`,
       description: `${post.excerpt}`,
-      images: (post.picture as Media).url!,
+      images: (post.picture as MediaType).url!,
     },
     twitter: {
       title: `${post.title} - Budai Akrobatikus Sport Egyesület`,
       description: `${post.excerpt}`,
-      images: (post.picture as Media).url!,
+      images: (post.picture as MediaType).url!,
     },
   };
 }
 
-const queryPostBySlug = cache(async ({ slug }: { slug: string }) => {
+const queryPostBySlug = cache(async ({ slug }: { slug: string }): Promise<PostType> => {
   const { isEnabled: draft } = await draftMode();
 
   const payload = await getPayload({ config });
@@ -116,5 +118,30 @@ const queryPostBySlug = cache(async ({ slug }: { slug: string }) => {
     },
   });
 
-  return result.docs?.[0] || null;
+  const data = result.docs?.[0] as null | PostType;
+
+  if (data === null) {
+    return notFound();
+  }
+
+  return data;
+});
+
+const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
+  ...defaultConverters,
+  upload: ({ node }) => {
+    const picture = node?.value as null | MediaType;
+    if (!picture) return null;
+
+    return (
+      <Image
+        loading="lazy"
+        decoding="sync"
+        src={picture.url!}
+        alt={picture.alt}
+        width={picture.width!}
+        height={picture.height!}
+      />
+    );
+  },
 });
