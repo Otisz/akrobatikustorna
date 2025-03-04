@@ -10,6 +10,7 @@ import { hu } from "@payloadcms/translations/languages/hu";
 import { buildConfig } from "payload";
 import sharp from "sharp";
 
+import { Documents } from "@/collections/Documents";
 import { Media } from "@/collections/Media";
 import { Posts } from "@/collections/Posts";
 import { Users } from "@/collections/Users";
@@ -27,7 +28,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Posts],
+  collections: [Users, Media, Posts, Documents],
   i18n: {
     supportedLanguages: { en, hu },
   },
@@ -49,6 +50,9 @@ export default buildConfig({
       collections: {
         media: {
           prefix: "media",
+        },
+        documents: {
+          prefix: "documents",
         },
       },
       bucket: process.env.S3_BUCKET!,
