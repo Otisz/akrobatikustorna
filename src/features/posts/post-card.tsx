@@ -11,16 +11,21 @@ type Props = Readonly<{
 export default function PostCard(props: Props) {
   return (
     <Link href={`/hirek/${props.post.slug}`}>
-      <article className="group flex flex-col gap-2">
+      <article className="group flex flex-col gap-2" data-flox="asd">
         <div className="relative aspect-video w-full overflow-hidden rounded-2xl">
           <Image
             loading={props.loading}
             decoding="sync"
-            src={(props.post.picture as MediaType).url!}
+            src={(props.post.picture as MediaType)?.sizes?.thumbnail?.url || (props.post.picture as MediaType).url!}
             alt={(props.post.picture as MediaType).alt}
-            width={384}
-            height={256}
-            className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+            width={(props.post.picture as MediaType)?.sizes?.thumbnail?.width || 389}
+            height={(props.post.picture as MediaType)?.sizes?.thumbnail?.height || 219}
+            style={
+              {
+                "--focal": `${(props.post.picture as MediaType).focalX}% ${(props.post.picture as MediaType).focalY}%`,
+              } as React.CSSProperties
+            }
+            className="h-full w-full object-cover object-(--focal) transition-transform duration-300 group-hover:scale-105"
             quality={65}
           />
           <time

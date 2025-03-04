@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 import { getPayload } from "payload";
+import { cache } from "react";
 
 import { Button } from "@/components/ui/button";
 import Link from "@/components/ui/link";
@@ -64,7 +65,7 @@ export default async function Page(props: Props) {
   );
 }
 
-const queryPosts = async ({ page }: { page: number }) => {
+const queryPosts = cache(async ({ page }: { page: number }) => {
   const { isEnabled: draft } = await draftMode();
 
   const payload = await getPayload({ config });
@@ -88,4 +89,4 @@ const queryPosts = async ({ page }: { page: number }) => {
     limit: 18,
     page,
   });
-};
+});

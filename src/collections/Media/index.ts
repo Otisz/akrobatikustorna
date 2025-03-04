@@ -13,5 +13,13 @@ export const Media: CollectionConfig = {
       required: true,
     },
   ],
-  upload: true,
+  upload: {
+    imageSizes: [
+      {
+        name: "thumbnail",
+        width: 318,
+        height: 219,
+      },
+    ],
+  },
 };
