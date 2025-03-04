@@ -1,9 +1,9 @@
 import { revalidatePath, revalidateTag } from "next/cache";
-import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from "payload";
+import type { CollectionAfterChangeHook } from "payload";
 
 import type { Post } from "@/types/payload";
 
-export const revalidatePost: CollectionAfterChangeHook<Post> = ({ doc, previousDoc, req: { payload, context } }) => {
+export const afterChange: CollectionAfterChangeHook<Post> = ({ doc, previousDoc, req: { payload, context } }) => {
   if (!context.disableRevalidate) {
     if (doc._status === "published") {
       const path = `/hirek/${doc.slug}`;
@@ -31,15 +31,4 @@ export const revalidatePost: CollectionAfterChangeHook<Post> = ({ doc, previousD
   return doc;
 };
 
-export const revalidateDelete: CollectionAfterDeleteHook<Post> = ({ doc, req: { context } }) => {
-  if (!context.disableRevalidate) {
-    const path = `/hirek/${doc?.slug}`;
-
-    revalidatePath("/");
-    revalidatePath("/hirek");
-    revalidatePath(path);
-    revalidateTag("posts-sitemap");
-  }
-
-  return doc;
-};
+export default afterChange;

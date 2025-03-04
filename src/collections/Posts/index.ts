@@ -3,7 +3,8 @@ import type { CollectionConfig } from "payload";
 
 import { authenticated } from "@/access/authenticated";
 import { authenticatedOrPublished } from "@/access/authenticatedOrPublished";
-import { revalidateDelete, revalidatePost } from "@/collections/Posts/hooks/revalidatePost";
+import afterChange from "@/collections/Posts/hooks/after-change";
+import afterDelete from "@/collections/Posts/hooks/after-delete";
 import { slugField } from "@/fields/slug";
 
 export const Posts: CollectionConfig<"posts"> = {
@@ -87,8 +88,8 @@ export const Posts: CollectionConfig<"posts"> = {
     ...slugField(),
   ],
   hooks: {
-    afterChange: [revalidatePost],
-    afterDelete: [revalidateDelete],
+    afterChange: [afterChange],
+    afterDelete: [afterDelete],
   },
   versions: {
     drafts: {
