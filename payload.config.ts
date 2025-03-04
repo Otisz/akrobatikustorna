@@ -13,6 +13,7 @@ import sharp from "sharp";
 import { Documents } from "@/collections/Documents";
 import { Media } from "@/collections/Media";
 import { Posts } from "@/collections/Posts";
+import { RecommendedPages } from "@/collections/RecommendedPages";
 import { Users } from "@/collections/Users";
 
 const filename = fileURLToPath(import.meta.url);
@@ -28,7 +29,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Posts, Documents],
+  collections: [Users, Media, Posts, Documents, RecommendedPages],
   i18n: {
     supportedLanguages: { en, hu },
   },
