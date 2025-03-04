@@ -13,8 +13,8 @@ const DOCUMENTS: Array<Document> = [
     href: "/documents/hazirend.pdf",
   },
   {
-    name: "Tagnyilvántartó adatlap",
-    href: "/documents/tagnyilvantartoadatlap.pdf",
+    name: "Regisztrációs adatlap",
+    href: "/documents/regisztracios_adatlap.pdf",
   },
   {
     name: "Pártoló tagsági kérelem",
