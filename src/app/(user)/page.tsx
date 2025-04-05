@@ -45,7 +45,7 @@ export default async function Page() {
             <div className="mt-10 flex justify-center gap-6 lg:justify-start">
               <div className="rounded-md shadow">
                 <Link
-                  href="https://forms.gle/gFjANWnUzEeeQAyn7"
+                  href="https://forms.gle/6uXVWQha918p3Nf96"
                   target="_blank"
                   className="flex w-full items-center justify-center rounded-md border border-transparent bg-orange-primary px-8 py-3 text-base font-medium text-gray-900 transition hover:bg-orange-accent hover:text-white md:px-10 md:py-4 md:text-lg"
                 >

@@ -25,7 +25,7 @@ export default function Navigation() {
           </div>
           <div className="flex h-full flex-1 flex-row-reverse items-center justify-evenly gap-8 md:flex-grow-0 md:flex-row md:justify-normal">
             <Link
-              href="https://forms.gle/gFjANWnUzEeeQAyn7"
+              href="https://forms.gle/6uXVWQha918p3Nf96"
               target="_blank"
               className="flex h-full items-center justify-center rounded-md border border-transparent bg-gray-900 px-4 text-base font-medium text-white shadow-sm transition-colors hover:bg-gray-700"
             >
