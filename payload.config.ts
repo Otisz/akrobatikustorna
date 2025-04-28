@@ -41,7 +41,7 @@ export default buildConfig({
   db: sqliteAdapter({
     client: {
       url: process.env.DATABASE_URI || "",
-      authToken: process.env.TURSO_API_KEY,
+      authToken: process.env.TURSO_API_KEY || undefined,
     },
   }),
   sharp,

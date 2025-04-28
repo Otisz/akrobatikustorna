@@ -1,36 +1,30 @@
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-
-import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
-import importOrder from "eslint-plugin-import";
+import eslintPluginNext from "@next/eslint-plugin-next";
+import eslintConfigPrettier from "eslint-config-prettier";
+import eslintPluginImport from "eslint-plugin-import";
+import tseslint from "typescript-eslint";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
-
-export default [
+/**
+ * @type {import("eslint").Linter.Config}
+ */
+const config = [
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  eslintConfigPrettier,
   {
-    ignores: ["components/ui/**/*", "src/app/(payload)/studio/importMap.js"],
+    ignores: ["components/ui/**/*", "src/app/(payload)/**/*", "src/migrations/**/*", "src/types/payload.d.ts"],
   },
-  ...compat.extends("next/core-web-vitals", "next/typescript", "standard", "prettier"),
   {
-    plugins: {
-      import: importOrder,
-    },
-
+    plugins: { next: eslintPluginNext },
+  },
+  {
+    plugins: { import: eslintPluginImport },
     rules: {
       "import/order": [
         "error",
         {
           groups: ["builtin", "external", "internal", ["parent", "sibling"], "index", "object"],
-
-          "newlines-between": "always",
-
+          "newlines-between": "never",
           pathGroups: [
             {
               pattern: "@app/**",
@@ -51,9 +45,16 @@ export default [
   },
   {
     files: ["**/*.ts", "**/*.tsx"],
-
     rules: {
       "no-undef": "off",
+      "@typescript-eslint/consistent-type-imports": [
+        "error",
+        {
+          fixStyle: "inline-type-imports",
+        },
+      ],
     },
   },
 ];
+
+export default config;

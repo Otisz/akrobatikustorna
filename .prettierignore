@@ -1,0 +1,3 @@
+src/app/(payload)/
+src/migrations/
+src/types/payload.d.ts

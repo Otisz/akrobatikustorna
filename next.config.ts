@@ -4,8 +4,8 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   experimental: {
     ppr: true,
-    inlineCss: true,
     reactCompiler: true,
+    viewTransition: true,
   },
   eslint: {
     ignoreDuringBuilds: true,

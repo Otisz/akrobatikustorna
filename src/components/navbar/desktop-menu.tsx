@@ -126,14 +126,14 @@ export default function DesktopMenu() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href={LINKS.documents} legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>Dokumentumok</NavigationMenuLink>
-          </Link>
+          <NavigationMenuLink className={navigationMenuTriggerStyle()} asChild>
+            <Link href={LINKS.documents}>Dokumentumok</Link>
+          </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href={LINKS.contact} legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>Kapcsolat</NavigationMenuLink>
-          </Link>
+          <NavigationMenuLink className={navigationMenuTriggerStyle()} asChild>
+            <Link href={LINKS.contact}>Kapcsolat</Link>
+          </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
