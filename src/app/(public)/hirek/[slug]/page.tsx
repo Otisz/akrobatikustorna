@@ -1,3 +1,4 @@
+import config from "@payload-config";
 import { type JSXConvertersFunction, RichText } from "@payloadcms/richtext-lexical/react";
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
@@ -5,9 +6,8 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getPayload } from "payload";
 import React, { cache } from "react";
-
+import { unstable_ViewTransition as ViewTransition } from "react";
 import type { Media as MediaType, Post as PostType } from "@/types/payload";
-import config from "@payload-config";
 
 export const revalidate = 86_400;
 
@@ -37,36 +37,44 @@ export default async function Home(props: Props) {
   const post = await queryPostBySlug({ slug });
 
   return (
-    <main>
-      <div className="mx-auto max-w-4xl p-6 lg:px-8">
-        <article>
-          <header className="flex flex-col">
-            <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">{post.title}</h1>
-            <time dateTime={post.publishedAt!} className="order-first flex items-center">
-              <span className="h-4 w-0.5 rounded-full bg-gray-600" />
-              <span className="ml-3 text-base text-gray-600">
-                {new Date(post.publishedAt!).toLocaleDateString("hu")}
-              </span>
-            </time>
-          </header>
-          <div className="prose marker:text-primary prose-a:text-primary prose-img:rounded-xl prose-img:shadow-sm mt-8">
-            <p>{post.excerpt}</p>
+    <ViewTransition>
+      <main>
+        <div className="mx-auto max-w-4xl p-6 lg:px-8">
+          <article>
+            <header className="flex flex-col">
+              <ViewTransition name={`${post.slug}-title`}>
+                <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">{post.title}</h1>
+              </ViewTransition>
+              <time dateTime={post.publishedAt!} className="order-first flex items-center">
+                <span className="h-4 w-0.5 rounded-full bg-gray-600" />
+                <span className="ml-3 text-base text-gray-600">
+                  {new Date(post.publishedAt!).toLocaleDateString("hu")}
+                </span>
+              </time>
+            </header>
+            <div className="prose marker:text-primary prose-a:text-primary prose-img:rounded-xl prose-img:shadow-sm mt-8">
+              <ViewTransition name={`${post.slug}-excerpt`}>
+                <p>{post.excerpt}</p>
+              </ViewTransition>
 
-            <Image
-              loading="eager"
-              decoding="sync"
-              src={(post.picture as MediaType).url!}
-              alt={(post.picture as MediaType).alt}
-              width={(post.picture as MediaType).width!}
-              height={(post.picture as MediaType).height!}
-              className="not-prose w-full rounded-xl bg-gray-100 object-cover object-center"
-            />
+              <ViewTransition name={`${post.slug}-image`}>
+                <Image
+                  loading="eager"
+                  decoding="sync"
+                  src={(post.picture as MediaType).url!}
+                  alt={(post.picture as MediaType).alt}
+                  width={(post.picture as MediaType).width!}
+                  height={(post.picture as MediaType).height!}
+                  className="not-prose w-full rounded-xl bg-gray-100 object-cover object-center"
+                />
+              </ViewTransition>
 
-            <RichText data={post.content} converters={jsxConverters} />
-          </div>
-        </article>
-      </div>
-    </main>
+              <RichText data={post.content} converters={jsxConverters} />
+            </div>
+          </article>
+        </div>
+      </main>
+    </ViewTransition>
   );
 }
 
