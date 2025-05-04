@@ -1,7 +1,7 @@
 import { LuPhone } from "react-icons/lu";
 import { SiFacebook, SiInstagram, SiYoutube } from "react-icons/si";
-
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import Link from "@/components/ui/link";
 import LINKS from "@/data/links";
 
 export default function Header() {
@@ -18,16 +18,14 @@ export default function Header() {
           <span>+36 20 311 1919</span>
         </a>
         <div className="flex items-center gap-x-8">
-          <Button variant="secondary" size="sm" asChild>
-            <a
-              href="https://forms.gle/gFjANWnUzEeeQAyn7"
-              target="_blank"
-              aria-label="Tovább a jelentkezés oldalra (új lap)"
-              title="Jelentkezés Google Forms-on keresztül"
-            >
-              Jelentkezés
-            </a>
-          </Button>
+          <Link
+            href={LINKS.apply}
+            className={buttonVariants({ variant: "secondary", size: "sm" })}
+            aria-label="Tovább a jelentkezés oldalra (új lap)"
+            title="Jelentkezés Google Forms-on keresztül"
+          >
+            Jelentkezés
+          </Link>
           <div className="hidden gap-x-4 md:flex">
             <a
               href={LINKS.facebook}

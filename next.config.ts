@@ -17,6 +17,17 @@ const nextConfig: NextConfig = {
   images: {
     minimumCacheTTL: 86_400,
   },
+  async headers() {
+    return [
+      {
+        source: "/jelentkezes",
+        headers: [
+          { key: "Content-Security-Policy", value: "frame-ancestors docs.google.com;" },
+          { key: "Access-Control-Allow-Origin", value: "*" },
+        ],
+      },
+    ];
+  },
 };
 
 export default withPayload(nextConfig);
