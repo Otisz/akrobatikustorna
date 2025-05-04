@@ -1,6 +1,5 @@
 import path from "path";
 import { fileURLToPath } from "url";
-
 import { sqliteAdapter } from "@payloadcms/db-sqlite";
 import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
@@ -9,7 +8,6 @@ import { en } from "@payloadcms/translations/languages/en";
 import { hu } from "@payloadcms/translations/languages/hu";
 import { buildConfig } from "payload";
 import sharp from "sharp";
-
 import { Documents } from "@/collections/Documents";
 import { Media } from "@/collections/Media";
 import { Posts } from "@/collections/Posts";

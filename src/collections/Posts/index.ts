@@ -14,9 +14,9 @@ export const Posts: CollectionConfig<"posts"> = {
   },
   access: {
     create: authenticated,
-    delete: authenticated,
     read: authenticatedOrPublished,
     update: authenticated,
+    delete: authenticated,
   },
   defaultPopulate: {
     slug: true,

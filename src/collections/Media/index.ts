@@ -1,16 +1,20 @@
 import type { CollectionConfig } from "payload";
+import { anyone } from "@/access/anyone";
+import { authenticated } from "@/access/authenticated";
 
 export const Media: CollectionConfig = {
   slug: "media",
   access: {
-    read: () => true,
+    create: authenticated,
+    read: anyone,
+    update: authenticated,
+    delete: authenticated,
   },
   fields: [
     {
       name: "alt",
       label: "Leírás",
       type: "text",
-      required: true,
     },
   ],
   upload: {

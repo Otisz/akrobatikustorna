@@ -19,7 +19,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.run(sql`CREATE UNIQUE INDEX \`users_email_idx\` ON \`users\` (\`email\`);`)
   await db.run(sql`CREATE TABLE \`media\` (
   	\`id\` integer PRIMARY KEY NOT NULL,
-  	\`alt\` text NOT NULL,
+  	\`alt\` text,
+  	\`prefix\` text DEFAULT 'media',
   	\`updated_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
   	\`created_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
   	\`url\` text,
@@ -30,12 +31,19 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	\`width\` numeric,
   	\`height\` numeric,
   	\`focal_x\` numeric,
-  	\`focal_y\` numeric
+  	\`focal_y\` numeric,
+  	\`sizes_thumbnail_url\` text,
+  	\`sizes_thumbnail_width\` numeric,
+  	\`sizes_thumbnail_height\` numeric,
+  	\`sizes_thumbnail_mime_type\` text,
+  	\`sizes_thumbnail_filesize\` numeric,
+  	\`sizes_thumbnail_filename\` text
   );
   `)
   await db.run(sql`CREATE INDEX \`media_updated_at_idx\` ON \`media\` (\`updated_at\`);`)
   await db.run(sql`CREATE INDEX \`media_created_at_idx\` ON \`media\` (\`created_at\`);`)
   await db.run(sql`CREATE UNIQUE INDEX \`media_filename_idx\` ON \`media\` (\`filename\`);`)
+  await db.run(sql`CREATE INDEX \`media_sizes_thumbnail_sizes_thumbnail_filename_idx\` ON \`media\` (\`sizes_thumbnail_filename\`);`)
   await db.run(sql`CREATE TABLE \`posts\` (
   	\`id\` integer PRIMARY KEY NOT NULL,
   	\`title\` text,
@@ -87,6 +95,36 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.run(sql`CREATE INDEX \`_posts_v_updated_at_idx\` ON \`_posts_v\` (\`updated_at\`);`)
   await db.run(sql`CREATE INDEX \`_posts_v_latest_idx\` ON \`_posts_v\` (\`latest\`);`)
   await db.run(sql`CREATE INDEX \`_posts_v_autosave_idx\` ON \`_posts_v\` (\`autosave\`);`)
+  await db.run(sql`CREATE TABLE \`documents\` (
+  	\`id\` integer PRIMARY KEY NOT NULL,
+  	\`title\` text NOT NULL,
+  	\`prefix\` text DEFAULT 'documents',
+  	\`updated_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
+  	\`created_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
+  	\`url\` text,
+  	\`thumbnail_u_r_l\` text,
+  	\`filename\` text,
+  	\`mime_type\` text,
+  	\`filesize\` numeric,
+  	\`width\` numeric,
+  	\`height\` numeric,
+  	\`focal_x\` numeric,
+  	\`focal_y\` numeric
+  );
+  `)
+  await db.run(sql`CREATE INDEX \`documents_updated_at_idx\` ON \`documents\` (\`updated_at\`);`)
+  await db.run(sql`CREATE INDEX \`documents_created_at_idx\` ON \`documents\` (\`created_at\`);`)
+  await db.run(sql`CREATE UNIQUE INDEX \`documents_filename_idx\` ON \`documents\` (\`filename\`);`)
+  await db.run(sql`CREATE TABLE \`recommended_pages\` (
+  	\`id\` integer PRIMARY KEY NOT NULL,
+  	\`title\` text NOT NULL,
+  	\`href\` text NOT NULL,
+  	\`updated_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
+  	\`created_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL
+  );
+  `)
+  await db.run(sql`CREATE INDEX \`recommended_pages_updated_at_idx\` ON \`recommended_pages\` (\`updated_at\`);`)
+  await db.run(sql`CREATE INDEX \`recommended_pages_created_at_idx\` ON \`recommended_pages\` (\`created_at\`);`)
   await db.run(sql`CREATE TABLE \`payload_jobs_log\` (
   	\`_order\` integer NOT NULL,
   	\`_parent_id\` integer NOT NULL,
@@ -146,11 +184,15 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	\`users_id\` integer,
   	\`media_id\` integer,
   	\`posts_id\` integer,
+  	\`documents_id\` integer,
+  	\`recommended_pages_id\` integer,
   	\`payload_jobs_id\` integer,
   	FOREIGN KEY (\`parent_id\`) REFERENCES \`payload_locked_documents\`(\`id\`) ON UPDATE no action ON DELETE cascade,
   	FOREIGN KEY (\`users_id\`) REFERENCES \`users\`(\`id\`) ON UPDATE no action ON DELETE cascade,
   	FOREIGN KEY (\`media_id\`) REFERENCES \`media\`(\`id\`) ON UPDATE no action ON DELETE cascade,
   	FOREIGN KEY (\`posts_id\`) REFERENCES \`posts\`(\`id\`) ON UPDATE no action ON DELETE cascade,
+  	FOREIGN KEY (\`documents_id\`) REFERENCES \`documents\`(\`id\`) ON UPDATE no action ON DELETE cascade,
+  	FOREIGN KEY (\`recommended_pages_id\`) REFERENCES \`recommended_pages\`(\`id\`) ON UPDATE no action ON DELETE cascade,
   	FOREIGN KEY (\`payload_jobs_id\`) REFERENCES \`payload_jobs\`(\`id\`) ON UPDATE no action ON DELETE cascade
   );
   `)
@@ -160,6 +202,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.run(sql`CREATE INDEX \`payload_locked_documents_rels_users_id_idx\` ON \`payload_locked_documents_rels\` (\`users_id\`);`)
   await db.run(sql`CREATE INDEX \`payload_locked_documents_rels_media_id_idx\` ON \`payload_locked_documents_rels\` (\`media_id\`);`)
   await db.run(sql`CREATE INDEX \`payload_locked_documents_rels_posts_id_idx\` ON \`payload_locked_documents_rels\` (\`posts_id\`);`)
+  await db.run(sql`CREATE INDEX \`payload_locked_documents_rels_documents_id_idx\` ON \`payload_locked_documents_rels\` (\`documents_id\`);`)
+  await db.run(sql`CREATE INDEX \`payload_locked_documents_rels_recommended_pages_id_idx\` ON \`payload_locked_documents_rels\` (\`recommended_pages_id\`);`)
   await db.run(sql`CREATE INDEX \`payload_locked_documents_rels_payload_jobs_id_idx\` ON \`payload_locked_documents_rels\` (\`payload_jobs_id\`);`)
   await db.run(sql`CREATE TABLE \`payload_preferences\` (
   	\`id\` integer PRIMARY KEY NOT NULL,
@@ -203,6 +247,8 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   await db.run(sql`DROP TABLE \`media\`;`)
   await db.run(sql`DROP TABLE \`posts\`;`)
   await db.run(sql`DROP TABLE \`_posts_v\`;`)
+  await db.run(sql`DROP TABLE \`documents\`;`)
+  await db.run(sql`DROP TABLE \`recommended_pages\`;`)
   await db.run(sql`DROP TABLE \`payload_jobs_log\`;`)
   await db.run(sql`DROP TABLE \`payload_jobs\`;`)
   await db.run(sql`DROP TABLE \`payload_locked_documents\`;`)

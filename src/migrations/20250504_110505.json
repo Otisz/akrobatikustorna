@@ -121,7 +121,7 @@
           "name": "alt",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "autoincrement": false
         },
         "prefix": {
@@ -787,6 +787,68 @@
       "uniqueConstraints": {},
       "checkConstraints": {}
     },
+    "recommended_pages": {
+      "name": "recommended_pages",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "href": {
+          "name": "href",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))"
+        }
+      },
+      "indexes": {
+        "recommended_pages_updated_at_idx": {
+          "name": "recommended_pages_updated_at_idx",
+          "columns": [
+            "updated_at"
+          ],
+          "isUnique": false
+        },
+        "recommended_pages_created_at_idx": {
+          "name": "recommended_pages_created_at_idx",
+          "columns": [
+            "created_at"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
     "payload_jobs_log": {
       "name": "payload_jobs_log",
       "columns": {
@@ -1188,6 +1250,13 @@
           "notNull": false,
           "autoincrement": false
         },
+        "recommended_pages_id": {
+          "name": "recommended_pages_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
         "payload_jobs_id": {
           "name": "payload_jobs_id",
           "type": "integer",
@@ -1243,6 +1312,13 @@
           "name": "payload_locked_documents_rels_documents_id_idx",
           "columns": [
             "documents_id"
+          ],
+          "isUnique": false
+        },
+        "payload_locked_documents_rels_recommended_pages_id_idx": {
+          "name": "payload_locked_documents_rels_recommended_pages_id_idx",
+          "columns": [
+            "recommended_pages_id"
           ],
           "isUnique": false
         },
@@ -1313,6 +1389,19 @@
           "tableTo": "documents",
           "columnsFrom": [
             "documents_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "payload_locked_documents_rels_recommended_pages_fk": {
+          "name": "payload_locked_documents_rels_recommended_pages_fk",
+          "tableFrom": "payload_locked_documents_rels",
+          "tableTo": "recommended_pages",
+          "columnsFrom": [
+            "recommended_pages_id"
           ],
           "columnsTo": [
             "id"
@@ -1580,6 +1669,6 @@
   "internal": {
     "indexes": {}
   },
-  "id": "07188bae-1bd0-42b0-a3a5-dec47592add9",
+  "id": "4e8570fd-b30f-4f1c-980b-04f330be9b3f",
   "prevId": "00000000-0000-0000-0000-000000000000"
 }

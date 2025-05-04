@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { anyone } from "@/access/anyone";
 import { authenticated } from "@/access/authenticated";
 import afterChange from "@/collections/RecommendedPages/hooks/after-change";
 import afterDelete from "@/collections/RecommendedPages/hooks/after-delete";
@@ -11,7 +12,9 @@ export const RecommendedPages: CollectionConfig = {
   },
   access: {
     create: authenticated,
-    read: () => true,
+    read: anyone,
+    update: authenticated,
+    delete: authenticated,
   },
   fields: [
     {
