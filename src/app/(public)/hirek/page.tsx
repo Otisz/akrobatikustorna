@@ -32,34 +32,32 @@ export default async function Page(props: Props) {
 
   return (
     <ViewTransition>
-      <main>
-        <div className="mx-auto w-full max-w-7xl space-y-8 px-4 pt-8 pb-20 sm:px-6">
-          <h1 className="text-5xl">Hírek</h1>
-          <div className="flex flex-wrap justify-center gap-4">
-            <PostsWrapper>
-              {posts.docs.map((post) => (
-                <PostCard key={post.slug} post={post as PostType} loading={imageCount++ < 9 ? "eager" : "lazy"} />
-              ))}
-            </PostsWrapper>
-          </div>
-          <div className={cn("flex", [posts.hasPrevPage ? "justify-between" : "justify-end"])}>
-            {posts.hasPrevPage ? (
-              <div className="space-x-4">
-                <Button asChild variant="outline">
-                  <Link href={{ pathname: "/hirek", query: { page: undefined } }}>« Legújabbak</Link>
-                </Button>
-                <Button asChild variant="outline">
-                  <Link href={{ pathname: "/hirek", query: { page: +page - 1 } }}>« Újabbak</Link>
-                </Button>
-              </div>
-            ) : null}
-            <div>
-              {posts.hasNextPage ? (
-                <Button asChild variant="outline">
-                  <Link href={{ pathname: "/hirek", query: { page: +page + 1 } }}>Régebbiek »</Link>
-                </Button>
-              ) : null}
+      <main className="container space-y-8 px-4 pt-8 pb-20">
+        <h1 className="text-5xl">Hírek</h1>
+        <div className="flex flex-wrap justify-center gap-4">
+          <PostsWrapper>
+            {posts.docs.map((post) => (
+              <PostCard key={post.slug} post={post as PostType} loading={imageCount++ < 9 ? "eager" : "lazy"} />
+            ))}
+          </PostsWrapper>
+        </div>
+        <div className={cn("flex", [posts.hasPrevPage ? "justify-between" : "justify-end"])}>
+          {posts.hasPrevPage ? (
+            <div className="space-x-4">
+              <Button asChild variant="outline">
+                <Link href={{ pathname: "/hirek", query: { page: undefined } }}>« Legújabbak</Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link href={{ pathname: "/hirek", query: { page: +page - 1 } }}>« Újabbak</Link>
+              </Button>
             </div>
+          ) : null}
+          <div>
+            {posts.hasNextPage ? (
+              <Button asChild variant="outline">
+                <Link href={{ pathname: "/hirek", query: { page: +page + 1 } }}>Régebbiek »</Link>
+              </Button>
+            ) : null}
           </div>
         </div>
       </main>
