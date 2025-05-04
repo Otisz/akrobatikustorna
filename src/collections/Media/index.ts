@@ -10,6 +10,9 @@ export const Media: CollectionConfig = {
     update: authenticated,
     delete: authenticated,
   },
+  admin: {
+    group: "Feltöltések",
+  },
   fields: [
     {
       name: "alt",

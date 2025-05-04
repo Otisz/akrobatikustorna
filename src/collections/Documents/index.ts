@@ -10,6 +10,9 @@ export const Documents: CollectionConfig = {
     singular: "Dokumentum",
     plural: "Dokumentumok",
   },
+  admin: {
+    group: "Tartalmak",
+  },
   access: {
     create: authenticated,
     read: anyone,
@@ -23,10 +26,16 @@ export const Documents: CollectionConfig = {
       type: "text",
       required: true,
     },
+    {
+      name: "document",
+      label: "Fájl",
+      type: "upload",
+      relationTo: "media",
+      required: true,
+    },
   ],
   hooks: {
     afterChange: [afterChange],
     afterDelete: [afterDelete],
   },
-  upload: true,
 };

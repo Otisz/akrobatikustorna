@@ -27,6 +27,7 @@ export const Posts: CollectionConfig<"posts"> = {
   admin: {
     defaultColumns: ["title", "slug", "updatedAt"],
     useAsTitle: "title",
+    group: "Tartalmak",
   },
   defaultSort: "-publishedAt",
   fields: [

@@ -10,6 +10,9 @@ export const RecommendedPages: CollectionConfig = {
     singular: "Ajánlott oldal",
     plural: "Ajánlott oldalak",
   },
+  admin: {
+    group: "Tartalmak",
+  },
   access: {
     create: authenticated,
     read: anyone,

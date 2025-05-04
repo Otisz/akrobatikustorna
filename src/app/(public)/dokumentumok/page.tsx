@@ -2,6 +2,7 @@ import config from "@payload-config";
 import type { Metadata } from "next";
 import { getPayload } from "payload";
 import { cache } from "react";
+import { type Media } from "@/types/payload";
 
 export const revalidate = 86_400;
 
@@ -20,10 +21,11 @@ export default async function Page() {
         {result.docs.map((document, i) => (
           <a
             key={i}
-            href={document.url!}
+            href={(document.document as Media).url!}
             className="text-foreground hover:bg-background/25 rounded border border-gray-400 bg-white px-4 py-2 text-xl font-semibold shadow"
             target="_blank"
             download
+            aria-label={`${document.title} dokumentum letöltése`}
           >
             {document.title}
           </a>

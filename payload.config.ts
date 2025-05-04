@@ -47,20 +47,16 @@ export default buildConfig({
     payloadCloudPlugin(),
     s3Storage({
       collections: {
-        media: {
-          prefix: "media",
-        },
-        documents: {
-          prefix: "documents",
-        },
+        media: true,
       },
-      bucket: process.env.S3_BUCKET!,
+      bucket: process.env.R2_BUCKET || "",
       config: {
         credentials: {
-          accessKeyId: process.env.S3_ACCESS_KEY_ID!,
-          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY!,
+          accessKeyId: process.env.R2_ACCESS_KEY_ID || "",
+          secretAccessKey: process.env.R2_SECRET_ACCESS_KEY || "",
         },
-        region: process.env.S3_REGION,
+        region: "auto",
+        endpoint: process.env.R2_ENDPOINT || "",
       },
     }),
   ],

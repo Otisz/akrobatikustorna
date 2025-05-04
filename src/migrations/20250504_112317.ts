@@ -98,6 +98,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.run(sql`CREATE TABLE \`documents\` (
   	\`id\` integer PRIMARY KEY NOT NULL,
   	\`title\` text NOT NULL,
+  	\`document_id\` integer NOT NULL,
   	\`prefix\` text DEFAULT 'documents',
   	\`updated_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
   	\`created_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
@@ -109,9 +110,11 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	\`width\` numeric,
   	\`height\` numeric,
   	\`focal_x\` numeric,
-  	\`focal_y\` numeric
+  	\`focal_y\` numeric,
+  	FOREIGN KEY (\`document_id\`) REFERENCES \`media\`(\`id\`) ON UPDATE no action ON DELETE set null
   );
   `)
+  await db.run(sql`CREATE INDEX \`documents_document_idx\` ON \`documents\` (\`document_id\`);`)
   await db.run(sql`CREATE INDEX \`documents_updated_at_idx\` ON \`documents\` (\`updated_at\`);`)
   await db.run(sql`CREATE INDEX \`documents_created_at_idx\` ON \`documents\` (\`created_at\`);`)
   await db.run(sql`CREATE UNIQUE INDEX \`documents_filename_idx\` ON \`documents\` (\`filename\`);`)
