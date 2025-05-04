@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import React from "react";
 
 import "@/styles/globals.css";
+import Footer from "@/components/footer";
 import Header from "@/components/header/header";
 import Navbar from "@/components/navbar/navbar";
 
@@ -62,7 +63,8 @@ export default function RootLayout({
       <body className={`${inter.variable} bg-background text-foreground font-sans antialiased`}>
         <Header />
         <Navbar />
-        {children}
+        <div className="min-h-[calc(100dvh---spacing(38))]">{children}</div>
+        <Footer />
       </body>
     </html>
   );
