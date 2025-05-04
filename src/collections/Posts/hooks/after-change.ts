@@ -1,6 +1,5 @@
 import { revalidatePath, revalidateTag } from "next/cache";
 import type { CollectionAfterChangeHook } from "payload";
-
 import type { Post } from "@/types/payload";
 
 export const afterChange: CollectionAfterChangeHook<Post> = ({ doc, previousDoc, req: { payload, context } }) => {
@@ -28,6 +27,7 @@ export const afterChange: CollectionAfterChangeHook<Post> = ({ doc, previousDoc,
       revalidateTag("posts-sitemap");
     }
   }
+
   return doc;
 };
 

@@ -1,5 +1,4 @@
 import type { CollectionConfig } from "payload";
-
 import { authenticated } from "@/access/authenticated";
 import afterChange from "@/collections/Documents/hooks/after-change";
 import afterDelete from "@/collections/Documents/hooks/after-delete";

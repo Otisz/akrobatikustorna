@@ -1,6 +1,5 @@
 import { revalidatePath } from "next/cache";
 import type { CollectionAfterDeleteHook } from "payload";
-
 import type { Document } from "@/types/payload";
 
 const afterDelete: CollectionAfterDeleteHook<Document> = ({ doc, req: { context } }) => {

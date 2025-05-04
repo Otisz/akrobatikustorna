@@ -1,7 +1,6 @@
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { FaAlignRight, FaRegCircleXmark } from "react-icons/fa6";
 import { SiFacebook, SiInstagram, SiYoutube } from "react-icons/si";
-
 import Link from "@/components/ui/link";
 import {
   Sheet,
@@ -20,11 +19,11 @@ export default function MobileMenu() {
       <SheetTrigger aria-label="Navigációs menü megnyitása" className="block md:hidden">
         <FaAlignRight className="h-8 w-8" />
       </SheetTrigger>
-      <SheetContent noClose className="w-full border-none bg-background p-0">
-        <SheetHeader className="m-4 flex h-20 flex-row divide-x divide-background">
+      <SheetContent noClose className="bg-background w-full border-none p-0">
+        <SheetHeader className="divide-background m-4 flex h-20 flex-row divide-x">
           <SheetTitle className="flex flex-1 items-center px-4 text-2xl font-bold">Menü</SheetTitle>
           <SheetClose
-            className="m-0! inline-flex aspect-square h-full items-center justify-center rounded-xl border-2 border-border bg-accent/30 transition-all hover:border-orange-500 hover:bg-accent"
+            className="border-border bg-accent/30 hover:bg-accent m-0! inline-flex aspect-square h-full items-center justify-center rounded-xl border-2 transition-all hover:border-orange-500"
             aria-labelledby="close-navitaion-menu"
           >
             <FaRegCircleXmark className="h-8 w-8" />
@@ -37,7 +36,7 @@ export default function MobileMenu() {
           </VisuallyHidden>
         </SheetHeader>
         <div className="h-full space-y-8 overflow-auto pb-32">
-          <div className="grid grid-cols-1 divide-y divide-border">
+          <div className="divide-border grid grid-cols-1 divide-y">
             <SheetClose asChild>
               <Link href={LINKS.trainers} className="px-8 py-4" aria-label="Ugrás az edzők oldalra">
                 Edzők
