@@ -67,13 +67,13 @@ export default async function Page() {
           <Carousel />
         </div>
       </div>
-      <div className="flex flex-col gap-16">
+      <div className="mt-8 flex flex-col gap-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Aktuális híreink</h2>
           </div>
           <NewsList news={newsResult} />
-          <div className="mx-auto mt-16 max-w-2xl text-center ">
+          <div className="mx-auto mt-16 max-w-2xl text-center">
             <Link href="/hirek" className="text-xl text-gray-900 hover:text-orange-primary">
               Korábbi hírek <FaArrowRight className="inline-block" />
             </Link>
