@@ -13,17 +13,15 @@ export default function Footer() {
       <div className="container pt-16 pb-8 sm:pt-24 lg:pt-32">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8">
-            <Image className="mx-auto h-14 w-auto" src={LogoBase} alt="BASE Logo" />
+            <Image className="mx-auto h-24 w-auto" src={LogoBase} alt="BASE Logo" />
             <p className="text-center text-gray-300 text-sm leading-6">
-              <q>
-                AZ ELLENFÉL NEM ELLENSÉG!
-                <br />
-                Versenyezni, győzni csak a
-                <br />
-                felkészült, sikeres ellenféllel
-                <br />
-                szemben dicsőség!
-              </q>
+              AZ ELLENFÉL NEM ELLENSÉG!
+              <br />
+              Versenyezni, győzni csak a
+              <br />
+              felkészült, sikeres ellenféllel
+              <br />
+              szemben dicsőség!
             </p>
             <div className="flex justify-around">
               <Link href="https://www.facebook.com/akrobatikustorna" target="_blank" title="Facebook">
