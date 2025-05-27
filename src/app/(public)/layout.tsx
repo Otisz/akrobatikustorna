@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-
 import "@/styles/globals.css";
 import Footer from "@/components/footer";
 import Header from "@/components/header/header";
 import Navbar from "@/components/navbar/navbar";
+import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
   title: {
@@ -54,8 +54,10 @@ const inter = Inter({
 
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
+  modal: ReactNode;
 }>) {
   return (
     <html lang="hu" className="scroll-smooth">
@@ -64,6 +66,7 @@ export default function RootLayout({
         <Navbar />
         <div className="min-h-[calc(100dvh---spacing(38))]">{children}</div>
         <Footer />
+        {modal}
       </body>
     </html>
   );
