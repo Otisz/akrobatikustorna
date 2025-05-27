@@ -61,7 +61,10 @@
         "useYield": "error"
       },
       "nursery": {
-        "useSortedClasses": "warn"
+        "useSortedClasses": {
+          "fix": "safe",
+          "level": "info"
+        }
       },
       "style": {
         "noNamespace": "error",
