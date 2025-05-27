@@ -1,6 +1,6 @@
+import type { Post } from "@/types/payload";
 import { revalidatePath, revalidateTag } from "next/cache";
 import type { CollectionAfterDeleteHook } from "payload";
-import type { Post } from "@/types/payload";
 
 const afterDelete: CollectionAfterDeleteHook<Post> = ({ doc, req: { context } }) => {
   if (!context.disableRevalidate) {

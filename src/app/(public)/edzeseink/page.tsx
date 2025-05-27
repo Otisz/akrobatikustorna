@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import Link from "@/components/ui/link";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Edzéseink",
@@ -25,7 +25,7 @@ export default function Page() {
     <main className="container space-y-8 px-4 pt-8 pb-20">
       <h1 className="text-5xl">Edzéseink</h1>
 
-      <div className="prose marker:text-primary prose-a:font-normal max-w-none">
+      <div className="prose max-w-none prose-a:font-normal marker:text-primary">
         <p className="font-semibold">
           Egyesületünkben, felmérés (első próbaedzés) után kerülhetnek a megfelelő csoportba a gyerekek, azaz a
           jelenlegi teljesítményét nézi a vezetőedző.
@@ -80,7 +80,7 @@ export default function Page() {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="[&_th]:border-primary [&_td]:border-primary w-full table-auto! border-collapse overflow-x-scroll bg-gray-900 text-center whitespace-nowrap text-white md:table-fixed [&_a]:underline [&_td]:border-2 [&_td]:px-4 [&_td]:py-6 [&_th]:border-2 [&_th]:px-4 [&_th]:py-6">
+        <table className="table-auto! w-full border-collapse overflow-x-scroll whitespace-nowrap bg-gray-900 text-center text-white md:table-fixed [&_a]:underline [&_td]:border-2 [&_td]:border-primary [&_td]:px-4 [&_td]:py-6 [&_th]:border-2 [&_th]:border-primary [&_th]:px-4 [&_th]:py-6">
           <thead>
             <tr>
               <th>Kategória</th>
@@ -126,8 +126,8 @@ export default function Page() {
               </td>
               <td>
                 <div className="flex flex-col gap-8">
-                  <span className="opacity-0 select-none">-</span>
-                  <span className="opacity-0 select-none">-</span>
+                  <span className="select-none opacity-0">-</span>
+                  <span className="select-none opacity-0">-</span>
                   <span className="text-primary">
                     18<sup>00</sup> - 20<sup>00</sup>
                   </span>
@@ -148,8 +148,8 @@ export default function Page() {
               </td>
               <td>
                 <div className="flex flex-col gap-8">
-                  <span className="opacity-0 select-none">-</span>
-                  <span className="opacity-0 select-none">-</span>
+                  <span className="select-none opacity-0">-</span>
+                  <span className="select-none opacity-0">-</span>
                   <span className="text-primary">
                     18<sup>00</sup> - 20<sup>00</sup>
                   </span>
@@ -170,7 +170,7 @@ export default function Page() {
               </td>
               <td>
                 <div className="flex flex-col gap-8">
-                  <span className="opacity-0 select-none">-</span>
+                  <span className="select-none opacity-0">-</span>
                   <span className="text-sky-500">
                     10<sup>00</sup> - 13<sup>00</sup>
                   </span>
@@ -184,27 +184,27 @@ export default function Page() {
               <th>
                 Mozgásképzés, alap balett
                 <br />
-                <span className="text-sm font-normal">(Legend Team versenyzőknek kötelező)</span>
+                <span className="font-normal text-sm">(Legend Team versenyzőknek kötelező)</span>
               </th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td />
+              <td />
+              <td />
+              <td />
               <td>
                 17<sup>00</sup> - 18<sup>00</sup>
               </td>
-              <td></td>
+              <td />
             </tr>
             <tr id={HASH_LIST["halado-b-kategoria"]}>
               <th>
                 Akrobatikus Torna &quot;B&quot; kategória <br /> haladó versenyzők
               </th>
-              <td></td>
+              <td />
               <td>
                 16<sup>00</sup> - 18<sup>00</sup>
               </td>
-              <td></td>
-              <td></td>
+              <td />
+              <td />
               <td>
                 16<sup>00</sup> - 18<sup>00</sup>
               </td>
@@ -219,17 +219,17 @@ export default function Page() {
                 Akrobatikus Torna &quot;B&quot; kategória <br />
                 rekreációs csoport <br />
                 és kezdő versenyzők <br />
-                <span className="text-sm font-normal">8 ~ 22 éves korig</span>
+                <span className="font-normal text-sm">8 ~ 22 éves korig</span>
               </th>
-              <td></td>
+              <td />
               <td>
                 18<sup>00</sup> - 20<sup>00</sup>
               </td>
-              <td></td>
+              <td />
               <td>
                 16<sup>00</sup> - 18<sup>00</sup>
               </td>
-              <td></td>
+              <td />
               <td>
                 10<sup>00</sup> - 12<sup>00</sup>
                 <br />
@@ -240,64 +240,64 @@ export default function Page() {
               <th>
                 Magán és meghívásos <br /> akrobatika és ugróedzések
               </th>
-              <td></td>
+              <td />
               <td>
                 18<sup>00</sup> - 19<sup>00</sup>
               </td>
-              <td></td>
+              <td />
               <td>
                 18<sup>00</sup> - 19<sup>00</sup>
               </td>
-              <td></td>
-              <td></td>
+              <td />
+              <td />
             </tr>
             <tr id={HASH_LIST["gyongy-csoport"]}>
               <th>
                 Torna előkészítő Gyöngy csoport <br />
-                <span className="text-sm font-normal">5 és fél - 7 éves korig</span>
+                <span className="font-normal text-sm">5 és fél - 7 éves korig</span>
               </th>
               <td>
                 16<sup>15</sup> - 17<sup>15</sup>
               </td>
-              <td></td>
+              <td />
               <td>
                 16<sup>15</sup> - 17<sup>15</sup>
               </td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td />
+              <td />
+              <td />
             </tr>
             <tr id={HASH_LIST["gyemant-csoport"]}>
               <th>
                 Torna előkészítő Gyémánt csoport <br />
-                <span className="text-sm font-normal">6 - 10 éves korig</span>
+                <span className="font-normal text-sm">6 - 10 éves korig</span>
               </th>
-              <td></td>
+              <td />
               <td>
                 16<sup>00</sup> - 17<sup>30</sup>
               </td>
-              <td></td>
+              <td />
               <td>
                 16<sup>00</sup> - 17<sup>30</sup>
               </td>
-              <td></td>
-              <td></td>
+              <td />
+              <td />
             </tr>
             <tr id={HASH_LIST["szabadidos-oromtorna"]}>
               <th>
                 Szabadidős - örömtorna <br />
-                <span className="text-sm font-normal">~8 ~ 12 éves korig</span>
+                <span className="font-normal text-sm">~8 ~ 12 éves korig</span>
               </th>
               <td>
                 17<sup>30</sup> - 19<sup>00</sup>
               </td>
-              <td></td>
+              <td />
               <td>
                 17<sup>30</sup> - 19<sup>00</sup>
               </td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td />
+              <td />
+              <td />
             </tr>
             <tr>
               <th>
@@ -307,20 +307,20 @@ export default function Page() {
                   <span>B kategória</span>
                 </div>
               </th>
-              <td></td>
+              <td />
               <td>
                 <div className="flex flex-col gap-2">
-                  <span className="opacity-0 select-none">-</span>
-                  <span className="opacity-0 select-none">-</span>
+                  <span className="select-none opacity-0">-</span>
+                  <span className="select-none opacity-0">-</span>
                   <span>
                     16<sup>00</sup> - 18<sup>00</sup>
                   </span>
                 </div>
               </td>
-              <td></td>
+              <td />
               <td>
                 <div className="flex flex-col gap-2">
-                  <span className="opacity-0 select-none">-</span>
+                  <span className="select-none opacity-0">-</span>
                   <span className="text-primary">
                     18<sup>00</sup> - 20<sup>00</sup>
                   </span>
@@ -329,8 +329,8 @@ export default function Page() {
                   </span>
                 </div>
               </td>
-              <td></td>
-              <td></td>
+              <td />
+              <td />
             </tr>
           </tbody>
         </table>

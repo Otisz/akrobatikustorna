@@ -1,8 +1,8 @@
+import LogoBase from "@/assets/images/logo_base.png";
+import LINKS from "@/data/links";
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookSquare, FaInstagram, FaYoutube } from "react-icons/fa";
-import LogoBase from "@/assets/images/logo_base.png";
-import LINKS from "@/data/links";
 
 export default function Footer() {
   return (
@@ -14,7 +14,7 @@ export default function Footer() {
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8">
             <Image className="mx-auto h-14 w-auto" src={LogoBase} alt="BASE Logo" />
-            <p className="text-center text-sm leading-6 text-gray-300">
+            <p className="text-center text-gray-300 text-sm leading-6">
               <q>
                 AZ ELLENFÉL NEM ELLENSÉG!
                 <br />
@@ -43,50 +43,55 @@ export default function Footer() {
           <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm leading-6 font-semibold text-white">Edzések</h3>
-                <ul role="list" className="mt-6 space-y-4">
+                <h3 className="font-semibold text-sm text-white leading-6">Edzések</h3>
+                <ul className="mt-6 space-y-4">
                   <li>
-                    <Link href={LINKS.apply} className="text-sm leading-6 text-gray-300 hover:text-white">
+                    <Link href={LINKS.apply} className="text-gray-300 text-sm leading-6 hover:text-white">
                       Jelentkezés
                     </Link>
                   </li>
                   <li>
-                    <Link href={LINKS.trainers} className="text-sm leading-6 text-gray-300 hover:text-white">
+                    <Link href={LINKS.trainers} className="text-gray-300 text-sm leading-6 hover:text-white">
                       Edzők
                     </Link>
                   </li>
                   <li>
-                    <Link href={LINKS.calendar} className="text-sm leading-6 text-gray-300 hover:text-white">
+                    <Link href={LINKS.calendar} className="text-gray-300 text-sm leading-6 hover:text-white">
                       Edzéseink
                     </Link>
                   </li>
                   <li>
-                    <Link href={LINKS.departments} className="text-sm leading-6 text-gray-300 hover:text-white">
+                    <Link href={LINKS.departments} className="text-gray-300 text-sm leading-6 hover:text-white">
                       Szakosztályok
                     </Link>
                   </li>
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm leading-6 font-semibold text-white">Gyűjtemény</h3>
-                <ul role="list" className="mt-6 space-y-4">
+                <h3 className="font-semibold text-sm text-white leading-6">Gyűjtemény</h3>
+                <ul className="mt-6 space-y-4">
                   <li>
-                    <Link href={LINKS.news} className="text-sm leading-6 text-gray-300 hover:text-white">
+                    <Link href={LINKS.news} className="text-gray-300 text-sm leading-6 hover:text-white">
                       Hírek
                     </Link>
                   </li>
                   <li>
-                    <a href={LINKS.store} className="text-sm leading-6 text-gray-300 hover:text-white" target="_blank">
+                    <a
+                      href={LINKS.store}
+                      className="text-gray-300 text-sm leading-6 hover:text-white"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       Piactér
                     </a>
                   </li>
                   <li>
-                    <Link href={LINKS.gallery} className="text-sm leading-6 text-gray-300 hover:text-white">
+                    <Link href={LINKS.gallery} className="text-gray-300 text-sm leading-6 hover:text-white">
                       Történelmi kitekintés
                     </Link>
                   </li>
                   <li>
-                    <Link href={LINKS.recommendations} className="text-sm leading-6 text-gray-300 hover:text-white">
+                    <Link href={LINKS.recommendations} className="text-gray-300 text-sm leading-6 hover:text-white">
                       Ajánlott oldalak
                     </Link>
                   </li>
@@ -95,34 +100,35 @@ export default function Footer() {
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm leading-6 font-semibold text-white">Egyesület</h3>
-                <ul role="list" className="mt-6 space-y-4">
+                <h3 className="font-semibold text-sm text-white leading-6">Egyesület</h3>
+                <ul className="mt-6 space-y-4">
                   <li>
-                    <Link href={LINKS.contact} className="text-sm leading-6 text-gray-300 hover:text-white">
+                    <Link href={LINKS.contact} className="text-gray-300 text-sm leading-6 hover:text-white">
                       Kapcsolat
                     </Link>
                   </li>
                   <li>
-                    <Link href={LINKS.documents} className="text-sm leading-6 text-gray-300 hover:text-white">
+                    <Link href={LINKS.documents} className="text-gray-300 text-sm leading-6 hover:text-white">
                       Dokumentumok
                     </Link>
                   </li>
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm leading-6 font-semibold text-white">Bejelentkezés</h3>
-                <ul role="list" className="mt-6 space-y-4">
+                <h3 className="font-semibold text-sm text-white leading-6">Bejelentkezés</h3>
+                <ul className="mt-6 space-y-4">
                   <li>
                     <a
                       href="http://account.synology.com"
-                      className="text-sm leading-6 text-gray-300 hover:text-white"
+                      className="text-gray-300 text-sm leading-6 hover:text-white"
                       target="_blank"
+                      rel="noreferrer"
                     >
                       Tárhely
                     </a>
                   </li>
                   <li>
-                    <Link href="/studio" className="text-sm leading-6 text-gray-300 hover:text-white">
+                    <Link href="/studio" className="text-gray-300 text-sm leading-6 hover:text-white">
                       Studio
                     </Link>
                   </li>
@@ -131,15 +137,15 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-16 space-y-2 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24">
-          <p className="text-xs leading-5 text-gray-400">
+        <div className="mt-16 space-y-2 border-white/10 border-t pt-8 sm:mt-20 lg:mt-24">
+          <p className="text-gray-400 text-xs leading-5">
             &copy; {new Date().getFullYear()} Budai Akrobatikus Sport Egyesület. Minden jog fenntartva.
           </p>
-          <p className="text-xs leading-5 text-gray-400" lang="en">
+          <p className="text-gray-400 text-xs leading-5" lang="en">
             Made with ❤️ by{" "}
-            <Link href="https://leventeotta.com" target="_blank" className="hover:underline">
+            <a href="https://leventeotta.com" target="_blank" className="hover:underline" rel="noreferrer">
               Levente Otta
-            </Link>
+            </a>
           </p>
         </div>
       </div>

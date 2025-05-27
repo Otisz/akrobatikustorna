@@ -1,8 +1,8 @@
-import type { CollectionConfig } from "payload";
 import { anyone } from "@/access/anyone";
 import { authenticated } from "@/access/authenticated";
 import afterChange from "@/collections/RecommendedPages/hooks/after-change";
 import afterDelete from "@/collections/RecommendedPages/hooks/after-delete";
+import type { CollectionConfig } from "payload";
 
 export const RecommendedPages: CollectionConfig = {
   slug: "recommended-pages",

@@ -1,6 +1,3 @@
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { FaAlignRight, FaRegCircleXmark } from "react-icons/fa6";
-import { SiFacebook, SiInstagram, SiYoutube } from "react-icons/si";
 import Link from "@/components/ui/link";
 import {
   Sheet,
@@ -12,6 +9,9 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import LINKS from "@/data/links";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import { FaAlignRight, FaRegCircleXmark } from "react-icons/fa6";
+import { SiFacebook, SiInstagram, SiYoutube } from "react-icons/si";
 
 export default function MobileMenu() {
   return (
@@ -19,11 +19,11 @@ export default function MobileMenu() {
       <SheetTrigger aria-label="Navigációs menü megnyitása" className="block md:hidden">
         <FaAlignRight className="h-8 w-8" />
       </SheetTrigger>
-      <SheetContent noClose className="bg-background w-full border-none p-0">
-        <SheetHeader className="divide-background m-4 flex h-20 flex-row divide-x">
-          <SheetTitle className="flex flex-1 items-center px-4 text-2xl font-bold">Menü</SheetTitle>
+      <SheetContent noClose className="w-full border-none bg-background p-0">
+        <SheetHeader className="m-4 flex h-20 flex-row divide-x divide-background">
+          <SheetTitle className="flex flex-1 items-center px-4 font-bold text-2xl">Menü</SheetTitle>
           <SheetClose
-            className="border-border bg-accent/30 hover:bg-accent m-0! inline-flex aspect-square h-full items-center justify-center rounded-xl border-2 transition-all hover:border-orange-500"
+            className="m-0! inline-flex aspect-square h-full items-center justify-center rounded-xl border-2 border-border bg-accent/30 transition-all hover:border-orange-500 hover:bg-accent"
             aria-labelledby="close-navitaion-menu"
           >
             <FaRegCircleXmark className="h-8 w-8" />
@@ -36,7 +36,7 @@ export default function MobileMenu() {
           </VisuallyHidden>
         </SheetHeader>
         <div className="h-full space-y-8 overflow-auto pb-32">
-          <div className="divide-border grid grid-cols-1 divide-y">
+          <div className="grid grid-cols-1 divide-y divide-border">
             <SheetClose asChild>
               <Link href={LINKS.trainers} className="px-8 py-4" aria-label="Ugrás az edzők oldalra">
                 Edzők
@@ -58,7 +58,13 @@ export default function MobileMenu() {
               </Link>
             </SheetClose>
             <SheetClose asChild>
-              <a href={LINKS.store} target="_blank" className="px-8 py-4" aria-label="Ugrás a piactér oldalra (új lap)">
+              <a
+                href={LINKS.store}
+                target="_blank"
+                className="px-8 py-4"
+                aria-label="Ugrás a piactér oldalra (új lap)"
+                rel="noreferrer"
+              >
                 Piactér
               </a>
             </SheetClose>
@@ -84,7 +90,13 @@ export default function MobileMenu() {
             </SheetClose>
           </div>
           <div className="grid grid-cols-3 gap-4 px-8">
-            <a href={LINKS.facebook} target="_blank" aria-label="Tekintse meg a Facebook oldalunkat" title="Facebook">
+            <a
+              href={LINKS.facebook}
+              target="_blank"
+              aria-label="Tekintse meg a Facebook oldalunkat"
+              title="Facebook"
+              rel="noreferrer"
+            >
               <SiFacebook className="mx-auto size-12 fill-[#4267b2]" />
             </a>
             <a
@@ -92,10 +104,17 @@ export default function MobileMenu() {
               target="_blank"
               aria-label="Tekintse meg a Instagram oldalunkat"
               title="Instagram"
+              rel="noreferrer"
             >
               <SiInstagram className="mx-auto size-12" />
             </a>
-            <a href={LINKS.youtube} target="_blank" aria-label="Tekintse meg a Youtube oldalunkat" title="Youtube">
+            <a
+              href={LINKS.youtube}
+              target="_blank"
+              aria-label="Tekintse meg a Youtube oldalunkat"
+              title="Youtube"
+              rel="noreferrer"
+            >
               <SiYoutube className="mx-auto size-12 fill-[#ff0000]" />
             </a>
           </div>

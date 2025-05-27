@@ -1,12 +1,12 @@
-import { LuPhone } from "react-icons/lu";
-import { SiFacebook, SiInstagram, SiYoutube } from "react-icons/si";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "@/components/ui/link";
 import LINKS from "@/data/links";
+import { LuPhone } from "react-icons/lu";
+import { SiFacebook, SiInstagram, SiYoutube } from "react-icons/si";
 
 export default function Header() {
   return (
-    <header className="bg-primary h-14">
+    <header className="h-14 bg-primary">
       <div className="container flex h-full items-center justify-between gap-4">
         <a
           href="tel:+36 20 311 1919"
@@ -33,6 +33,7 @@ export default function Header() {
               aria-label="Tekintse meg a Facebook oldalunkat"
               className="group"
               title="Facebook"
+              rel="noreferrer"
             >
               <SiFacebook className="size-8 group-hover:fill-[#4267b2]" />
             </a>
@@ -42,6 +43,7 @@ export default function Header() {
               aria-label="Tekintse meg a Instagram oldalunkat"
               className="group"
               title="Instagram"
+              rel="noreferrer"
             >
               <SiInstagram className="size-8 group-hover:hidden" />
               <svg
@@ -49,6 +51,8 @@ export default function Header() {
                 xmlSpace="preserve"
                 viewBox="0 0 551.034 551.034"
                 className="hidden size-8 group-hover:block"
+                aria-label="Instagram"
+                role="img"
               >
                 <linearGradient
                   id="a"
@@ -180,6 +184,7 @@ export default function Header() {
               aria-label="Tekintse meg a Youtube oldalunkat"
               className="group"
               title="Youtube"
+              rel="noreferrer"
             >
               <SiYoutube className="size-8 group-hover:fill-[#ff0000]" />
             </a>

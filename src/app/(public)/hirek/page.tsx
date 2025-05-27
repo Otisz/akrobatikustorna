@@ -1,15 +1,15 @@
-import config from "@payload-config";
-import type { Metadata } from "next";
-import { draftMode } from "next/headers";
-import { getPayload } from "payload";
-import { cache } from "react";
-import { unstable_ViewTransition as ViewTransition } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "@/components/ui/link";
 import PostCard from "@/features/posts/post-card";
 import PostsWrapper from "@/features/posts/posts-wrapper";
 import { cn } from "@/lib/utils";
 import type { Post as PostType } from "@/types/payload";
+import config from "@payload-config";
+import type { Metadata } from "next";
+import { draftMode } from "next/headers";
+import { getPayload } from "payload";
+import { cache } from "react";
+import { unstable_ViewTransition as ViewTransition } from "react";
 
 export const revalidate = 86_400;
 

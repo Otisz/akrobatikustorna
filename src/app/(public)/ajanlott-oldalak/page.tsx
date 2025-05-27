@@ -18,12 +18,13 @@ export default async function Page() {
     <main className="container space-y-8 px-4 pt-8 pb-20">
       <h1 className="text-5xl">Ajánlott oldalak</h1>
       <div className="flex flex-col gap-4">
-        {result.docs.map((recommendation, i) => (
+        {result.docs.map((recommendation) => (
           <a
-            key={i}
-            href={recommendation.href!}
-            className="text-foreground hover:bg-background/25 inline-flex items-center gap-2 rounded border border-gray-400 bg-white px-4 py-2 text-xl font-semibold shadow"
+            key={recommendation.id}
+            href={recommendation.href}
+            className="inline-flex items-center gap-2 rounded border border-gray-400 bg-white px-4 py-2 font-semibold text-foreground text-xl shadow hover:bg-background/25"
             target="_blank"
+            rel="noreferrer"
           >
             <span>{recommendation.title}</span>
             <ExternalLinkIcon className="stroke-primary" />

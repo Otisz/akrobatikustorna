@@ -1,8 +1,8 @@
+import type { Media } from "@/types/payload";
 import config from "@payload-config";
 import type { Metadata } from "next";
 import { getPayload } from "payload";
 import { cache } from "react";
-import { type Media } from "@/types/payload";
 
 export const revalidate = 86_400;
 
@@ -18,14 +18,15 @@ export default async function Page() {
     <main className="container space-y-8 px-4 pt-8 pb-20">
       <h1 className="text-5xl">Dokumentumok</h1>
       <div className="flex flex-col gap-4">
-        {result.docs.map((document, i) => (
+        {result.docs.map((document) => (
           <a
-            key={i}
-            href={(document.document as Media).url!}
-            className="text-foreground hover:bg-background/25 rounded border border-gray-400 bg-white px-4 py-2 text-xl font-semibold shadow"
+            key={document.id}
+            href={(document.document as Media).url as string}
+            className="rounded border border-gray-400 bg-white px-4 py-2 font-semibold text-foreground text-xl shadow hover:bg-background/25"
             target="_blank"
             download
             aria-label={`${document.title} dokumentum letöltése`}
+            rel="noreferrer"
           >
             {document.title}
           </a>

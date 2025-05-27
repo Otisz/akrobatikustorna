@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import React from "react";
 
 import "@/styles/globals.css";
 import Footer from "@/components/footer";
@@ -60,7 +59,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="hu" className="scroll-smooth">
-      <body className={`${inter.variable} bg-background text-foreground font-sans antialiased`}>
+      <body className={`${inter.variable} bg-background font-sans text-foreground antialiased`}>
         <Header />
         <Navbar />
         <div className="min-h-[calc(100dvh---spacing(38))]">{children}</div>

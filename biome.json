@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["src/app/(payload)/", "src/migrations/", ".next/"]
+    "ignore": ["src/app/(payload)/", "src/migrations/", ".next/", "src/types/payload.d.ts"]
   },
   "formatter": {
     "enabled": true,

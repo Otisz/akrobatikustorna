@@ -1,3 +1,4 @@
+import type { Media as MediaType, Post as PostType } from "@/types/payload";
 import config from "@payload-config";
 import { type JSXConvertersFunction, RichText } from "@payloadcms/richtext-lexical/react";
 import type { Metadata } from "next";
@@ -5,9 +6,8 @@ import { draftMode } from "next/headers";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getPayload } from "payload";
-import React, { cache } from "react";
+import { cache } from "react";
 import { unstable_ViewTransition as ViewTransition } from "react";
-import type { Media as MediaType, Post as PostType } from "@/types/payload";
 
 export const revalidate = 86_400;
 
@@ -42,16 +42,16 @@ export default async function Home(props: Props) {
         <article>
           <header className="flex flex-col">
             <ViewTransition name={`${post.slug}-title`}>
-              <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">{post.title}</h1>
+              <h1 className="mt-6 font-bold text-4xl tracking-tight sm:text-5xl">{post.title}</h1>
             </ViewTransition>
-            <time dateTime={post.publishedAt!} className="order-first flex items-center">
+            <time dateTime={post.publishedAt as string} className="order-first flex items-center">
               <span className="h-4 w-0.5 rounded-full bg-gray-600" />
               <span className="ml-3 text-base text-gray-600">
-                {new Date(post.publishedAt!).toLocaleDateString("hu")}
+                {new Date(post.publishedAt as string).toLocaleDateString("hu")}
               </span>
             </time>
           </header>
-          <div className="prose marker:text-primary prose-a:text-primary prose-img:rounded-xl prose-img:shadow-sm mt-8">
+          <div className="prose mt-8 prose-img:rounded-xl prose-a:text-primary prose-img:shadow-sm marker:text-primary">
             <ViewTransition name={`${post.slug}-excerpt`}>
               <p>{post.excerpt}</p>
             </ViewTransition>
@@ -60,10 +60,10 @@ export default async function Home(props: Props) {
               <Image
                 loading="eager"
                 decoding="sync"
-                src={(post.picture as MediaType).url!}
-                alt={(post.picture as MediaType).alt}
-                width={(post.picture as MediaType).width!}
-                height={(post.picture as MediaType).height!}
+                src={(post.picture as MediaType).url as string}
+                alt={(post.picture as MediaType).alt as string}
+                width={(post.picture as MediaType).width as number}
+                height={(post.picture as MediaType).height as number}
                 className="not-prose w-full rounded-xl bg-gray-100 object-cover object-center"
               />
             </ViewTransition>
@@ -87,12 +87,12 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       type: "article",
       title: `${post.title} - Budai Akrobatikus Sport Egyesület`,
       description: `${post.excerpt}`,
-      images: (post.picture as MediaType).url!,
+      images: (post.picture as MediaType).url as string,
     },
     twitter: {
       title: `${post.title} - Budai Akrobatikus Sport Egyesület`,
       description: `${post.excerpt}`,
-      images: (post.picture as MediaType).url!,
+      images: (post.picture as MediaType).url as string,
     },
   };
 }
@@ -143,10 +143,10 @@ const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
       <Image
         loading="lazy"
         decoding="sync"
-        src={picture.url!}
-        alt={picture.alt}
-        width={picture.width!}
-        height={picture.height!}
+        src={picture.url as string}
+        alt={picture.alt as string}
+        width={picture.width as number}
+        height={picture.height as number}
       />
     );
   },
