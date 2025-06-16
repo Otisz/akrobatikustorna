@@ -10,7 +10,6 @@ import { sqliteAdapter } from "@payloadcms/db-sqlite";
 import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { s3Storage } from "@payloadcms/storage-s3";
-import { en } from "@payloadcms/translations/languages/en";
 import { hu } from "@payloadcms/translations/languages/hu";
 import { buildConfig } from "payload";
 import sharp from "sharp";
@@ -30,7 +29,7 @@ export default buildConfig({
   },
   collections: [Users, Media, Posts, Documents, RecommendedPages, Trainers],
   i18n: {
-    supportedLanguages: { en, hu },
+    supportedLanguages: { hu },
   },
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
