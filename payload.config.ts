@@ -4,6 +4,7 @@ import { Documents } from "@/collections/Documents";
 import { Media } from "@/collections/Media";
 import { Posts } from "@/collections/Posts";
 import { RecommendedPages } from "@/collections/RecommendedPages";
+import { Trainers } from "@/collections/Trainers";
 import { Users } from "@/collections/Users";
 import { sqliteAdapter } from "@payloadcms/db-sqlite";
 import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
@@ -27,7 +28,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Posts, Documents, RecommendedPages],
+  collections: [Users, Media, Posts, Documents, RecommendedPages, Trainers],
   i18n: {
     supportedLanguages: { en, hu },
   },

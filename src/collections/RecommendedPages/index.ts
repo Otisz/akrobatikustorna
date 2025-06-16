@@ -11,6 +11,7 @@ export const RecommendedPages: CollectionConfig = {
     plural: "Ajánlott oldalak",
   },
   admin: {
+    useAsTitle: "title",
     group: "Tartalmak",
   },
   access: {

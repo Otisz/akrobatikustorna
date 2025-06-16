@@ -124,14 +124,6 @@
           "notNull": false,
           "autoincrement": false
         },
-        "prefix": {
-          "name": "prefix",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": "'media'"
-        },
         "updated_at": {
           "name": "updated_at",
           "type": "text",
@@ -678,14 +670,6 @@
           "notNull": true,
           "autoincrement": false
         },
-        "prefix": {
-          "name": "prefix",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": "'documents'"
-        },
         "updated_at": {
           "name": "updated_at",
           "type": "text",
@@ -701,69 +685,6 @@
           "notNull": true,
           "autoincrement": false,
           "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))"
-        },
-        "url": {
-          "name": "url",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "thumbnail_u_r_l": {
-          "name": "thumbnail_u_r_l",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "filename": {
-          "name": "filename",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "mime_type": {
-          "name": "mime_type",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "filesize": {
-          "name": "filesize",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "width": {
-          "name": "width",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "height": {
-          "name": "height",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "focal_x": {
-          "name": "focal_x",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "focal_y": {
-          "name": "focal_y",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
         }
       },
       "indexes": {
@@ -787,13 +708,6 @@
             "created_at"
           ],
           "isUnique": false
-        },
-        "documents_filename_idx": {
-          "name": "documents_filename_idx",
-          "columns": [
-            "filename"
-          ],
-          "isUnique": true
         }
       },
       "foreignKeys": {
@@ -873,6 +787,132 @@
         }
       },
       "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "trainers": {
+      "name": "trainers",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "picture_id": {
+          "name": "picture_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "position": {
+          "name": "position",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "content": {
+          "name": "content",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "order": {
+          "name": "order",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "slug_lock": {
+          "name": "slug_lock",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))"
+        }
+      },
+      "indexes": {
+        "trainers_picture_idx": {
+          "name": "trainers_picture_idx",
+          "columns": [
+            "picture_id"
+          ],
+          "isUnique": false
+        },
+        "trainers_slug_idx": {
+          "name": "trainers_slug_idx",
+          "columns": [
+            "slug"
+          ],
+          "isUnique": true
+        },
+        "trainers_updated_at_idx": {
+          "name": "trainers_updated_at_idx",
+          "columns": [
+            "updated_at"
+          ],
+          "isUnique": false
+        },
+        "trainers_created_at_idx": {
+          "name": "trainers_created_at_idx",
+          "columns": [
+            "created_at"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "trainers_picture_id_media_id_fk": {
+          "name": "trainers_picture_id_media_id_fk",
+          "tableFrom": "trainers",
+          "tableTo": "media",
+          "columnsFrom": [
+            "picture_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
       "checkConstraints": {}
@@ -1285,6 +1325,13 @@
           "notNull": false,
           "autoincrement": false
         },
+        "trainers_id": {
+          "name": "trainers_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
         "payload_jobs_id": {
           "name": "payload_jobs_id",
           "type": "integer",
@@ -1347,6 +1394,13 @@
           "name": "payload_locked_documents_rels_recommended_pages_id_idx",
           "columns": [
             "recommended_pages_id"
+          ],
+          "isUnique": false
+        },
+        "payload_locked_documents_rels_trainers_id_idx": {
+          "name": "payload_locked_documents_rels_trainers_id_idx",
+          "columns": [
+            "trainers_id"
           ],
           "isUnique": false
         },
@@ -1430,6 +1484,19 @@
           "tableTo": "recommended_pages",
           "columnsFrom": [
             "recommended_pages_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "payload_locked_documents_rels_trainers_fk": {
+          "name": "payload_locked_documents_rels_trainers_fk",
+          "tableFrom": "payload_locked_documents_rels",
+          "tableTo": "trainers",
+          "columnsFrom": [
+            "trainers_id"
           ],
           "columnsTo": [
             "id"
@@ -1697,6 +1764,6 @@
   "internal": {
     "indexes": {}
   },
-  "id": "e0448457-83d6-4211-94c1-233ee7260c18",
+  "id": "b2c3413b-1c8a-4a09-bc98-74d68bd05bc3",
   "prevId": "00000000-0000-0000-0000-000000000000"
 }

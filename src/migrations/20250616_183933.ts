@@ -20,7 +20,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.run(sql`CREATE TABLE \`media\` (
   	\`id\` integer PRIMARY KEY NOT NULL,
   	\`alt\` text,
-  	\`prefix\` text DEFAULT 'media',
   	\`updated_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
   	\`created_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
   	\`url\` text,
@@ -99,25 +98,14 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	\`id\` integer PRIMARY KEY NOT NULL,
   	\`title\` text NOT NULL,
   	\`document_id\` integer NOT NULL,
-  	\`prefix\` text DEFAULT 'documents',
   	\`updated_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
   	\`created_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
-  	\`url\` text,
-  	\`thumbnail_u_r_l\` text,
-  	\`filename\` text,
-  	\`mime_type\` text,
-  	\`filesize\` numeric,
-  	\`width\` numeric,
-  	\`height\` numeric,
-  	\`focal_x\` numeric,
-  	\`focal_y\` numeric,
   	FOREIGN KEY (\`document_id\`) REFERENCES \`media\`(\`id\`) ON UPDATE no action ON DELETE set null
   );
   `)
   await db.run(sql`CREATE INDEX \`documents_document_idx\` ON \`documents\` (\`document_id\`);`)
   await db.run(sql`CREATE INDEX \`documents_updated_at_idx\` ON \`documents\` (\`updated_at\`);`)
   await db.run(sql`CREATE INDEX \`documents_created_at_idx\` ON \`documents\` (\`created_at\`);`)
-  await db.run(sql`CREATE UNIQUE INDEX \`documents_filename_idx\` ON \`documents\` (\`filename\`);`)
   await db.run(sql`CREATE TABLE \`recommended_pages\` (
   	\`id\` integer PRIMARY KEY NOT NULL,
   	\`title\` text NOT NULL,
@@ -128,6 +116,24 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   `)
   await db.run(sql`CREATE INDEX \`recommended_pages_updated_at_idx\` ON \`recommended_pages\` (\`updated_at\`);`)
   await db.run(sql`CREATE INDEX \`recommended_pages_created_at_idx\` ON \`recommended_pages\` (\`created_at\`);`)
+  await db.run(sql`CREATE TABLE \`trainers\` (
+  	\`id\` integer PRIMARY KEY NOT NULL,
+  	\`name\` text NOT NULL,
+  	\`picture_id\` integer NOT NULL,
+  	\`position\` text NOT NULL,
+  	\`content\` text NOT NULL,
+  	\`order\` numeric,
+  	\`slug\` text,
+  	\`slug_lock\` integer DEFAULT true,
+  	\`updated_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
+  	\`created_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
+  	FOREIGN KEY (\`picture_id\`) REFERENCES \`media\`(\`id\`) ON UPDATE no action ON DELETE set null
+  );
+  `)
+  await db.run(sql`CREATE INDEX \`trainers_picture_idx\` ON \`trainers\` (\`picture_id\`);`)
+  await db.run(sql`CREATE UNIQUE INDEX \`trainers_slug_idx\` ON \`trainers\` (\`slug\`);`)
+  await db.run(sql`CREATE INDEX \`trainers_updated_at_idx\` ON \`trainers\` (\`updated_at\`);`)
+  await db.run(sql`CREATE INDEX \`trainers_created_at_idx\` ON \`trainers\` (\`created_at\`);`)
   await db.run(sql`CREATE TABLE \`payload_jobs_log\` (
   	\`_order\` integer NOT NULL,
   	\`_parent_id\` integer NOT NULL,
@@ -189,6 +195,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	\`posts_id\` integer,
   	\`documents_id\` integer,
   	\`recommended_pages_id\` integer,
+  	\`trainers_id\` integer,
   	\`payload_jobs_id\` integer,
   	FOREIGN KEY (\`parent_id\`) REFERENCES \`payload_locked_documents\`(\`id\`) ON UPDATE no action ON DELETE cascade,
   	FOREIGN KEY (\`users_id\`) REFERENCES \`users\`(\`id\`) ON UPDATE no action ON DELETE cascade,
@@ -196,6 +203,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	FOREIGN KEY (\`posts_id\`) REFERENCES \`posts\`(\`id\`) ON UPDATE no action ON DELETE cascade,
   	FOREIGN KEY (\`documents_id\`) REFERENCES \`documents\`(\`id\`) ON UPDATE no action ON DELETE cascade,
   	FOREIGN KEY (\`recommended_pages_id\`) REFERENCES \`recommended_pages\`(\`id\`) ON UPDATE no action ON DELETE cascade,
+  	FOREIGN KEY (\`trainers_id\`) REFERENCES \`trainers\`(\`id\`) ON UPDATE no action ON DELETE cascade,
   	FOREIGN KEY (\`payload_jobs_id\`) REFERENCES \`payload_jobs\`(\`id\`) ON UPDATE no action ON DELETE cascade
   );
   `)
@@ -207,6 +215,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.run(sql`CREATE INDEX \`payload_locked_documents_rels_posts_id_idx\` ON \`payload_locked_documents_rels\` (\`posts_id\`);`)
   await db.run(sql`CREATE INDEX \`payload_locked_documents_rels_documents_id_idx\` ON \`payload_locked_documents_rels\` (\`documents_id\`);`)
   await db.run(sql`CREATE INDEX \`payload_locked_documents_rels_recommended_pages_id_idx\` ON \`payload_locked_documents_rels\` (\`recommended_pages_id\`);`)
+  await db.run(sql`CREATE INDEX \`payload_locked_documents_rels_trainers_id_idx\` ON \`payload_locked_documents_rels\` (\`trainers_id\`);`)
   await db.run(sql`CREATE INDEX \`payload_locked_documents_rels_payload_jobs_id_idx\` ON \`payload_locked_documents_rels\` (\`payload_jobs_id\`);`)
   await db.run(sql`CREATE TABLE \`payload_preferences\` (
   	\`id\` integer PRIMARY KEY NOT NULL,
@@ -252,6 +261,7 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   await db.run(sql`DROP TABLE \`_posts_v\`;`)
   await db.run(sql`DROP TABLE \`documents\`;`)
   await db.run(sql`DROP TABLE \`recommended_pages\`;`)
+  await db.run(sql`DROP TABLE \`trainers\`;`)
   await db.run(sql`DROP TABLE \`payload_jobs_log\`;`)
   await db.run(sql`DROP TABLE \`payload_jobs\`;`)
   await db.run(sql`DROP TABLE \`payload_locked_documents\`;`)

@@ -72,6 +72,7 @@ export interface Config {
     posts: Post;
     documents: Document;
     'recommended-pages': RecommendedPage;
+    trainers: Trainer;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -84,6 +85,7 @@ export interface Config {
     posts: PostsSelect<false> | PostsSelect<true>;
     documents: DocumentsSelect<false> | DocumentsSelect<true>;
     'recommended-pages': RecommendedPagesSelect<false> | RecommendedPagesSelect<true>;
+    trainers: TrainersSelect<false> | TrainersSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -228,6 +230,36 @@ export interface RecommendedPage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "trainers".
+ */
+export interface Trainer {
+  id: number;
+  name: string;
+  picture: number | Media;
+  position: string;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  order?: number | null;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-jobs".
  */
 export interface PayloadJob {
@@ -344,6 +376,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'recommended-pages';
         value: number | RecommendedPage;
+      } | null)
+    | ({
+        relationTo: 'trainers';
+        value: number | Trainer;
       } | null)
     | ({
         relationTo: 'payload-jobs';
@@ -471,6 +507,21 @@ export interface DocumentsSelect<T extends boolean = true> {
 export interface RecommendedPagesSelect<T extends boolean = true> {
   title?: T;
   href?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "trainers_select".
+ */
+export interface TrainersSelect<T extends boolean = true> {
+  name?: T;
+  picture?: T;
+  position?: T;
+  content?: T;
+  order?: T;
+  slug?: T;
+  slugLock?: T;
   updatedAt?: T;
   createdAt?: T;
 }

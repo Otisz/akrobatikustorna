@@ -11,6 +11,7 @@ export const Documents: CollectionConfig = {
     plural: "Dokumentumok",
   },
   admin: {
+    useAsTitle: "title",
     group: "Tartalmak",
   },
   access: {
