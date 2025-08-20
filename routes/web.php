@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\ScheduleController;
@@ -12,3 +13,4 @@ Route::get('/', function () {
 Route::get('/dokumentumok', DocumentController::class)->name('documents.index');
 Route::get('/szakosztalyok', DepartmentController::class)->name('departments.index');
 Route::get('/edzeseink', ScheduleController::class)->name('schedule.index');
+Route::get('/kapcsolat', ContactController::class)->name('contact.index');
