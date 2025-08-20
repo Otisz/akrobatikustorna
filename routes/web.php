@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\ScheduleController;
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -10,3 +11,4 @@ Route::get('/', function () {
 
 Route::get('/dokumentumok', DocumentController::class)->name('documents.index');
 Route::get('/szakosztalyok', DepartmentController::class)->name('departments.index');
+Route::get('/edzeseink', ScheduleController::class)->name('schedule.index');
