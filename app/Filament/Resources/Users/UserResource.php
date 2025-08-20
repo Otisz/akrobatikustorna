@@ -21,11 +21,11 @@ class UserResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedShieldCheck;
 
+    protected static ?string $recordTitleAttribute = 'name';
+
     protected static string|UnitEnum|null $navigationGroup = 'Beállítások';
 
-    protected static ?int $navigationSort = 3;
-
-    protected static ?string $recordTitleAttribute = 'name';
+    protected static ?int $navigationSort = 2;
 
     protected static ?string $modelLabel = 'Felhasználó';
 
@@ -55,5 +55,10 @@ class UserResource extends Resource
             'create' => CreateUser::route('/create'),
             'edit' => EditUser::route('/{record}/edit'),
         ];
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
     }
 }

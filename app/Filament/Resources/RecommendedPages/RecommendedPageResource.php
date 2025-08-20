@@ -15,6 +15,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class RecommendedPageResource extends Resource
 {
@@ -23,6 +24,8 @@ class RecommendedPageResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'name';
+
+    protected static string|UnitEnum|null $navigationGroup = 'Tartalmak';
 
     protected static ?string $modelLabel = 'Ajánlott oldal';
 
@@ -72,5 +75,10 @@ class RecommendedPageResource extends Resource
         return [
             'index' => ManageRecommendedPages::route('/'),
         ];
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
     }
 }

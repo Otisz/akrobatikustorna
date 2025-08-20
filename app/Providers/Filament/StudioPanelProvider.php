@@ -66,7 +66,7 @@ class StudioPanelProvider extends PanelProvider
                 SpatieTranslatablePlugin::make()->defaultLocales([config('app.locale')]),
                 SkyPlugin::make()
                     ->uploadDirectory('posts')
-                    ->navigationGroupLabel('Blog')
+                    ->navigationGroupLabel('Tartalmak')
                     ->hideResources([
                         TagResource::class,
                         PageResource::class,
