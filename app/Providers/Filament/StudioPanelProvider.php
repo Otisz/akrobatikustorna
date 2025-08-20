@@ -74,6 +74,11 @@ class StudioPanelProvider extends PanelProvider
                         LibraryResource::class,
                         NavigationResource::class,
                     ]),
-            ]);
+            ])
+            ->login()
+            ->passwordReset()
+            ->emailVerification()
+            ->emailChangeVerification()
+            ->profile();
     }
 }
