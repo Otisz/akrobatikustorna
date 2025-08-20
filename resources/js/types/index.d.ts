@@ -32,3 +32,11 @@ export interface Document {
   created_at: string;
   updated_at: string;
 }
+
+export interface RecommendedPage {
+  id: string;
+  name: string;
+  url: string;
+  created_at: string;
+  updated_at: string;
+}
