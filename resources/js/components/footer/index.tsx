@@ -124,9 +124,9 @@ export default function Footer() {
                     </a>
                   </li>
                   <li>
-                    <Link href="/studio" className="text-gray-300 text-sm leading-6 hover:text-white">
+                    <a href="/studio" className="text-gray-300 text-sm leading-6 hover:text-white">
                       Studio
-                    </Link>
+                    </a>
                   </li>
                 </ul>
               </div>
