@@ -50,6 +50,7 @@ class TrainersTable
                     ->label('Törölve')
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->reorderable('order')
             ->defaultSort('order')
             ->filters([
                 TrashedFilter::make(),

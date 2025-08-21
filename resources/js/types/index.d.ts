@@ -80,3 +80,17 @@ export interface Post {
   updated_at: string;
   deleted_at: string | null;
 }
+
+export interface Trainer {
+  id: string;
+  order: number;
+  slug: string;
+  name: string;
+  color: `#${string}`;
+  role: string;
+  content: string | null;
+  image_paths: string;
+  image_url: string;
+  created_at: string;
+  updated_at: string;
+}

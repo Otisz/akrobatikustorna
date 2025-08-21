@@ -22,7 +22,7 @@ class TrainerForm
                     ->required()
                     ->trim()
                     ->live(debounce: 500)
-                    ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
                 TextInput::make('role')
                     ->label('Pozíció')
                     ->trim()
@@ -48,12 +48,12 @@ class TrainerForm
                     ->columnSpanFull(),
                 RichEditor::make('content')
                     ->label('Tartalom')
-                    ->required()
+                    ->nullable()
                     ->columnSpanFull(),
                 TextInput::make('slug')
                     ->required()
                     ->maxLength(255)
-                    ->unique(Trainer::class, 'slug', fn($record) => $record)
+                    ->unique(Trainer::class, 'slug', fn ($record) => $record)
                     ->readOnly()
                     ->belowContent('Ez az szöveg jelenik meg az böngésző címsorában. Nem szerkeszthető'),
             ]);

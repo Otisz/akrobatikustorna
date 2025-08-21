@@ -7,6 +7,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RecommendedPageController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\TrainerController;
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -21,3 +22,5 @@ Route::get('/ajanlott-oldalak', RecommendedPageController::class)->name('recomme
 Route::get('/galeria', GalleryController::class)->name('gallery.index');
 Route::get('/hirek', [PostController::class, 'index'])->name('posts.index');
 Route::get('/hirek/{slug}', [PostController::class, 'show'])->name('posts.show');
+Route::get('/edzok', [TrainerController::class, 'index'])->name('trainer.index');
+Route::get('/edzok/{trainer:slug}', [TrainerController::class, 'show'])->name('trainer.show');
