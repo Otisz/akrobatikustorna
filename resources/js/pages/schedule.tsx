@@ -15,7 +15,7 @@ const HASH_LIST = {
   "mozgaskepzes-alap-balett": "mozgaskepzes-alap-balett",
 } as const;
 
-export default function Schedule() {
+export default function Page() {
   return (
     <AppLayout>
       <Head title="Edzéseink"></Head>

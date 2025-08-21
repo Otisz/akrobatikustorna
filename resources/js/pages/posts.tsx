@@ -6,7 +6,7 @@ import AppLayout from "@/layouts/app-layout";
 import { cn } from "@/lib/utils";
 import type { Pagination, Post, SharedData } from "@/types";
 
-export default function Posts(props: SharedData<{ posts: Pagination<Omit<Post, "content">> }>) {
+export default function Page(props: SharedData<{ posts: Pagination<Omit<Post, "content">> }>) {
   let imageCount = 0;
 
   return (

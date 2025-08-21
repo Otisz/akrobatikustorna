@@ -2,7 +2,7 @@ import { Head } from "@inertiajs/react";
 import AppLayout from "@/layouts/app-layout";
 import type { Document, SharedData } from "@/types";
 
-export default function Documents(props: SharedData<{ documents: Document[] }>) {
+export default function Page(props: SharedData<{ documents: Document[] }>) {
   return (
     <AppLayout>
       <Head title="Dokumentumok"></Head>

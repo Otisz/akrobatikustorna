@@ -16,7 +16,7 @@ import type { Post, SharedData } from "@/types";
 
 const CAROUSEL_IMAGES = [CarouselImage1, CarouselImage2, CarouselImage3, CarouselImage4] as const;
 
-export default function Home(props: SharedData<{ posts: Post[] }>) {
+export default function Page(props: SharedData<{ posts: Post[] }>) {
   return (
     <AppLayout>
       <main>

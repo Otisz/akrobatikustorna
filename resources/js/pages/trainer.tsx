@@ -1,9 +1,9 @@
-import { Head, Link } from "@inertiajs/react";
+import { Head } from "@inertiajs/react";
 import type { CSSProperties } from "react";
 import AppLayout from "@/layouts/app-layout";
 import type { SharedData, Trainer } from "@/types";
 
-export default function RecommendedPages(props: SharedData<{ trainer: Trainer }>) {
+export default function Page(props: SharedData<{ trainer: Trainer }>) {
   return (
     <AppLayout>
       <Head title={props.trainer.name}></Head>

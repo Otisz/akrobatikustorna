@@ -1,7 +1,8 @@
+/** biome-ignore-all lint/correctness/useUniqueElementIds: <explanation> */
 import { Head } from "@inertiajs/react";
 import AppLayout from "@/layouts/app-layout";
 
-export default function Departments() {
+export default function Page() {
   return (
     <AppLayout>
       <Head title="Szakosztályok"></Head>

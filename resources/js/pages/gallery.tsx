@@ -6,7 +6,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import VIDEOS from "@/data/videos";
 import AppLayout from "@/layouts/app-layout";
 
-export default function Schedule() {
+export default function Page() {
   const params = new URLSearchParams(window.location.search);
 
   const openedVideo = useMemo(() => {
@@ -19,7 +19,7 @@ export default function Schedule() {
 
   return (
     <AppLayout>
-      <Head title="Edzéseink"></Head>
+      <Head title="Galéria"></Head>
       <main className="container space-y-8 px-4 pt-8 pb-20">
         <h1 className="text-5xl">Galéria</h1>
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4">

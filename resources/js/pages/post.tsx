@@ -1,12 +1,22 @@
-import { Head, Link } from "@inertiajs/react";
+import { Head } from "@inertiajs/react";
 import AppLayout from "@/layouts/app-layout";
-import type { Pagination, Post, SharedData } from "@/types";
+import type { Post, SharedData } from "@/types";
 
-export default function PostPage(props: SharedData<{ post: Post }>) {
-  console.log(props);
+export default function Page(props: SharedData<{ post: Post }>) {
   return (
     <AppLayout>
-      <Head title={props.post.title.hu}></Head>
+      <Head title={props.post.title.hu}>
+        <meta head-key="description" name="description" content={props.post.description?.hu ?? props.post.title.hu} />
+
+        <meta property="og:title" content={`${props.post.title.hu} - ${props.name}`} />
+        <meta property="og:description" content={props.post.description?.hu ?? props.post.title.hu} />
+        <meta property="og:image" content={props.post.media[0].original_url as string} />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${props.post.title.hu} - ${props.name}`} />
+        <meta name="twitter:description" content={props.post.description?.hu ?? props.post.title.hu} />
+        <meta name="twitter:image" content={props.post.media[0].original_url as string} />
+      </Head>
       <main className="container max-w-[80ch] space-y-8 px-4 pt-8 pb-20">
         <article>
           <header className="flex flex-col">

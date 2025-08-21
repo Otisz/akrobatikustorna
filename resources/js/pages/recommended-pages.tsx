@@ -3,7 +3,7 @@ import { ExternalLinkIcon } from "lucide-react";
 import AppLayout from "@/layouts/app-layout";
 import type { RecommendedPage, SharedData } from "@/types";
 
-export default function RecommendedPages(props: SharedData<{ recommendedPages: RecommendedPage[] }>) {
+export default function Page(props: SharedData<{ recommendedPages: RecommendedPage[] }>) {
   return (
     <AppLayout>
       <Head title="Ajánlott oldalak"></Head>
