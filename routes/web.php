@@ -4,16 +4,13 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RecommendedPageController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TrainerController;
-use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('welcome');
-})->name('home');
-
+Route::get('/', HomeController::class)->name('home');
 Route::get('/dokumentumok', DocumentController::class)->name('documents.index');
 Route::get('/szakosztalyok', DepartmentController::class)->name('departments.index');
 Route::get('/edzeseink', ScheduleController::class)->name('schedule.index');
