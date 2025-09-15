@@ -30,7 +30,7 @@ class TrainerForm
                 TextInput::make('slug')
                     ->required()
                     ->unique(Trainer::class, 'slug', fn ($record) => $record)
-                    ->regex('^[a-z0-9-]+$')
+                    ->regex('/^[a-z0-9-]+$/')
                     ->belowContent('Ez az szöveg jelenik meg az böngésző címsorában. Csak az angol ABC kisbetűi, számok és kötőjel érvényesek.'),
                 ColorPicker::make('color')
                     ->label('Hátterszín')
