@@ -27,14 +27,15 @@ class TrainerForm
                     ->label('Pozíció')
                     ->trim()
                     ->required(),
+                TextInput::make('slug')
+                    ->required()
+                    ->unique(Trainer::class, 'slug', fn ($record) => $record)
+                    ->regex('^[a-z0-9-]+$')
+                    ->belowContent('Ez az szöveg jelenik meg az böngésző címsorában. Csak az angol ABC kisbetűi, számok és kötőjel érvényesek.'),
                 ColorPicker::make('color')
                     ->label('Hátterszín')
                     ->hexColor()
                     ->required(),
-                TextInput::make('order')
-                    ->label('Sorrend')
-                    ->required()
-                    ->numeric(),
                 FileUpload::make('image_paths')
                     ->label('Kép')
                     ->image()
@@ -50,12 +51,6 @@ class TrainerForm
                     ->label('Tartalom')
                     ->nullable()
                     ->columnSpanFull(),
-                TextInput::make('slug')
-                    ->required()
-                    ->maxLength(255)
-                    ->unique(Trainer::class, 'slug', fn ($record) => $record)
-                    ->readOnly()
-                    ->belowContent('Ez az szöveg jelenik meg az böngésző címsorában. Nem szerkeszthető'),
             ]);
     }
 }
