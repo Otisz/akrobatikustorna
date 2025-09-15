@@ -17,6 +17,15 @@ class Trainer extends Model
         'image_url',
     ];
 
+    public static function boot(): void
+    {
+        parent::boot();
+
+        static::creating(static function (self $trainer) {
+            $trainer->order = self::query()->max('order') + 1;
+        });
+    }
+
     protected function imageUrl(): Attribute
     {
         return Attribute::make(
