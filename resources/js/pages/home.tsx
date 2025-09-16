@@ -28,15 +28,11 @@ export default function Page(props: SharedData<{ posts: Post[] }>) {
           </h1>
         </section>
         <section className="container ">
-          <Carousel
-            className="h-full w-full"
-            opts={{ loop: true }}
-            plugins={[Autoplay({ delay: 5000, stopOnMouseEnter: true })]}
-          >
+          <Carousel className="h-full w-full" opts={{ loop: true }} plugins={[Autoplay({ delay: 5000 })]}>
             <CarouselContent className="h-full">
               {CAROUSEL_IMAGES.map((image, index) => (
                 // biome-ignore lint/suspicious/noArrayIndexKey: No unique key for static images
-                <CarouselItem key={index} className="h-full h-[33vh] md:h-[50vh]">
+                <CarouselItem key={index} className="h-[33vh] md:h-[50vh]">
                   <img src={image} alt="" className="h-full w-full object-cover object-center" />
                 </CarouselItem>
               ))}
@@ -67,7 +63,9 @@ export default function Page(props: SharedData<{ posts: Post[] }>) {
         </section>
         <section className="container mt-16">
           <div className="prose prose-lg mx-auto max-w-[80ch]">
-            <h2 className="text-center font-bold text-3xl tracking-tighter sm:text-4xl md:text-5xl">Sportakrobatika</h2>
+            <h2 className="text-center font-bold text-3xl tracking-tighter sm:text-4xl md:text-5xl">
+              Akrobatikustorna
+            </h2>
             <p>
               Az akrobatikus torna egy látványos, dinamikus és művészi sportág, amely erőt, rugalmasságot, egyensúlyt és
               koordinációt igényel. A sportolók párokban vagy csoportokban dolgoznak együtt, hogy lenyűgöző emeléseket,

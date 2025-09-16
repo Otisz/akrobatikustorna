@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": ["**", "!resources/js/components/ui", "!resources/js/ziggy.js", "!resources/views/mail"]
+    "includes": ["**", "!resources/js/ziggy.js", "!resources/views/mail"]
   },
   "formatter": {
     "enabled": true,

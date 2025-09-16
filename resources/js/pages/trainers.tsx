@@ -11,7 +11,7 @@ export default function Page(props: SharedData<{ trainers: Trainer[] }>) {
       <Head title="Edzők"></Head>
       <main className="container space-y-8 px-4 pt-8 pb-20">
         <h1 className="text-5xl">Edzők</h1>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {props.trainers.map((trainer) => (
             <Link
               key={trainer.id}
@@ -24,7 +24,7 @@ export default function Page(props: SharedData<{ trainers: Trainer[] }>) {
               className="group relative aspect-9/16 w-full overflow-hidden rounded-md border-4 border-(--custom-color) bg-(--custom-color) shadow"
             >
               <img
-                loading={imageCount++ < 6 ? "eager" : "lazy"}
+                loading={imageCount++ < 8 ? "eager" : "lazy"}
                 decoding="sync"
                 src={trainer.image_url}
                 alt={trainer.name}

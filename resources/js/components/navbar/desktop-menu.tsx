@@ -1,5 +1,16 @@
 import { Link } from "@inertiajs/react";
-import { LuCalendar, LuMedal, LuUsers } from "react-icons/lu";
+import { CircleCheckIcon, CircleHelpIcon, CircleIcon } from "lucide-react";
+import type { ComponentPropsWithoutRef } from "react";
+import type { IconType } from "react-icons";
+import {
+  LuBookmarkCheck,
+  LuCalendar,
+  LuMedal,
+  LuNewspaper,
+  LuShoppingCart,
+  LuUsers,
+  LuVideotape,
+} from "react-icons/lu";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -18,109 +29,35 @@ export default function DesktopMenu() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Edzések</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[600px] lg:grid-cols-3">
-              <li className="row-span-3">
-                <NavigationMenuLink asChild>
-                  <Link
-                    className="flex h-full w-full select-none flex-col justify-end rounded-md border border-border from-muted/50 to-muted p-6 no-underline outline-hidden transition-all hover:border-transparent hover:bg-linear-to-b focus:shadow-md"
-                    href={LINKS.trainers}
-                  >
-                    <LuUsers className="size-12" />
-                    <div className="mt-4 mb-2 font-medium text-lg">Edzők</div>
-                    <p className="text-balance text-muted-foreground text-sm leading-tight">
-                      Ismerje meg az edzőinket és a vezetőséget.
-                    </p>
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-              <li className="row-span-3">
-                <NavigationMenuLink asChild>
-                  <Link
-                    className="flex h-full w-full select-none flex-col justify-end rounded-md border border-border from-muted/50 to-muted p-6 no-underline outline-hidden transition-all hover:border-transparent hover:bg-linear-to-b focus:shadow-md"
-                    href={LINKS.departments}
-                  >
-                    <LuMedal className="size-12" />
-                    <div className="mt-4 mb-2 font-medium text-lg">Szakosztályok</div>
-                    <p className="text-balance text-muted-foreground text-sm leading-tight">
-                      Tekintse meg a sportágakat és kategóriát.
-                    </p>
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-              <li className="row-span-3">
-                <NavigationMenuLink asChild>
-                  <Link
-                    className="flex h-full w-full select-none flex-col justify-end rounded-md border border-border from-muted/50 to-muted p-6 no-underline outline-hidden transition-all hover:border-transparent hover:bg-linear-to-b focus:shadow-md"
-                    href={LINKS.calendar}
-                  >
-                    <LuCalendar className="size-12" />
-                    <div className="mt-4 mb-2 font-medium text-lg">Edzéseink</div>
-                    <p className="text-muted-foreground text-sm leading-tight">
-                      Nézze meg, hogy mikor tartunk edzéseket.
-                    </p>
-                  </Link>
-                </NavigationMenuLink>
-              </li>
+            <ul className="grid gap-2 p-4 w-120">
+              <ListItem href={LINKS.trainers} icon={LuUsers} title="Edzők">
+                Ismerje meg az edzőinket és a vezetőséget.
+              </ListItem>
+              <ListItem href={LINKS.departments} icon={LuMedal} title="Szakosztályok">
+                Tekintse meg a sportágakat és kategóriát.
+              </ListItem>
+              <ListItem href={LINKS.calendar} icon={LuCalendar} title="Edzéseink">
+                Nézze meg, hogy mikor tartunk edzéseket.
+              </ListItem>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuTrigger>Gyűjtemény</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4">
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link
-                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-hidden transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                    href={LINKS.news}
-                  >
-                    <div className="font-medium leading-none">Hírek</div>
-                    <p className="line-clamp-2 text-muted-foreground text-sm leading-snug">
-                      Legfrissebb hírek és információk.
-                    </p>
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-              <li>
-                <NavigationMenuLink asChild>
-                  <a
-                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-hidden transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                    href={LINKS.store}
-                    target="_blank"
-                  >
-                    <div className="font-medium leading-none">Piactér</div>
-                    <p className="line-clamp-2 text-muted-foreground text-sm leading-snug">
-                      BASE-s pulcsik, tollak és felszerelések.
-                    </p>
-                  </a>
-                </NavigationMenuLink>
-              </li>
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link
-                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-hidden transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                    href={LINKS.gallery}
-                  >
-                    <div className="font-medium leading-none">Történelmy kitekintés</div>
-                    <p className="line-clamp-2 text-muted-foreground text-sm leading-snug">
-                      Videók az akrobatikus tornáról és történetéről.
-                    </p>
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link
-                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-hidden transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                    href={LINKS.recommendations}
-                  >
-                    <div className="font-medium leading-none">Ajánlott oldalak</div>
-                    <p className="line-clamp-2 text-muted-foreground text-sm leading-snug">
-                      Általunk ajánlott könyvek, cikkek és szövetségek.
-                    </p>
-                  </Link>
-                </NavigationMenuLink>
-              </li>
+            <ul className="grid gap-2 p-4 w-120">
+              <ListItem href={LINKS.news} icon={LuNewspaper} title="Hírek">
+                Legfrissebb hírek és információk.
+              </ListItem>
+              <ListItem href={LINKS.store} icon={LuShoppingCart} title="Piactér">
+                BASE-s pulcsik, tollak és felszerelések.
+              </ListItem>
+              <ListItem href={LINKS.gallery} icon={LuVideotape} title="Történelmy kitekintés">
+                Videók az akrobatikus tornáról és történetéről.
+              </ListItem>
+              <ListItem href={LINKS.recommendations} icon={LuBookmarkCheck} title="Ajánlott oldalak">
+                Általunk ajánlott könyvek, cikkek és szövetségek.
+              </ListItem>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
@@ -136,5 +73,30 @@ export default function DesktopMenu() {
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
+  );
+}
+
+function ListItem({
+  title,
+  children,
+  href,
+  icon: Icon,
+  ...props
+}: ComponentPropsWithoutRef<"li"> & { href: string; icon: IconType }) {
+  return (
+    <li {...props}>
+      <NavigationMenuLink asChild>
+        <Link
+          className="flex h-full gap-4 items-center select-none rounded-md border border-border from-muted/50 to-muted px-4 py-2 outline-hidden transition-all hover:border-transparent hover:bg-linear-to-b focus:shadow-md"
+          href={href}
+        >
+          <Icon className="size-12 stroke-muted-foreground" />
+          <div className="flex flex-col gap-1">
+            <p className="font-medium text-lg">{title}</p>
+            <p className="text-balance text-muted-foreground leading-tight">{children}</p>
+          </div>
+        </Link>
+      </NavigationMenuLink>
+    </li>
   );
 }
