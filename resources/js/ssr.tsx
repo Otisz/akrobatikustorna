@@ -3,6 +3,7 @@ import createServer from '@inertiajs/react/server';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import ReactDOMServer from 'react-dom/server';
 import { type RouteName, route } from 'ziggy-js';
+import { PostHogProvider } from 'posthog-js/react';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -24,7 +25,19 @@ createServer((page) =>
                 });
             /* eslint-enable */
 
-            return <App {...props} />;
+            return (
+                <PostHogProvider
+                    apiKey={import.meta.env.VITE_PUBLIC_POSTHOG_KEY}
+                    options={{
+                        api_host: import.meta.env.VITE_PUBLIC_POSTHOG_HOST,
+                        defaults: '2025-05-24',
+                        capture_exceptions: true,
+                        debug: import.meta.env.MODE === 'development',
+                    }}
+                >
+                    <App {...props} />
+                </PostHogProvider>
+            );
         },
     }),
 );
