@@ -1,3 +1,4 @@
+import expodom from "@/assets/images/sponsors/expodom.png";
 import futofoto from "@/assets/images/sponsors/futofoto.jpeg";
 import gravir_expressz from "@/assets/images/sponsors/gravir_expressz.jpeg";
 import kiwi_sun from "@/assets/images/sponsors/kiwi_sun.jpeg";
@@ -8,6 +9,11 @@ import triliton from "@/assets/images/sponsors/triliton.jpeg";
 import wall_division from "@/assets/images/sponsors/wall_division.jpeg";
 
 export default [
+  {
+    name: "Expodom",
+    image: expodom,
+    href: "https://expodom.hu/",
+  },
   {
     name: "Futófotó",
     image: futofoto,
