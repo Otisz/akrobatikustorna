@@ -9,7 +9,7 @@ export default {
   documents: "/dokumentumok",
   contact: "/kapcsolat",
   apply: "/jelentkezes",
-  store: "https://docs.google.com/forms/d/e/1FAIpQLSfxqbN-Tqeu1bqkKUQ4vJ7jMvdqtB2fsZ2wip9MUHs3NiOA8Q/viewform",
+  store: "https://forms.gle/ZeXhoVHTx3anDYjM8",
   facebook: "https://www.facebook.com/akrobatikustorna",
   instagram: "https://www.instagram.com/base_akrobatikus_torna/",
   youtube: "https://www.youtube.com/channel/UCVvzN2bTBlYqpjPkYgdMtog",
