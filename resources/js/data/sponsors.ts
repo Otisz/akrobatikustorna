@@ -1,6 +1,8 @@
+import dryyve from "@/assets/images/sponsors/dryyve_car_rental.png";
 import expodom from "@/assets/images/sponsors/expodom.png";
 import futofoto from "@/assets/images/sponsors/futofoto.jpeg";
 import gravir_expressz from "@/assets/images/sponsors/gravir_expressz.jpeg";
+import hotel_aranysas from "@/assets/images/sponsors/hotel_aranysas.jpeg";
 import kiwi_sun from "@/assets/images/sponsors/kiwi_sun.jpeg";
 import megepitelek from "@/assets/images/sponsors/megepitelek.jpeg";
 import pesti_pipi from "@/assets/images/sponsors/pesti_pipi.jpeg";
@@ -9,6 +11,16 @@ import triliton from "@/assets/images/sponsors/triliton.jpeg";
 import wall_division from "@/assets/images/sponsors/wall_division.jpeg";
 
 export default [
+  {
+    name: "Dryyve Autókölcsönző",
+    image: dryyve,
+    href: "https://dryyve.hu/",
+  },
+  {
+    name: "Hotel Aranysas",
+    image: hotel_aranysas,
+    href: "https://xn--aranysasalsrs-llb9b.hu/",
+  },
   {
     name: "Expodom",
     image: expodom,
