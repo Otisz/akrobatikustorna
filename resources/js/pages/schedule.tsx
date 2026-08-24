@@ -3,9 +3,7 @@ import AppLayout from "@/layouts/app-layout";
 
 const HASH_LIST = {
   "a-kategoriak": "a-kategoriak",
-  "gyongy-csoport": "gyongy-csoport",
-  "gyemant-csoport": "gyemant-csoport",
-  "szabadidos-oromtorna": "szabadidos-oromtorna",
+  "gyemant-csoport": "gyongy-es-gyemant-csoport",
   "kezdo-b-kategoria": "kezdo-b-kategoria",
   "halado-b-kategoria": "halado-b-kategoria",
   "hazai-a-kategoria": "hazai-a-kategoria",
@@ -30,18 +28,8 @@ export default function Page() {
           <p>Akrobatikus torna szakosztályunkban, lehet valaki:</p>
           <ul>
             <li>
-              <Link href={`#${HASH_LIST["gyongy-csoport"]}`} prefetch={false}>
-                Gyöngy csoportos
-              </Link>
-            </li>
-            <li>
               <Link href={`#${HASH_LIST["gyemant-csoport"]}`} prefetch={false}>
-                Gyémánt csoportos
-              </Link>
-            </li>
-            <li>
-              <Link href={`#${HASH_LIST["szabadidos-oromtorna"]}`} prefetch={false}>
-                Szabadidős sportoló, aki nem szeretne vagy valamilyen okból nem tud versenyezni
+                Gyöngy és Gyémánt csoportos
               </Link>
             </li>
             <li>
@@ -237,37 +225,25 @@ export default function Page() {
                 <th>
                   Magán és meghívásos <br /> akrobatika és ugróedzések
                 </th>
-                <td />
-                <td>
-                  18<sup>00</sup> - 19<sup>00</sup>
-                </td>
-                <td />
-                <td>
-                  18<sup>00</sup> - 19<sup>00</sup>
-                </td>
-                <td />
-                <td />
-              </tr>
-              <tr id={HASH_LIST["gyongy-csoport"]}>
-                <th>
-                  Torna előkészítő Gyöngy csoport <br />
-                  <span className="font-normal text-sm">5 és fél - 7 éves korig</span>
-                </th>
                 <td>
                   16<sup>15</sup> - 17<sup>15</sup>
                 </td>
-                <td />
+                <td>
+                  18<sup>00</sup> - 19<sup>00</sup>
+                </td>
                 <td>
                   16<sup>15</sup> - 17<sup>15</sup>
                 </td>
-                <td />
+                <td>
+                  18<sup>00</sup> - 19<sup>00</sup>
+                </td>
                 <td />
                 <td />
               </tr>
               <tr id={HASH_LIST["gyemant-csoport"]}>
                 <th>
-                  Torna előkészítő Gyémánt csoport <br />
-                  <span className="font-normal text-sm">6 - 10 éves korig</span>
+                  Torna előkészítő Gyöngy és Gyémánt csoport <br />
+                  <span className="font-normal text-sm">5 - 10 éves korig</span>
                 </th>
                 <td />
                 <td>
@@ -277,22 +253,6 @@ export default function Page() {
                 <td>
                   16<sup>00</sup> - 17<sup>30</sup>
                 </td>
-                <td />
-                <td />
-              </tr>
-              <tr id={HASH_LIST["szabadidos-oromtorna"]}>
-                <th>
-                  Szabadidős - örömtorna <br />
-                  <span className="font-normal text-sm">~8 ~ 12 éves korig</span>
-                </th>
-                <td>
-                  17<sup>30</sup> - 19<sup>00</sup>
-                </td>
-                <td />
-                <td>
-                  17<sup>30</sup> - 19<sup>00</sup>
-                </td>
-                <td />
                 <td />
                 <td />
               </tr>
