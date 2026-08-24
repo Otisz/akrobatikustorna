@@ -3,7 +3,8 @@ import AppLayout from "@/layouts/app-layout";
 
 const HASH_LIST = {
   "a-kategoriak": "a-kategoriak",
-  "gyemant-csoport": "gyongy-es-gyemant-csoport",
+  "gyemant-csoport": "gyogy-es-gyemant-csoport",
+  "szabadidos-oromtorna": "szabadidos-oromtorna",
   "kezdo-b-kategoria": "kezdo-b-kategoria",
   "halado-b-kategoria": "halado-b-kategoria",
   "hazai-a-kategoria": "hazai-a-kategoria",
@@ -30,6 +31,11 @@ export default function Page() {
             <li>
               <Link href={`#${HASH_LIST["gyemant-csoport"]}`} prefetch={false}>
                 Gyöngy és Gyémánt csoportos
+              </Link>
+            </li>
+            <li>
+              <Link href={`#${HASH_LIST["szabadidos-oromtorna"]}`} prefetch={false}>
+                Szabadidős sportoló, aki nem szeretne vagy valamilyen okból nem tud versenyezni
               </Link>
             </li>
             <li>
@@ -256,36 +262,19 @@ export default function Page() {
                 <td />
                 <td />
               </tr>
-              <tr>
+              <tr id={HASH_LIST["szabadidos-oromtorna"]}>
                 <th>
-                  <div className="flex flex-col gap-2">
-                    <span>Látványtánc</span>
-                    <span className="text-primary">A kategória</span>
-                    <span>B kategória</span>
-                  </div>
+                  Szabadidős - örömtorna <br />
+                  <span className="font-normal text-sm">~8 ~ 12 éves korig</span>
                 </th>
-                <td />
                 <td>
-                  <div className="flex flex-col gap-2">
-                    <span className="select-none opacity-0">-</span>
-                    <span className="select-none opacity-0">-</span>
-                    <span>
-                      16<sup>00</sup> - 18<sup>00</sup>
-                    </span>
-                  </div>
+                  17<sup>30</sup> - 19<sup>00</sup>
                 </td>
                 <td />
                 <td>
-                  <div className="flex flex-col gap-2">
-                    <span className="select-none opacity-0">-</span>
-                    <span className="text-primary">
-                      18<sup>00</sup> - 20<sup>00</sup>
-                    </span>
-                    <span>
-                      16<sup>00</sup> - 18<sup>00</sup>
-                    </span>
-                  </div>
+                  17<sup>30</sup> - 19<sup>00</sup>
                 </td>
+                <td />
                 <td />
                 <td />
               </tr>
