@@ -268,11 +268,27 @@ export default function Page() {
                   <span className="font-normal text-sm">~8 ~ 12 éves korig</span>
                 </th>
                 <td>
-                  17<sup>30</sup> - 19<sup>00</sup>
+                  <span>
+                    16<sup>00</sup> - 17<sup>30</sup>
+                  </span>
+                  <br />
+                  <span>és</span>
+                  <br />
+                  <span>
+                    17<sup>30</sup> - 19<sup>00</sup>
+                  </span>
                 </td>
                 <td />
                 <td>
-                  17<sup>30</sup> - 19<sup>00</sup>
+                  <span>
+                    16<sup>00</sup> - 17<sup>30</sup>
+                  </span>
+                  <br />
+                  <span>és</span>
+                  <br />
+                  <span>
+                    17<sup>30</sup> - 19<sup>00</sup>
+                  </span>
                 </td>
                 <td />
                 <td />
