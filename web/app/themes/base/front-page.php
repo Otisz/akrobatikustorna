@@ -10,6 +10,15 @@ $front = get_option('show_on_front') === 'page'
     : null;
 $schedule = Base\page_link('edzeseink');
 $apply = Base\page_link('jelentkezes');
+$news_page = Base\news_link();
+// post_status is spelled out because WP_Query would otherwise add the signed-in
+// Site Owner's own private posts to what is a public listing.
+$news = new WP_Query([
+    'posts_per_page' => 3,
+    'post_status' => 'publish',
+    'ignore_sticky_posts' => true,
+    'no_found_rows' => true,
+]);
 ?>
 
 <section class="wrap grid items-center gap-10 pt-10 pb-20 lg:grid-cols-[1.15fr_1fr] lg:gap-16 lg:pt-16">
@@ -47,6 +56,26 @@ $apply = Base\page_link('jelentkezes');
     <section class="bg-surface py-20">
         <div class="entry-content wrap">
             <?php echo apply_filters('the_content', $front->post_content); ?>
+        </div>
+    </section>
+<?php endif; ?>
+
+<?php if ($news->have_posts()) : ?>
+    <section class="wrap py-20">
+        <div class="flex flex-wrap items-end justify-between gap-4">
+            <h2 class="font-display text-2xl font-semibold tracking-tight"><?php esc_html_e('Hírek', 'base'); ?></h2>
+            <?php if ($news_page) : ?>
+                <a class="btn btn-secondary" href="<?php echo esc_url($news_page); ?>">
+                    <?php esc_html_e('Összes hír', 'base'); ?>
+                </a>
+            <?php endif; ?>
+        </div>
+
+        <div class="mt-10 grid gap-8 md:grid-cols-3">
+            <?php while ($news->have_posts()) : $news->the_post(); ?>
+                <?php get_template_part('template-parts/post-card', null, ['heading_tag' => 'h3']); ?>
+            <?php endwhile; ?>
+            <?php wp_reset_postdata(); ?>
         </div>
     </section>
 <?php endif; ?>

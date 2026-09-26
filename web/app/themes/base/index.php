@@ -8,23 +8,7 @@
     <?php if (have_posts()) : ?>
         <div class="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             <?php while (have_posts()) : the_post(); ?>
-                <article>
-                    <a class="group block no-underline" href="<?php the_permalink(); ?>">
-                        <?php if (has_post_thumbnail()) : ?>
-                            <div class="mb-4 aspect-[3/2] overflow-hidden rounded-[var(--radius-card)] bg-surface">
-                                <?php the_post_thumbnail('medium_large', [
-                                    'class' => 'h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]',
-                                    'loading' => 'lazy',
-                                ]); ?>
-                            </div>
-                        <?php endif; ?>
-                        <p class="text-sm text-ink-soft"><?php echo esc_html(get_the_date()); ?></p>
-                        <h2 class="mt-1 font-display text-xl leading-snug font-semibold text-ink group-hover:text-brand-deep">
-                            <?php the_title(); ?>
-                        </h2>
-                    </a>
-                    <p class="mt-3 text-base text-ink-soft"><?php echo esc_html(get_the_excerpt()); ?></p>
-                </article>
+                <?php get_template_part('template-parts/post-card'); ?>
             <?php endwhile; ?>
         </div>
 

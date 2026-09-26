@@ -1,8 +1,10 @@
+/.idea/
 /vendor/
 /web/wp/
 /web/app/plugins/
 /web/app/themes/twentytwentyfive/
 /web/app/mu-plugins/*
+!/web/app/mu-plugins/base-permalinks.php
 !/web/app/mu-plugins/base-update-ui.php
 !/web/app/mu-plugins/bedrock-autoloader.php
 /web/app/languages/

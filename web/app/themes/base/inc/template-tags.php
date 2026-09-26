@@ -16,6 +16,18 @@ function page_link(string $path): ?string
 }
 
 /**
+ * The permalink of the Posts listing, or null while the Site Owner has yet to
+ * assign a page to it.
+ */
+function news_link(): ?string
+{
+    $page = (int) get_option('page_for_posts');
+    $link = $page > 0 ? get_permalink($page) : false;
+
+    return is_string($link) ? $link : null;
+}
+
+/**
  * The Site Owner's custom logo when one is set, otherwise the club's own mark.
  */
 function logo(string $classes): string

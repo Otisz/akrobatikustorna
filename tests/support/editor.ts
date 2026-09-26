@@ -1,5 +1,8 @@
-import { expect, type FrameLocator, type Page } from '@playwright/test';
+import { expect, type FrameLocator, type Locator, type Page } from '@playwright/test';
 import { openAdmin } from './site-owner';
+
+/** Uploaded only when the media library is empty. See `setFeaturedImage`. */
+const featuredImageFixture = 'fixtures/featured-image.jpg';
 
 /**
  * The block editor, driven the way the Site Owner drives it. Selectors are
@@ -30,6 +33,93 @@ export async function setTitle(page: Page, title: string): Promise<void> {
   await canvas(page).locator('.editor-post-title__input').fill(title);
 }
 
+/**
+ * WordPress fetches the media library in the background, so an empty listing has
+ * to be waited out before it counts as empty.
+ */
+async function mediaLibraryIsEmpty(library: Locator): Promise<boolean> {
+  try {
+    await library.first().waitFor({ state: 'visible', timeout: 5_000 });
+
+    return false;
+  } catch {
+    return true;
+  }
+}
+
+/**
+ * Attaches a featured image, reusing whatever the media library already holds.
+ * The library is shared with the developer's own uploads, so reusing an image
+ * keeps a run from leaving a new one behind every time — see ADR-0004.
+ */
+export async function setFeaturedImage(page: Page): Promise<void> {
+  await page.locator('.editor-post-featured-image__toggle').click();
+
+  const modal = page.locator('.media-modal');
+
+  await modal.waitFor();
+  await modal.locator('#menu-item-browse').click();
+
+  const library = modal.locator('.attachments .attachment');
+
+  await modal.locator('.attachments-browser').waitFor();
+
+  if (await mediaLibraryIsEmpty(library)) {
+    await modal.locator('#menu-item-upload').click();
+    await modal.locator('.moxie-shim input[type="file"]').setInputFiles(featuredImageFixture);
+  }
+
+  await expect(library.first()).toBeVisible();
+  await library.first().click();
+  await modal.locator('.media-button-select').click();
+
+  await expect(modal).toBeHidden();
+  await expect(page.locator('.editor-post-featured-image__preview')).toBeVisible();
+}
+
+/**
+ * Moves the publish date to the start of a later year, which is the one field a
+ * Site Owner preparing an announcement in advance has to change.
+ */
+export async function scheduleFor(page: Page, year: number): Promise<void> {
+  await page.locator('.editor-post-schedule__dialog-toggle').click();
+
+  const picker = page.locator('.block-editor-publish-date-time-picker');
+
+  await picker.waitFor();
+  await picker.locator('.components-datetime__time-field-year input').fill(String(year));
+  await picker.locator('.components-datetime__time-field-year input').blur();
+
+  await expect(page.locator('.editor-post-schedule__dialog-toggle')).toContainText(String(year));
+  await page.keyboard.press('Escape');
+  await expect(picker).toBeHidden();
+}
+
+/** Saves the post as a draft, so that it has a URL (Uniform Resource Locator) to preview. */
+export async function saveDraft(page: Page): Promise<void> {
+  await page.locator('.editor-post-save-draft').click();
+
+  // The editor rewrites the address bar only eventually; the trash button is the
+  // signal that the draft has become a post with an identifier of its own.
+  await expect(page.locator('.editor-post-saved-state')).toBeVisible();
+  await expect(page.locator('.editor-post-trash')).toBeVisible();
+}
+
+/** Opens the editor's own preview in a new tab and hands back that tab. */
+export async function previewInNewTab(page: Page): Promise<Page> {
+  await page.locator('.editor-preview-dropdown__toggle').click();
+  await page.locator('.editor-preview-dropdown__button-external').waitFor();
+
+  const [preview] = await Promise.all([
+    page.context().waitForEvent('page'),
+    page.locator('.editor-preview-dropdown__button-external').click(),
+  ]);
+
+  await preview.waitForLoadState();
+
+  return preview;
+}
+
 /** Publishes what is in the editor and hands back its public URL. */
 export async function publish(page: Page): Promise<string> {
   await page.locator('.editor-post-publish-button__button').click();
@@ -54,9 +144,10 @@ export async function trash(page: Page): Promise<void> {
 
   const confirmation = page.locator('.components-confirm-dialog');
 
-  if (await confirmation.isVisible()) {
-    await confirmation.locator('button.is-primary').click();
-  }
+  // Waited for rather than checked: the dialog mounts a moment after the click,
+  // and dismissing it too early leaves the post behind.
+  await confirmation.waitFor();
+  await confirmation.locator('button.is-primary').click();
 
   await page.waitForURL(/edit\.php/);
 }
