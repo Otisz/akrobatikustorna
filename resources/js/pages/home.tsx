@@ -32,8 +32,8 @@ export default function Page(props: SharedData<{ posts: Post[] }>) {
             <CarouselContent className="h-full">
               {CAROUSEL_IMAGES.map((image, index) => (
                 // biome-ignore lint/suspicious/noArrayIndexKey: No unique key for static images
-                <CarouselItem key={index} className="h-[33vh] md:h-[50vh]">
-                  <img src={image} alt="" className="h-full w-full object-cover object-center" />
+                <CarouselItem key={index} className="max-h-[50dvh]">
+                  <img src={image} alt="" className="h-full w-full object-contain object-center" />
                 </CarouselItem>
               ))}
             </CarouselContent>
