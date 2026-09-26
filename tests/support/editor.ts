@@ -40,8 +40,26 @@ export async function setTitle(page: Page, title: string): Promise<void> {
   await canvas(page).locator('.editor-post-title__input').fill(title);
 }
 
+/**
+ * Brings the settings sidebar back to the post's own tab. Selecting a block
+ * switches the sidebar to that block, and the post's own controls — the featured
+ * image among them — leave the screen with it; the Site Owner clicks back the
+ * same way. The tab strip appears only once a block has been selected, so its
+ * absence means the post's tab is already showing.
+ */
+export async function openPostTab(page: Page): Promise<void> {
+  // The document tab, then the block tab: addressed by position, because the
+  // admin is Hungarian — see ADR-0004.
+  const tab = page.locator('.editor-sidebar__panel-tabs [role="tab"]').first();
+
+  if (await tab.isVisible()) {
+    await tab.click();
+  }
+}
+
 /** Attaches a featured image, chosen from the media library by `chooseImage`. */
 export async function setFeaturedImage(page: Page): Promise<void> {
+  await openPostTab(page);
   await page.locator('.editor-post-featured-image__toggle').click();
   await chooseImage(page, 'featured-image');
 

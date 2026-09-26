@@ -94,6 +94,11 @@ content outlives any theme and cannot be deactivated from the admin. See
 | Post type | Admin label | Shape |
 | --- | --- | --- |
 | `slide` | Diák | The home page carousel: image, caption, optional link, in the Site Owner's own order |
+| `trainer` | Edzők | The club's coaches at `/edzok`: portrait, role, biography, in the Site Owner's own order |
+
+A Trainer's order is changed through Quick Edit in the admin list, which prints each Trainer's number in a
+column of its own: the block editor's sidebar no longer offers the order field, and the list is where one
+Trainer's position can be seen against the others.
 
 One *page* is created in code too. `base-schedule.php` publishes the Schedule at `/edzeseink` on the first
 request after a deploy that has never had one, and holds it at that slug, because the URL (Uniform Resource

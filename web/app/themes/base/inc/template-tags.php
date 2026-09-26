@@ -121,3 +121,15 @@ function nav_menu(string $location, string $classes): void
         ]),
     ]);
 }
+
+/**
+ * What a Trainer does at the club, or null when the Site Owner left it empty.
+ * Read from post meta rather than through the fields plugin, so the template
+ * renders whether or not that plugin is loaded.
+ */
+function trainer_role(int $id): ?string
+{
+    $role = trim((string) get_post_meta($id, \BASE_TRAINER_ROLE_META, true));
+
+    return $role === '' ? null : $role;
+}
