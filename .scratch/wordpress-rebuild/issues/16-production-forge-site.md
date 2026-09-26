@@ -17,3 +17,10 @@ step, which is what Bedrock requires. Database backups are handled at the server
 - [ ] Zero-downtime deploys are used only if uploads are symlinked outside the release directory
 - [ ] Database backups are configured at the server level
 - [ ] The Laravel site remains intact and deployable as a rollback
+
+## Comments
+
+**From 02 (theme foundation):** the theme's CSS and JavaScript are built by Vite into
+`web/app/themes/base/build/`, which is gitignored. The Forge deploy script must run the asset build
+(`npm ci && npm run build` in `web/app/themes/base`) alongside `composer install`, or the deployed site
+will render unstyled.

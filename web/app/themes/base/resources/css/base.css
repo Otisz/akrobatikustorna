@@ -1,0 +1,23 @@
+/* Structural resets only. Typography and colour come from theme.json. */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-paper);
+}
+
+:where(a, button, summary):focus-visible {
+  outline: 3px solid var(--color-brand-strong);
+  outline-offset: 3px;
+  border-radius: var(--radius-field);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}

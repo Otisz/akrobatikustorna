@@ -1,0 +1,6 @@
+/*
+ * Loaded into the block editor canvas. It carries only the self-hosted font files:
+ * colour and type scale reach the editor through theme.json, which is what keeps
+ * the composed page and the published page identical.
+ */
+@import './fonts.css';

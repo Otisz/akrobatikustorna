@@ -1,0 +1,35 @@
+/*
+ * Design tokens, derived from the club logo: the ring orange, the gold at its centre,
+ * and the near-black of its lettering.
+ *
+ * These values are mirrored in theme.json, which is what the block editor reads.
+ * Change one, change the other.
+ */
+@theme {
+  --color-ink: #1c1f26;
+  --color-ink-soft: #565d6b;
+  --color-paper: #fdfdfc;
+  --color-surface: #f3f1ef;
+  --color-line: #e3dfda;
+
+  --color-brand: #e17c2e;
+  --color-brand-strong: #c2661f;
+  --color-brand-deep: #8f4a14;
+  --color-brand-tint: #fcefe1;
+  --color-gold: #f0e383;
+
+  --font-display: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Source Sans 3', ui-sans-serif, system-ui, sans-serif;
+
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.1875rem;
+  --text-xl: clamp(1.25rem, 1.16rem + 0.45vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.32rem + 0.9vw, 2rem);
+  --text-3xl: clamp(1.875rem, 1.55rem + 1.6vw, 2.75rem);
+  --text-4xl: clamp(2.25rem, 1.6rem + 3.2vw, 4rem);
+
+  --radius-card: 1rem;
+  --radius-field: 0.5rem;
+}

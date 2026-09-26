@@ -15,12 +15,22 @@ services:
   nginx:
     image: nginx:1.27-alpine
     ports:
-      - "8080:80"
+      - "8080:8080"
     volumes:
       - .:/var/www/html
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
       - php
+
+  node:
+    # Builds the theme's Tailwind/Vite assets. Kept in a container so the project
+    # still needs nothing installed on the host.
+    image: node:22-alpine
+    working_dir: /var/www/html/web/app/themes/base
+    command: sh -c "npm install --no-audit --no-fund && npm run dev"
+    volumes:
+      - .:/var/www/html
+      - node-modules:/var/www/html/web/app/themes/base/node_modules
 
   mysql:
     # Matches production, so problems surface locally rather than on the VPS (Virtual Private Server).
@@ -43,3 +53,4 @@ services:
 volumes:
   mysql-data:
   composer-cache:
+  node-modules:

@@ -1,0 +1,16 @@
+/*
+ * Tailwind owns layout and theme chrome. theme.json owns colour and typography,
+ * so that the block editor and the published page agree without a second stylesheet.
+ *
+ * Preflight is left out: its element resets would override the global styles
+ * WordPress generates from theme.json.
+ */
+@import 'tailwindcss/theme.css' layer(base);
+
+@import './tokens.css';
+@import './fonts.css';
+@import './base.css' layer(base);
+@import './components.css';
+
+/* Last, and unlayered, so a utility in the markup wins over both of the above. */
+@import 'tailwindcss/utilities.css';

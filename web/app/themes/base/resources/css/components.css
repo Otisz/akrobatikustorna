@@ -1,0 +1,152 @@
+/*
+ * Deliberately unlayered. WordPress prints the styles generated from theme.json
+ * without a cascade layer, and a layered rule loses to an unlayered one however
+ * specific it is or however late it loads.
+ *
+ * Corner radius system: interactive controls are pills, media and cards are
+ * --radius-card, form fields are --radius-field. Nothing else rounds.
+ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 0;
+  transition:
+    background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.12s ease-out;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary,
+.btn-primary:hover {
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: var(--color-brand-strong);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-brand-deep);
+}
+
+.btn-secondary,
+.btn-secondary:hover {
+  color: var(--color-ink);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  box-shadow: inset 0 0 0 2px var(--color-line);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-surface);
+  box-shadow: inset 0 0 0 2px var(--color-ink);
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-list a {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-list a:hover,
+.nav-list .current-menu-item > a,
+.nav-list .current_page_item > a {
+  color: var(--color-brand-deep);
+}
+
+.nav-list-stacked {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+}
+
+.nav-list-stacked a {
+  display: block;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid var(--color-line);
+  font-size: var(--text-lg);
+}
+
+.nav-list-on-ink a {
+  color: var(--color-paper);
+  border-bottom-color: color-mix(in srgb, #fff 15%, transparent);
+}
+
+.nav-list-on-ink a:hover {
+  color: var(--color-gold);
+}
+
+/*
+ * Reveals the news items in reading order, so the eye lands on the newest first.
+ * Scroll-driven rather than listener-driven, and off entirely without support
+ * or when the visitor prefers reduced motion.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 60%;
+    }
+  }
+}
+
+@keyframes reveal-rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*
+ * Blocks in classic templates get no layout wrapper of their own, so the theme
+ * applies theme.json's content and wide widths here instead.
+ */
+.entry-content > * {
+  max-width: var(--wp--style--global--content-size);
+  /* Left-aligned rather than centred, so prose starts on the same gutter as
+     every other section. */
+  margin-inline: 0;
+}
+
+.entry-content > .alignwide {
+  max-width: var(--wp--style--global--wide-size);
+}
+
+.entry-content > .alignfull {
+  max-width: none;
+}
