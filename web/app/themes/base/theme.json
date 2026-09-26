@@ -288,7 +288,7 @@
       },
       "core/table": {
         "typography": {
-          "fontSize": "var(--wp--preset--font-size--medium)"
+          "fontSize": "var(--wp--preset--font-size--small)"
         }
       }
     }

@@ -1,2 +1,5 @@
-/* The editor canvas needs the font files; theme.json carries everything else. */
+/* The editor canvas needs the font files and the shape of a table; theme.json
+   carries everything else. */
+@import './tokens.css';
 @import './fonts.css';
+@import './table.css';

@@ -1,0 +1,41 @@
+/*
+ * The shape of a table, shared with the editor canvas so that the Site Owner
+ * composes the Schedule in what a visitor will read. theme.json carries the
+ * type scale and the palette (ADR-0003); it has no selector for a head row,
+ * which is why the head cells are dressed here.
+ */
+.wp-block-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.wp-block-table :is(th, td) {
+  padding: 0.75rem 1rem;
+  border: 0;
+  border-bottom: 1px solid var(--color-line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.wp-block-table thead th {
+  font-family: var(--font-display);
+  font-weight: 600;
+  background-color: var(--color-surface);
+  white-space: nowrap;
+}
+
+/* The block library gives thead a heavy rule; the theme separates rows evenly
+   instead. */
+.wp-block-table table thead {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.wp-block-table tbody td:first-child {
+  font-weight: 600;
+}
+
+/* A training time reads as one thing, so it takes the width it needs and the
+   group column gives way. */
+.wp-block-table tbody td:not(:first-child) {
+  white-space: nowrap;
+}

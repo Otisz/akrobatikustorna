@@ -95,11 +95,23 @@ content outlives any theme and cannot be deactivated from the admin. See
 | --- | --- | --- |
 | `slide` | Diák | The home page carousel: image, caption, optional link, in the Site Owner's own order |
 
+One *page* is created in code too. `base-schedule.php` publishes the Schedule at `/edzeseink` on the first
+request after a deploy that has never had one, and holds it at that slug, because the URL (Uniform Resource
+Locator) is part of the site's search parity and the Site Owner cannot see a retitled page silently move. Its times are **initial
+content**, transferred by hand from the outgoing site and written once — they belong to the Site Owner from
+then on, so the file is never read again.
+
 ## The theme
 
 `web/app/themes/base` is a classic PHP-template theme. `theme.json` defines the palette and the type scale,
 which is how the block editor and the published page stay identical; Tailwind, compiled by Vite, handles
 layout and the header, footer and page chrome. See `docs/adr/0003-theme-json-owns-typography-and-colour.md`.
+
+Tables are the Schedule's shape, so the theme gives every table cell the heading of its column
+(`inc/table.php`) and stacks the table into a card per row below 64rem, where seven columns of training
+times would otherwise have to be scrolled sideways. The shape of a table is the one thing besides the fonts
+that `editor.css` carries into the block editor, so the Site Owner composes the Schedule in what a visitor
+will read.
 
 Built assets live in `web/app/themes/base/build/` and are **not** in version control, so every deploy must
 run the build step before the site is served.

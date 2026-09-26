@@ -12,19 +12,28 @@ export function canvas(page: Page): FrameLocator {
   return page.frameLocator('iframe[name="editor-canvas"]');
 }
 
-export async function openNewPost(page: Page): Promise<void> {
-  await openAdmin(page, 'post-new.php');
-
-  // The welcome guide mounts with the editor and covers it, so waiting for the
-  // title means the guide too has had its chance to appear.
+/**
+ * The welcome guide mounts with the editor and covers it. Call once the editor
+ * itself has rendered, so that the guide too has had its chance to appear.
+ */
+export async function dismissWelcomeGuide(page: Page): Promise<void> {
   const welcomeGuide = page.locator('.components-modal__screen-overlay');
-
-  await canvas(page).locator('.editor-post-title__input').waitFor();
 
   if (await welcomeGuide.isVisible()) {
     await page.keyboard.press('Escape');
     await expect(welcomeGuide).toBeHidden();
   }
+}
+
+/** Opens an editing screen and waits for the block editor to be usable. */
+export async function openEditor(page: Page, screen: string): Promise<void> {
+  await openAdmin(page, screen);
+  await canvas(page).locator('.editor-post-title__input').waitFor();
+  await dismissWelcomeGuide(page);
+}
+
+export async function openNewPost(page: Page): Promise<void> {
+  await openEditor(page, 'post-new.php');
 }
 
 export async function setTitle(page: Page, title: string): Promise<void> {

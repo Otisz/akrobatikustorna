@@ -129,3 +129,61 @@
 .entry-content > .alignfull {
   max-width: none;
 }
+
+/*
+ * The Schedule is seven columns of recurring weekly times, which stop being a
+ * grid on a phone: below the width at which the columns stay legible each row
+ * becomes a card, and each cell prints the column heading the theme gave it —
+ * see inc/table.php. Front-end only, because the labels are added on render.
+ */
+@media (width < 64rem) {
+  .wp-block-table :is(table, tbody, tr, td) {
+    display: block;
+  }
+
+  /* Kept in the markup rather than removed: the headings are what a screen
+     reader reads out, and what each cell's label is taken from. */
+  .wp-block-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .wp-block-table tbody tr {
+    margin-bottom: 1rem;
+    padding: 1.25rem;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+  }
+
+  .wp-block-table tbody td {
+    padding: 0.5rem 0 0;
+    border: 0;
+    /* A card is narrower than a column, so a long time wraps again here. */
+    white-space: normal;
+  }
+
+  /* A group that does not train on a day says nothing on a phone, where the
+     empty cell has no column to sit under. */
+  .wp-block-table tbody td:empty {
+    display: none;
+  }
+
+  .wp-block-table tbody td:first-child {
+    padding-top: 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-line);
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+  }
+
+  .wp-block-table tbody td:not(:first-child)[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    color: var(--color-ink-soft);
+    font-size: var(--text-sm);
+  }
+}
