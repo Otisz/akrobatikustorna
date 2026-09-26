@@ -1,0 +1,16 @@
+/vendor/
+/web/wp/
+/web/app/plugins/
+/web/app/themes/twentytwentyfive/
+/web/app/mu-plugins/*
+!/web/app/mu-plugins/base-update-ui.php
+!/web/app/mu-plugins/bedrock-autoloader.php
+/web/app/languages/
+/web/app/upgrade/
+/web/app/uploads/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+/node_modules/

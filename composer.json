@@ -1,0 +1,58 @@
+{
+  "name": "base/website",
+  "type": "project",
+  "license": "proprietary",
+  "description": "Budai Akrobatikus Sport Egyesület — WordPress site (Roots Bedrock)",
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "allow-plugins": {
+      "composer/installers": true,
+      "roots/wordpress-core-installer": true
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org",
+      "only": [
+        "wpackagist-plugin/*",
+        "wpackagist-theme/*"
+      ]
+    }
+  ],
+  "require": {
+    "php": ">=8.4",
+    "composer/installers": "^2.3",
+    "oscarotero/env": "^2.1",
+    "roots/bedrock-autoloader": "^1.0",
+    "roots/wordpress": "6.8.2",
+    "roots/wp-config": "^1.0",
+    "vlucas/phpdotenv": "^5.6",
+    "wpackagist-plugin/advanced-custom-fields": "6.5.0",
+    "wpackagist-theme/twentytwentyfive": "1.5"
+  },
+  "extra": {
+    "installer-paths": {
+      "web/app/mu-plugins/{$name}/": [
+        "type:wordpress-muplugin"
+      ],
+      "web/app/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "web/app/themes/{$name}/": [
+        "type:wordpress-theme"
+      ]
+    },
+    "wordpress-install-dir": "web/wp"
+  },
+  "scripts": {
+    "post-root-package-install": [
+      "php -r \"copy('.env.example', '.env');\""
+    ]
+  },
+  "require-dev": {
+    "wp-cli/wp-cli-bundle": "^2.11"
+  }
+}

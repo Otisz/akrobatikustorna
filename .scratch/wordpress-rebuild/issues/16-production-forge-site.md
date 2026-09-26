@@ -1,0 +1,19 @@
+# 16: Production Forge site
+
+**What to build:** Deploying from the `wordpress` branch produces a fully working site on the club's existing
+VPS, with no half-applied deploys and no destroyed media. The outgoing Laravel site remains deployable as a
+rollback.
+
+Hosting is Laravel Forge as a new site on the existing VPS. Forge's git deploy runs the dependency install
+step, which is what Bedrock requires. Database backups are handled at the server level, not by a plugin.
+
+**Blocked by:** 01.
+
+**Status:** ready-for-agent
+
+- [ ] The Forge site's web directory is Bedrock's `web/`, not the project root
+- [ ] The deploy script runs the dependency install step automatically, so a deploy is never half-applied
+- [ ] The uploads directory persists across deploys and is never destroyed by one
+- [ ] Zero-downtime deploys are used only if uploads are symlinked outside the release directory
+- [ ] Database backups are configured at the server level
+- [ ] The Laravel site remains intact and deployable as a rollback
