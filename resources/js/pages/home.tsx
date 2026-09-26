@@ -1,10 +1,10 @@
 import { Link } from "@inertiajs/react";
 import Autoplay from "embla-carousel-autoplay";
 import { LuArrowRight } from "react-icons/lu";
-import CarouselImage1 from "@/assets/images/carousel/1c0164f0-13f6-41f9-879f-f84df228dc59.jpg";
-import CarouselImage3 from "@/assets/images/carousel/5ebc0a45-5383-41ea-9eb2-6aafd85984c2.jpg";
-import CarouselImage4 from "@/assets/images/carousel/78b7c771-5c48-4664-8e37-58755945ea27.jpg";
-import CarouselImage2 from "@/assets/images/carousel/00903ad0-2987-4bd1-9227-4ca1995936a6.jpg";
+import CarouselImage1 from "@/assets/images/carousel/c1.png";
+import CarouselImage3 from "@/assets/images/carousel/c2.png";
+import CarouselImage4 from "@/assets/images/carousel/c3.png";
+import CarouselImage2 from "@/assets/images/carousel/c4.png";
 import { buttonVariants } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Links from "@/data/links";
