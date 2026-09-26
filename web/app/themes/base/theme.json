@@ -3,7 +3,6 @@
   "version": 3,
   "settings": {
     "appearanceTools": false,
-    "useRootPaddingAwareAlignments": true,
     "layout": {
       "contentSize": "44rem",
       "wideSize": "74rem"
@@ -16,16 +15,56 @@
       "defaultGradients": false,
       "defaultPalette": false,
       "palette": [
-        { "slug": "ink", "name": "Tinta", "color": "#1c1f26" },
-        { "slug": "ink-soft", "name": "Halvány tinta", "color": "#565d6b" },
-        { "slug": "paper", "name": "Papír", "color": "#fdfdfc" },
-        { "slug": "surface", "name": "Háttér", "color": "#f3f1ef" },
-        { "slug": "line", "name": "Vonal", "color": "#e3dfda" },
-        { "slug": "brand", "name": "Narancs", "color": "#e17c2e" },
-        { "slug": "brand-strong", "name": "Erős narancs", "color": "#c2661f" },
-        { "slug": "brand-deep", "name": "Mély narancs", "color": "#8f4a14" },
-        { "slug": "brand-tint", "name": "Halvány narancs", "color": "#fcefe1" },
-        { "slug": "gold", "name": "Arany", "color": "#f0e383" }
+        {
+          "slug": "ink",
+          "name": "Tinta",
+          "color": "#1c1f26"
+        },
+        {
+          "slug": "ink-soft",
+          "name": "Halvány tinta",
+          "color": "#565d6b"
+        },
+        {
+          "slug": "paper",
+          "name": "Papír",
+          "color": "#fdfdfc"
+        },
+        {
+          "slug": "surface",
+          "name": "Háttér",
+          "color": "#f3f1ef"
+        },
+        {
+          "slug": "line",
+          "name": "Vonal",
+          "color": "#e3dfda"
+        },
+        {
+          "slug": "brand",
+          "name": "Narancs",
+          "color": "#e17c2e"
+        },
+        {
+          "slug": "brand-strong",
+          "name": "Erős narancs",
+          "color": "#ab5e23"
+        },
+        {
+          "slug": "brand-deep",
+          "name": "Mély narancs",
+          "color": "#8f4a14"
+        },
+        {
+          "slug": "brand-tint",
+          "name": "Halvány narancs",
+          "color": "#fcefe1"
+        },
+        {
+          "slug": "gold",
+          "name": "Arany",
+          "color": "#f0e383"
+        }
       ]
     },
     "typography": {
@@ -46,42 +85,88 @@
         }
       ],
       "fontSizes": [
-        { "slug": "small", "name": "Kicsi", "size": "0.9375rem" },
-        { "slug": "medium", "name": "Alap", "size": "1.0625rem" },
+        {
+          "slug": "small",
+          "name": "Kicsi",
+          "size": "0.9375rem"
+        },
+        {
+          "slug": "medium",
+          "name": "Alap",
+          "size": "1.0625rem"
+        },
         {
           "slug": "large",
           "name": "Nagy",
           "size": "1.5rem",
-          "fluid": { "min": "1.25rem", "max": "1.5rem" }
+          "fluid": {
+            "min": "1.25rem",
+            "max": "1.5rem"
+          }
         },
         {
           "slug": "x-large",
           "name": "Címsor",
           "size": "2rem",
-          "fluid": { "min": "1.5rem", "max": "2rem" }
+          "fluid": {
+            "min": "1.5rem",
+            "max": "2rem"
+          }
         },
         {
           "slug": "xx-large",
           "name": "Főcím",
           "size": "2.75rem",
-          "fluid": { "min": "1.875rem", "max": "2.75rem" }
+          "fluid": {
+            "min": "1.875rem",
+            "max": "2.75rem"
+          }
         }
       ]
     },
     "spacing": {
       "padding": true,
       "margin": false,
-      "units": ["rem", "%", "vw"],
-      "spacingScale": { "steps": 0 },
+      "units": [
+        "rem",
+        "%",
+        "vw"
+      ],
+      "spacingScale": {
+        "steps": 0
+      },
       "spacingSizes": [
-        { "slug": "20", "name": "Szűk", "size": "1rem" },
-        { "slug": "30", "name": "Közepes", "size": "1.75rem" },
-        { "slug": "40", "name": "Tágas", "size": "3rem" },
-        { "slug": "50", "name": "Nagyon tágas", "size": "5rem" }
+        {
+          "slug": "20",
+          "name": "Szűk",
+          "size": "1rem"
+        },
+        {
+          "slug": "30",
+          "name": "Közepes",
+          "size": "1.75rem"
+        },
+        {
+          "slug": "40",
+          "name": "Tágas",
+          "size": "3rem"
+        },
+        {
+          "slug": "50",
+          "name": "Nagyon tágas",
+          "size": "5rem"
+        }
       ]
     },
-    "border": { "color": false, "radius": false, "style": false, "width": false },
-    "shadow": { "defaultPresets": false }
+    "border": {
+      "color": false,
+      "radius": false,
+      "style": false,
+      "width": false
+    },
+    "shadow": {
+      "defaultPresets": false
+    }
   },
   "styles": {
     "color": {
@@ -94,8 +179,7 @@
       "lineHeight": "1.7"
     },
     "spacing": {
-      "blockGap": "1.5rem",
-      "padding": { "left": "1.25rem", "right": "1.25rem" }
+      "blockGap": "1.5rem"
     },
     "elements": {
       "heading": {
@@ -105,45 +189,107 @@
           "lineHeight": "1.15",
           "letterSpacing": "-0.02em"
         },
-        "color": { "text": "var(--wp--preset--color--ink)" }
+        "color": {
+          "text": "var(--wp--preset--color--ink)"
+        }
       },
-      "h1": { "typography": { "fontSize": "var(--wp--preset--font-size--xx-large)" } },
-      "h2": { "typography": { "fontSize": "var(--wp--preset--font-size--x-large)" } },
-      "h3": { "typography": { "fontSize": "var(--wp--preset--font-size--large)" } },
-      "h4": { "typography": { "fontSize": "var(--wp--preset--font-size--medium)" } },
+      "h1": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--xx-large)"
+        }
+      },
+      "h2": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--x-large)"
+        }
+      },
+      "h3": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--large)"
+        }
+      },
+      "h4": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--medium)"
+        }
+      },
       "link": {
-        "color": { "text": "var(--wp--preset--color--brand-deep)" },
-        "typography": { "textDecoration": "underline" },
-        ":hover": { "color": { "text": "var(--wp--preset--color--ink)" } }
+        "color": {
+          "text": "var(--wp--preset--color--brand-deep)"
+        },
+        "typography": {
+          "textDecoration": "underline"
+        },
+        ":hover": {
+          "color": {
+            "text": "var(--wp--preset--color--ink)"
+          }
+        }
       },
       "button": {
         "color": {
           "background": "var(--wp--preset--color--brand-strong)",
           "text": "#ffffff"
         },
-        "border": { "radius": "9999px" },
-        "spacing": { "padding": { "top": "0.75rem", "bottom": "0.75rem", "left": "1.5rem", "right": "1.5rem" } },
+        "border": {
+          "radius": "9999px"
+        },
+        "spacing": {
+          "padding": {
+            "top": "0.75rem",
+            "bottom": "0.75rem",
+            "left": "1.5rem",
+            "right": "1.5rem"
+          }
+        },
         "typography": {
           "fontFamily": "var(--wp--preset--font-family--display)",
           "fontWeight": "600",
           "textDecoration": "none"
         },
-        ":hover": { "color": { "background": "var(--wp--preset--color--brand-deep)" } }
+        ":hover": {
+          "color": {
+            "background": "var(--wp--preset--color--brand-deep)"
+          }
+        }
       },
       "caption": {
-        "color": { "text": "var(--wp--preset--color--ink-soft)" },
-        "typography": { "fontSize": "var(--wp--preset--font-size--small)" }
+        "color": {
+          "text": "var(--wp--preset--color--ink-soft)"
+        },
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--small)"
+        }
       }
     },
     "blocks": {
-      "core/image": { "border": { "radius": "1rem" } },
+      "core/image": {
+        "border": {
+          "radius": "1rem"
+        }
+      },
       "core/quote": {
-        "typography": { "fontFamily": "var(--wp--preset--font-family--display)", "fontSize": "var(--wp--preset--font-size--large)" },
-        "border": { "left": { "color": "var(--wp--preset--color--brand)", "style": "solid", "width": "3px" } },
-        "spacing": { "padding": { "left": "1.5rem" } }
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--display)",
+          "fontSize": "var(--wp--preset--font-size--large)"
+        },
+        "border": {
+          "left": {
+            "color": "var(--wp--preset--color--brand)",
+            "style": "solid",
+            "width": "3px"
+          }
+        },
+        "spacing": {
+          "padding": {
+            "left": "1.5rem"
+          }
+        }
       },
       "core/table": {
-        "typography": { "fontSize": "var(--wp--preset--font-size--medium)" }
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--medium)"
+        }
       }
     }
   }

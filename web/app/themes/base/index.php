@@ -1,6 +1,6 @@
 <?php declare(strict_types=1); get_header(); ?>
 
-<section class="mx-auto max-w-[74rem] px-5 pt-12 pb-8">
+<section class="wrap pt-12 pb-8">
     <h1 class="font-display text-3xl font-semibold tracking-tight">
         <?php echo esc_html(is_home() ? get_the_title(get_option('page_for_posts')) ?: __('Hírek', 'base') : get_the_archive_title()); ?>
     </h1>
@@ -8,7 +8,7 @@
     <?php if (have_posts()) : ?>
         <div class="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             <?php while (have_posts()) : the_post(); ?>
-                <article class="reveal">
+                <article>
                     <a class="group block no-underline" href="<?php the_permalink(); ?>">
                         <?php if (has_post_thumbnail()) : ?>
                             <div class="mb-4 aspect-[3/2] overflow-hidden rounded-[var(--radius-card)] bg-surface">

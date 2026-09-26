@@ -6,7 +6,7 @@ namespace Base;
 
 /**
  * The permalink of a page at a known path, or null while that page is still to be created.
- * Lets the layout link to structural pages without hard-coding a URL that 404s.
+ * Lets the layout link to structural pages without hard-coding a URL (Uniform Resource Locator) that 404s.
  */
 function page_link(string $path): ?string
 {
@@ -41,7 +41,7 @@ function logo(string $classes): string
  * The home page's own featured image, falling back to a club photograph until the
  * Site Owner sets one.
  */
-function hero_image(?\WP_Post $page): string
+function front_page_image(?\WP_Post $page): string
 {
     if ($page instanceof \WP_Post && has_post_thumbnail($page)) {
         return get_the_post_thumbnail($page, 'large', [
@@ -52,7 +52,7 @@ function hero_image(?\WP_Post $page): string
 
     return sprintf(
         '<img src="%s" class="h-full w-full object-cover" width="1183" height="1600" alt="%s" fetchpriority="high">',
-        esc_url(get_theme_file_uri('assets/images/hero-fallback.jpg')),
+        esc_url(get_theme_file_uri('assets/images/front-page-fallback.jpg')),
         esc_attr__('A klub sportolói gúlát tartanak a tengerparton', 'base')
     );
 }

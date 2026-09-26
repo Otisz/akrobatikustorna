@@ -15,7 +15,7 @@
 </a>
 
 <header class="sticky top-0 z-30 border-b border-line bg-paper/95 backdrop-blur">
-    <div class="mx-auto flex h-[4.5rem] max-w-[74rem] items-center gap-6 px-5">
+    <div class="wrap flex h-[4.5rem] items-center gap-6">
         <a href="<?php echo esc_url(home_url('/')); ?>" class="flex shrink-0 items-center gap-3 no-underline">
             <?php echo Base\logo('h-11 w-auto'); ?>
             <span class="sr-only"><?php bloginfo('name'); ?></span>

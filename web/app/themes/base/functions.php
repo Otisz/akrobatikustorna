@@ -8,6 +8,7 @@ require_once __DIR__ . '/inc/template-tags.php';
 add_action('after_setup_theme', function (): void {
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
+    add_theme_support('custom-logo', ['height' => 235, 'width' => 256, 'flex-height' => true, 'flex-width' => true]);
     add_theme_support('html5', ['search-form', 'gallery', 'caption', 'style', 'script', 'navigation-widgets']);
     add_theme_support('responsive-embeds');
     add_theme_support('wp-block-styles');

@@ -53,7 +53,7 @@ releases; the pin is then raised to match.
 
 `web/app/themes/base` is a classic PHP-template theme. `theme.json` defines the palette and the type scale,
 which is how the block editor and the published page stay identical; Tailwind, compiled by Vite, handles
-layout and the header, footer and listing chrome. See `docs/adr/0003-theme-json-owns-typography-and-colour.md`.
+layout and the header, footer and page chrome. See `docs/adr/0003-theme-json-owns-typography-and-colour.md`.
 
 Built assets live in `web/app/themes/base/build/` and are **not** in version control, so every deploy must
 run the build step before the site is served.

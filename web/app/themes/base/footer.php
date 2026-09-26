@@ -2,7 +2,7 @@
 </main>
 
 <footer class="mt-24 bg-ink text-paper">
-    <div class="mx-auto max-w-[74rem] px-5 py-16">
+    <div class="wrap py-16">
         <div class="grid gap-12 md:grid-cols-[minmax(0,1fr)_auto]">
             <div class="max-w-[38ch]">
                 <?php echo Base\logo('h-16 w-auto'); ?>

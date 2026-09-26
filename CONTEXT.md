@@ -47,6 +47,11 @@ _Avoid_: banner, hero image
 An organisation supporting the club, shown as a logo linking to their site.
 _Avoid_: partner, supporter
 
+**Apply** (`jelentkezés`, URL `/jelentkezes`):
+The page carrying the Google Form a parent fills in to enrol a child. The club takes no applications any
+other way.
+_Avoid_: signup, registration, enrolment form
+
 **Video** (`videó`, URL `/galeria`):
 A YouTube recording embedded in the gallery.
 _Avoid_: gallery item, media

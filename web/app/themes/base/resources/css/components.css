@@ -1,11 +1,14 @@
-/*
- * Deliberately unlayered. WordPress prints the styles generated from theme.json
- * without a cascade layer, and a layered rule loses to an unlayered one however
- * specific it is or however late it loads.
- *
- * Corner radius system: interactive controls are pills, media and cards are
- * --radius-card, form fields are --radius-field. Nothing else rounds.
- */
+/* Unlayered on purpose. See docs/adr/0003-theme-json-owns-typography-and-colour.md. */
+
+.wrap {
+  width: 100%;
+  max-width: var(--width-page);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+/* Interactive controls are pills, media and cards are --radius-card, form fields
+   are --radius-field. Nothing else rounds. */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -106,31 +109,7 @@
   color: var(--color-gold);
 }
 
-/*
- * Reveals the news items in reading order, so the eye lands on the newest first.
- * Scroll-driven rather than listener-driven, and off entirely without support
- * or when the visitor prefers reduced motion.
- */
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .reveal {
-      animation: reveal-rise linear both;
-      animation-timeline: view();
-      animation-range: entry 10% entry 60%;
-    }
-  }
-}
 
-@keyframes reveal-rise {
-  from {
-    opacity: 0;
-    transform: translateY(1.5rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 /*
  * Blocks in classic templates get no layout wrapper of their own, so the theme
