@@ -70,6 +70,36 @@ function front_page_image(?\WP_Post $page): string
 }
 
 /**
+ * The published Slides, in the order the Site Owner put them in. A Slide is its
+ * image, so one saved without a picture yet is left out rather than shown as a
+ * blank panel. Uncapped: silently dropping a Slide the Site Owner published
+ * would be harder to understand than a longer carousel.
+ */
+function slides(): \WP_Query
+{
+    return new \WP_Query([
+        'post_type' => \BASE_SLIDE_POST_TYPE,
+        'post_status' => 'publish',
+        'posts_per_page' => -1,
+        'orderby' => \BASE_SLIDE_ORDER,
+        'meta_key' => '_thumbnail_id',
+        'no_found_rows' => true,
+    ]);
+}
+
+/**
+ * Where a Slide points, or null when the Site Owner left the link empty. Read
+ * from post meta rather than through the fields plugin, so the template renders
+ * whether or not that plugin is loaded.
+ */
+function slide_link(int $id): ?string
+{
+    $link = trim((string) get_post_meta($id, \BASE_SLIDE_LINK_META, true));
+
+    return $link === '' ? null : $link;
+}
+
+/**
  * Falls back to the site's top-level pages, so the navigation is never empty
  * before the Site Owner has built a menu.
  */

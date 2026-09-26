@@ -60,7 +60,8 @@ control.
 | Path | Contains |
 | --- | --- |
 | `tests/specs/` | One file per behaviour under test |
-| `tests/support/` | Signing in as the Site Owner, and driving the block editor |
+| `tests/support/` | Signing in as the Site Owner, and driving the editing screens |
+| `tests/fixtures/` | Images the tests attach, uploaded once and then reused from the media library |
 
 ## Layout
 
@@ -80,6 +81,19 @@ WordPress core and every plugin are pinned to explicit versions in `composer.jso
 request. The admin's own install and update screens are removed, because anything installed through them
 would be discarded by the next deploy. Core *minor* releases still auto-update, since those are security
 releases; the pin is then raised to match.
+
+Whether a plugin is *active* is a database fact rather than a file, so `docker/php/entrypoint.sh` activates
+the ones the site depends on — currently Advanced Custom Fields — on first container start.
+
+## Content types
+
+Post types and their fields are registered in `web/app/mu-plugins/`, not in the theme, so that the club's
+content outlives any theme and cannot be deactivated from the admin. See
+`docs/adr/0005-content-types-are-registered-in-must-use-plugins.md`.
+
+| Post type | Admin label | Shape |
+| --- | --- | --- |
+| `slide` | Diák | The home page carousel: image, caption, optional link, in the Site Owner's own order |
 
 ## The theme
 

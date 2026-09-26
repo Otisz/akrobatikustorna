@@ -1,8 +1,6 @@
-import { expect, type FrameLocator, type Locator, type Page } from '@playwright/test';
+import { expect, type FrameLocator, type Page } from '@playwright/test';
+import { chooseImage } from './media-library';
 import { openAdmin } from './site-owner';
-
-/** Uploaded only when the media library is empty. See `setFeaturedImage`. */
-const featuredImageFixture = 'fixtures/featured-image.jpg';
 
 /**
  * The block editor, driven the way the Site Owner drives it. Selectors are
@@ -33,47 +31,11 @@ export async function setTitle(page: Page, title: string): Promise<void> {
   await canvas(page).locator('.editor-post-title__input').fill(title);
 }
 
-/**
- * WordPress fetches the media library in the background, so an empty listing has
- * to be waited out before it counts as empty.
- */
-async function mediaLibraryIsEmpty(library: Locator): Promise<boolean> {
-  try {
-    await library.first().waitFor({ state: 'visible', timeout: 5_000 });
-
-    return false;
-  } catch {
-    return true;
-  }
-}
-
-/**
- * Attaches a featured image, reusing whatever the media library already holds.
- * The library is shared with the developer's own uploads, so reusing an image
- * keeps a run from leaving a new one behind every time — see ADR-0004.
- */
+/** Attaches a featured image, chosen from the media library by `chooseImage`. */
 export async function setFeaturedImage(page: Page): Promise<void> {
   await page.locator('.editor-post-featured-image__toggle').click();
+  await chooseImage(page, 'featured-image');
 
-  const modal = page.locator('.media-modal');
-
-  await modal.waitFor();
-  await modal.locator('#menu-item-browse').click();
-
-  const library = modal.locator('.attachments .attachment');
-
-  await modal.locator('.attachments-browser').waitFor();
-
-  if (await mediaLibraryIsEmpty(library)) {
-    await modal.locator('#menu-item-upload').click();
-    await modal.locator('.moxie-shim input[type="file"]').setInputFiles(featuredImageFixture);
-  }
-
-  await expect(library.first()).toBeVisible();
-  await library.first().click();
-  await modal.locator('.media-button-select').click();
-
-  await expect(modal).toBeHidden();
   await expect(page.locator('.editor-post-featured-image__preview')).toBeVisible();
 }
 

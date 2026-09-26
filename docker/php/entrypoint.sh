@@ -55,6 +55,13 @@ if ! wp user get "${WP_OWNER_USER:-owner}" --allow-root >/dev/null 2>&1; then
     "${WP_OWNER_EMAIL:-owner@example.test}"
 fi
 
+# Advanced Custom Fields supplies the structured fields the content types are
+# built from. Composer installs it, but whether a plugin is active is a database
+# fact, so a fresh clone has to be switched on here.
+if ! wp plugin is-active advanced-custom-fields --allow-root >/dev/null 2>&1; then
+  wp plugin activate advanced-custom-fields --allow-root
+fi
+
 # The Site Owner works in Hungarian, so a missing translation is a failed start,
 # not a site that quietly comes up in English. Skipped once installed, so a
 # restart without network still works.

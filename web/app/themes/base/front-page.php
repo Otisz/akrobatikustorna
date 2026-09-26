@@ -13,6 +13,7 @@ $apply = Base\page_link('jelentkezes');
 $news_page = Base\news_link();
 // post_status is spelled out because WP_Query would otherwise add the signed-in
 // Site Owner's own private posts to what is a public listing.
+$slides = Base\slides();
 $news = new WP_Query([
     'posts_per_page' => 3,
     'post_status' => 'publish',
@@ -48,7 +49,11 @@ $news = new WP_Query([
     </div>
 
     <div class="h-[22rem] overflow-hidden rounded-[var(--radius-card)] bg-surface sm:h-[26rem] lg:h-[29rem]">
-        <?php echo Base\front_page_image($front); ?>
+        <?php if ($slides->have_posts()) : ?>
+            <?php get_template_part('template-parts/carousel', null, ['slides' => $slides]); ?>
+        <?php else : ?>
+            <?php echo Base\front_page_image($front); ?>
+        <?php endif; ?>
     </div>
 </section>
 
