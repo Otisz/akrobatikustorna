@@ -95,10 +95,22 @@ content outlives any theme and cannot be deactivated from the admin. See
 | --- | --- | --- |
 | `slide` | Diák | The home page carousel: image, caption, optional link, in the Site Owner's own order |
 | `trainer` | Edzők | The club's coaches at `/edzok`: portrait, role, biography, in the Site Owner's own order |
+| `department` | Szakosztályok | The club's Departments at `/szakosztalyok`: picture, description, in the Site Owner's own order |
 
 A Trainer's order is changed through Quick Edit in the admin list, which prints each Trainer's number in a
 column of its own: the block editor's sidebar no longer offers the order field, and the list is where one
 Trainer's position can be seen against the others.
+
+A Department's order is changed the same way, and for the same reason. Unlike a Trainer, a Department has
+one public address: it is read in full on `/szakosztalyok`, and its own URL is a redirect to its place on
+that page, so the rebuild adds no second copy of the same words for a search engine to choose between.
+`single-department.php` is therefore only what the Site Owner previews a draft against.
+
+The club's two Departments are written in `base-departments.php` and published on the first request after a
+deploy that has never had them, so that staging and production come up with them rather than an empty page —
+**initial content**, like the Schedule's times, never written again and skipped entirely where a Department
+already exists. The outgoing site held no Department descriptions at all, so this text is authored rather
+than transferred, and is the Site Owner's to correct.
 
 One *page* is created in code too. `base-schedule.php` publishes the Schedule at `/edzeseink` on the first
 request after a deploy that has never had one, and holds it at that slug, because the URL (Uniform Resource
