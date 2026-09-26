@@ -1,0 +1,14 @@
+{
+  "name": "base-tests",
+  "private": true,
+  "description": "End-to-end browser tests for the club's site",
+  "scripts": {
+    "test": "playwright test",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/node": "^22.18.0",
+    "typescript": "^5.9.3"
+  }
+}

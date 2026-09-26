@@ -25,11 +25,42 @@ docker compose run --rm --no-deps node npm run build
 - Site: <http://localhost:8080>
 - Admin: <http://localhost:8080/wp/wp-admin> — `admin` / `admin`
 
+The admin also holds an `owner` / `owner` account with the **Editor** role, which is the Site Owner's own
+access: it can edit every kind of content but cannot reach templates, plugins or site configuration. Use it
+to see the admin as the Site Owner sees it.
+
 Run WP-CLI (WordPress Command Line Interface) against the local site with:
 
 ```sh
 docker compose exec php wp <command>
 ```
+
+## Tests
+
+```sh
+docker compose run --rm playwright
+```
+
+The suite is Playwright browser tests run in a container, so nothing is installed on the host. Each test
+signs in as the Site Owner, changes something in the admin, and asserts the outcome on the public page —
+this is the project's only testing seam. See
+`docs/adr/0004-browser-tests-are-the-only-testing-seam.md`.
+
+The site must already be up (`docker compose up`). That command installs the suite's own dependencies on
+first use; afterwards a single file can be run, or the tests typechecked:
+
+```sh
+docker compose run --rm playwright npx playwright test site-owner-role
+docker compose run --rm playwright npm run typecheck
+```
+
+Failures leave a trace and an HTML (HyperText Markup Language) report under `tests/`, neither in version
+control.
+
+| Path | Contains |
+| --- | --- |
+| `tests/specs/` | One file per behaviour under test |
+| `tests/support/` | Signing in as the Site Owner, and driving the block editor |
 
 ## Layout
 
@@ -41,6 +72,7 @@ docker compose exec php wp <command>
 | `web/app/` | Themes, plugins, uploads (`wp-content` by another name) |
 | `web/app/themes/base/` | The club's theme |
 | `docker/` | Container definitions for the local environment |
+| `tests/` | The browser test suite |
 
 ## Dependencies
 

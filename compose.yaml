@@ -32,6 +32,22 @@ services:
       - .:/var/www/html
       - node-modules:/var/www/html/web/app/themes/base/node_modules
 
+  playwright:
+    # End-to-end browser tests, the project's only testing seam. Kept out of
+    # `docker compose up` by a profile, so tests run when asked for.
+    profiles: [test]
+    image: mcr.microsoft.com/playwright:v1.63.0-noble
+    # Shares nginx's network namespace, so the site answers on http://localhost:8080
+    # here too. See docs/adr/0004-browser-tests-are-the-only-testing-seam.md.
+    network_mode: service:nginx
+    working_dir: /var/www/html/tests
+    command: sh -c "npm install --no-audit --no-fund && npx playwright test"
+    volumes:
+      - .:/var/www/html
+      - playwright-node-modules:/var/www/html/tests/node_modules
+    depends_on:
+      - nginx
+
   mysql:
     # Matches production, so problems surface locally rather than on the VPS (Virtual Private Server).
     image: mysql:8.4
@@ -54,3 +70,4 @@ volumes:
   mysql-data:
   composer-cache:
   node-modules:
+  playwright-node-modules:

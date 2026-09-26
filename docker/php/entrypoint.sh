@@ -42,6 +42,19 @@ if ! wp core is-installed --allow-root >/dev/null 2>&1; then
     --skip-email
 fi
 
+# The Site Owner holds the Editor role, never Administrator, so that they cannot
+# alter templates, plugins or site configuration while editing content. Created
+# here because the browser tests sign in as them; production and staging accounts
+# are created by hand.
+if ! wp user get "${WP_OWNER_USER:-owner}" --allow-root >/dev/null 2>&1; then
+  wp user create \
+    --allow-root \
+    --role=editor \
+    --user_pass="${WP_OWNER_PASSWORD:-owner}" \
+    "${WP_OWNER_USER:-owner}" \
+    "${WP_OWNER_EMAIL:-owner@example.test}"
+fi
+
 # The Site Owner works in Hungarian, so a missing translation is a failed start,
 # not a site that quietly comes up in English. Skipped once installed, so a
 # restart without network still works.
