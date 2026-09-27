@@ -19,10 +19,25 @@ export async function setTitle(page: Page, title: string): Promise<void> {
   await page.locator('#title').fill(title);
 }
 
-/** Saves what is on the screen, whether publishing it or editing it afterwards. */
+/**
+ * Saves what is on the screen, whether publishing it or editing it afterwards.
+ *
+ * The notice is given longer than an assertion's usual window: the suite runs
+ * in parallel against one site, whose PHP (Hypertext Preprocessor) pool holds
+ * five workers, so a save that waits behind several others takes longer than any
+ * of them does alone.
+ */
 export async function save(page: Page): Promise<void> {
+  await submit(page);
+  await expect(page.locator('#message.notice-success')).toBeVisible({ timeout: 20_000 });
+}
+
+/**
+ * Asks the screen to save, without expecting it to: what a field refuses is
+ * asserted by the test that made it refuse.
+ */
+export async function submit(page: Page): Promise<void> {
   await page.locator('#publish').click();
-  await expect(page.locator('#message.notice-success')).toBeVisible();
 }
 
 /** The post's own public address, as the screen prints it under the title. */

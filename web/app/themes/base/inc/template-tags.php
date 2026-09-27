@@ -169,3 +169,16 @@ function document_file(int $id): ?array
         'size' => is_int($bytes) ? size_format($bytes) : null,
     ];
 }
+
+/**
+ * YouTube's identifier for the recording a Video plays, or null where the Site
+ * Owner has yet to paste a link — a player with nothing to play is worse than no
+ * player.
+ *
+ * Read from post meta rather than through the fields plugin, which hands out the
+ * address instead, so the template renders whether or not that plugin is loaded.
+ */
+function video_identifier(int $id): ?string
+{
+    return \base_video_identifier((string) get_post_meta($id, \BASE_VIDEO_YOUTUBE_META, true));
+}

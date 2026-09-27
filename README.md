@@ -97,6 +97,7 @@ content outlives any theme and cannot be deactivated from the admin. See
 | `trainer` | Edzők | The club's coaches at `/edzok`: portrait, role, biography, in the Site Owner's own order |
 | `department` | Szakosztályok | The club's Departments at `/szakosztalyok`: picture, description, in the Site Owner's own order |
 | `document` | Dokumentumok | The club's forms and regulations at `/dokumentumok`: a title and a file, listed by name |
+| `video` | Galéria | The club's YouTube recordings at `/galeria`: a title and a pasted link, newest first |
 
 A Trainer's order is changed through Quick Edit in the admin list, which prints each Trainer's number in a
 column of its own: the block editor's sidebar no longer offers the order field, and the list is where one
@@ -125,6 +126,19 @@ The club's own Documents are **not** written in code, unlike the Departments and
 are real and are transferred by hand into the media library. The outgoing site's copies are on the `main`
 branch under `public/documents/`. Their URLs (Uniform Resource Locators) change in the move, so redirects
 for the ones that receive real traffic are part of the SEO (Search Engine Optimisation) work.
+
+A Video is a title and a link pasted from YouTube. The address is reduced to YouTube's own identifier where
+the meta is stored, so a watch link, a `youtu.be` link, an embed, a Short or a live stream all name the same
+recording, and a timestamp or tracking parameter is discarded; the editing screen shows the canonical watch
+address back, so the Site Owner can see which recording the site understood. An address with no recording in
+it is refused at the screen, and the admin list prints each Video's identifier as a link to it. Its own URL
+redirects to the gallery for the same reason a Document's does, and the gallery is newest first — the
+competition a parent came to watch is the one that just happened, so there is no order to maintain.
+
+Nothing about embeds is asked of the Site Owner, and nothing is loaded from YouTube until a visitor presses
+play: the gallery renders the recording's own thumbnail under a play control, and `resources/js/app.js`
+swaps in the player in place, on the no-cookie host. Without JavaScript that control is an ordinary link to
+YouTube rather than a dead button.
 
 One *page* is created in code too. `base-schedule.php` publishes the Schedule at `/edzeseink` on the first
 request after a deploy that has never had one, and holds it at that slug, because the URL (Uniform Resource
