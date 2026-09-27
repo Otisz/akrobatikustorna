@@ -83,7 +83,15 @@ would be discarded by the next deploy. Core *minor* releases still auto-update, 
 releases; the pin is then raised to match.
 
 Whether a plugin is *active* is a database fact rather than a file, so `docker/php/entrypoint.sh` activates
-the ones the site depends on — currently Advanced Custom Fields — on first container start.
+the ones the site depends on on first container start.
+
+| Plugin | Supplies |
+| --- | --- |
+| Advanced Custom Fields (free) | The structured fields each content type is built from |
+| Slim SEO | The title and description a search engine shows, and a redirection module |
+
+The plugin list is deliberately short: each addition is a thing the Site Owner can trip over and the
+developer must maintain, so anything beyond it needs a reason written down.
 
 ## Content types
 
@@ -126,8 +134,8 @@ list prints each Document's file name, which is where either case becomes visibl
 
 The club's own Documents are **not** written in code, unlike the Departments and the Schedule: their files
 are real and are transferred by hand into the media library. The outgoing site's copies are on the `main`
-branch under `public/documents/`. Their URLs (Uniform Resource Locators) change in the move, so redirects
-for the ones that receive real traffic are part of the SEO (Search Engine Optimisation) work.
+branch under `public/documents/`. Their URLs (Uniform Resource Locators) change in the move, and the outgoing
+addresses are carried across by name — see **Search engines** below.
 
 A Video is a title and a link pasted from YouTube. The address is reduced to YouTube's own identifier where
 the meta is stored, so a watch link, a `youtu.be` link, an embed, a Short or a live stream all name the same
@@ -194,6 +202,39 @@ what Google's Send dialog offers by default; the shortened `forms.gle` link is a
 resolve, and stays an ordinary link. Pasting the address rather than typing it makes the editor turn it into
 an embed block, which it then shows as "could not be embedded" — the published page carries the form either
 way, and both routes are covered in `tests/specs/contact-and-apply.spec.ts`.
+
+## Search engines
+
+**Every public address the outgoing site published resolves on this one.** That is what the rebuild spends
+its URL (Uniform Resource Locator) decisions on: the permalink structure in `base-permalinks.php`, a rewrite
+slug per content type, and the structural pages held at their slugs by `base-pages.php`. The list of those
+addresses is `tests/support/preserved-urls.ts` — the whole of `routes/web.php` on the `main` branch, named by
+the route name Laravel gave each one, which is what a reviewer checks against the outgoing site.
+`tests/specs/url-parity.spec.ts` asks for every one of them, signed out and at the address as published, and
+is the cheapest guard the SEO (Search Engine Optimisation) work has. The two addresses that take a slug,
+`/hirek/{slug}` and `/edzok/{slug}`, cannot be listed beside the rest — there is no address until something
+is published at one — so the same spec publishes a Post and a Trainer and asks for theirs.
+
+Titles and descriptions come from **Slim SEO**, chosen because it speaks Hungarian — the better-built
+alternative, The SEO Framework, has no Hungarian translation at all, and these are the two fields the Site
+Owner reads every time they publish a page. See
+`docs/adr/0007-the-seo-plugin-is-chosen-for-speaking-hungarian.md`. Its own translation is installed by
+`entrypoint.sh` beside the core one. Nothing needs configuring: the plugin writes a title, a description, a
+canonical address and the social tags from the page itself, and its settings screen asks for `manage_options`,
+so the Site Owner never sees it. What they do see is a panel below the page they are writing, where a title
+and a description can be typed for that page alone.
+
+`base-seo.php` narrows the plugin to the content that has a page of its own. A Document, Video, Department and
+Recommended Page each redirect from their own address to their listing, so a search engine never indexes one
+on its own: those get no SEO fields, no column in their admin list, and no entry in the sitemap. Their
+*listings* stay in it, and they are the site's substance.
+
+The club's form **files** are the one address the rebuild could not preserve, because the files moved into
+the media library. `base-document-redirects.php` catches a request under the outgoing site's `/documents/`
+path and sends it, permanently, to whichever file a published Document now offers under that name; a form
+nobody transferred 404s, which is the club retiring it. There is no list of redirects, and the SEO plugin's
+own redirection module is left for the addresses nobody foresaw — see
+`docs/adr/0008-moved-document-files-redirect-by-name-rather-than-by-a-list.md`.
 
 ## The theme
 

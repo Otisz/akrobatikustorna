@@ -56,17 +56,27 @@ if ! wp user get "${WP_OWNER_USER:-owner}" --allow-root >/dev/null 2>&1; then
 fi
 
 # Advanced Custom Fields supplies the structured fields the content types are
-# built from. Composer installs it, but whether a plugin is active is a database
-# fact, so a fresh clone has to be switched on here.
-if ! wp plugin is-active advanced-custom-fields --allow-root >/dev/null 2>&1; then
-  wp plugin activate advanced-custom-fields --allow-root
-fi
+# built from, and Slim SEO the title and description a search engine shows.
+# Composer installs both, but whether a plugin is active is a database fact, so
+# a fresh clone has to switch them on here.
+for plugin in advanced-custom-fields slim-seo; do
+  if ! wp plugin is-active "$plugin" --allow-root >/dev/null 2>&1; then
+    wp plugin activate "$plugin" --allow-root
+  fi
+done
 
 # The Site Owner works in Hungarian, so a missing translation is a failed start,
 # not a site that quietly comes up in English. Skipped once installed, so a
 # restart without network still works.
 if ! wp language core is-installed hu_HU --allow-root >/dev/null 2>&1; then
   wp language core install hu_HU --allow-root
+fi
+
+# Core's translation does not cover a plugin's own screens, and the SEO fields
+# sit beside the content the Site Owner is writing — this is the one plugin
+# whose words they read every time they publish a page.
+if ! wp language plugin is-installed slim-seo hu_HU --allow-root >/dev/null 2>&1; then
+  wp language plugin install slim-seo hu_HU --allow-root
 fi
 
 exec "$@"
