@@ -19,26 +19,6 @@ declare global {
 export async function openNewOfType(page: Page, postType: string): Promise<void> {
   await openAdmin(page, `post-new.php?post_type=${postType}`);
   await page.locator('#title').waitFor();
-  await stopBackgroundSaves(page);
-}
-
-/**
- * Stops WordPress saving the draft in the background while the screen is open.
- *
- * Not a convenience: core marks the publish button `disabled` with a class
- * rather than the attribute for as long as one of those saves is in flight, and
- * discards any click that lands meanwhile — see `wp-admin/js/post.js`. A browser
- * checks the attribute, so the click looks to a test like it landed, and the
- * test then waits out its timeout for a save nobody asked for. Typing a title is
- * itself what schedules the first of those saves, 200ms after the field loses
- * focus, which is exactly where a test is by then.
- *
- * `suspend()` is WordPress's own, and what core itself calls when another editor
- * takes the post over. Nothing the Site Owner can do changes: the saving this
- * stops is a timer, and every test here saves by pressing the button.
- */
-async function stopBackgroundSaves(page: Page): Promise<void> {
-  await page.evaluate(() => window.wp?.autosave?.server?.suspend?.());
 }
 
 export async function setTitle(page: Page, title: string): Promise<void> {
@@ -65,8 +45,16 @@ export async function save(page: Page): Promise<void> {
 export async function submit(page: Page): Promise<void> {
   const publish = page.locator('#publish');
 
-  // Background saving is stopped when the screen opens, so this should never
-  // wait. It stands as the guard for anything else that disables the button.
+  // Core disables the publish button with a class rather than the attribute
+  // while it is saving the draft in the background, and discards any click that
+  // lands meanwhile — see `wp-admin/js/post.js`, and ADR-0004 for why the suite
+  // stops that timer rather than waiting it out. Stopped here rather than when
+  // the screen opens, because a test reaching an already-published post opens it
+  // with an ordinary visit and never passes through `openNewOfType`.
+  //
+  // Suspending does not call back a save already in flight, so the button is
+  // waited for afterwards; no further save can start in the gap.
+  await page.evaluate(() => window.wp?.autosave?.server?.suspend?.());
   await expect(publish).not.toHaveClass(/(^|\s)disabled(\s|$)/, { timeout: 20_000 });
   await publish.click();
 }

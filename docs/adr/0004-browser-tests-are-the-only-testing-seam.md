@@ -24,6 +24,18 @@ confidence, because it would test WordPress rather than the site.
   same address the developer's browser uses.
 - **Selectors are WordPress's own class names and element ids, never button labels.** The admin is Hungarian,
   and labels move with every translation update.
+- **Saving on the classic editing screen suspends WordPress's background draft saving first**, through
+  core's own `wp.autosave.server.suspend()` — what core itself calls when another editor takes a post over.
+  Core marks the publish button `disabled` with a class rather than the attribute for as long as one of
+  those saves is in flight, and discards any click that lands meanwhile; a browser checks the attribute, so
+  the click looks to a test like it landed, and the test then waits out its timeout for a save nobody asked
+  for. Typing a title is itself what schedules the first of those saves, 200ms after the field loses focus,
+  which is exactly where a test is by then — so left alone this fails around half the time under a parallel
+  run, and never on its own. It is suspended at the save rather than when the screen opens, because a test
+  returning to a post it has already published opens it with an ordinary visit. This is the one place the
+  suite changes the screen rather than driving it: what it stops is a timer, and every test here saves by
+  pressing the button. A Site Owner can lose a click the same way, but that is core's behaviour on every
+  WordPress site rather than anything this project decides, and it is not what these tests are for.
 - **Role restrictions are asserted as HTTP (HyperText Transfer Protocol) 403 responses**, not as refusal
   text, for the same reason. Reading a screen such as `plugins.php` suggests otherwise, because its own
   refusal omits a status code — but `wp-admin/menu.php` refuses first, with an explicit 403, for every screen
