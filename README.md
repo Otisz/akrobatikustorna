@@ -89,6 +89,7 @@ the ones the site depends on on first container start.
 | --- | --- |
 | Advanced Custom Fields (free) | The structured fields each content type is built from |
 | Slim SEO | The title and description a search engine shows, and a redirection module |
+| Cookie Notice | The consent a visitor gives before analytics loads |
 
 The plugin list is deliberately short: each addition is a thing the Site Owner can trip over and the
 developer must maintain, so anything beyond it needs a reason written down.
@@ -235,6 +236,28 @@ path and sends it, permanently, to whichever file a published Document now offer
 nobody transferred 404s, which is the club retiring it. There is no list of redirects, and the SEO plugin's
 own redirection module is left for the addresses nobody foresaw — see
 `docs/adr/0008-moved-document-files-redirect-by-name-rather-than-by-a-list.md`.
+
+## Analytics
+
+The club measures its site with the **same PostHog property the outgoing site used**, so that the figures
+either side of the cutover can be compared — which is what makes it possible to tell whether the rebuild
+helped. `POSTHOG_KEY` and `POSTHOG_HOST` come from `.env`; without both, nothing is printed at all.
+
+**A visitor is asked first, and declining means something.** `base-analytics.php` prints the PostHog snippet
+only once **Cookie Notice** reports that the visitor agreed, so a visitor who has not answered and a visitor
+who declined are served a page with no analytics code in it and make no analytics request. Deciding this on
+the server rather than trusting the plugin's in-browser script blocker is the whole point — see
+`docs/adr/0009-analytics-is-printed-by-the-server-only-after-consent.md`. The price is that agreeing reloads
+the page, because the answer is acted on by the next response.
+
+What the banner asks and how it behaves is filtered over the plugin's own settings in `base-analytics.php`,
+not stored in the database, so it survives a fresh install and needs nobody to open a settings screen. The
+footer carries a *Süti beállítások* link that reopens the banner, shown once an answer has been given.
+
+Locally both values fall back to a property at `analytics.invalid`, which resolves nowhere, so the gate can be
+exercised without a developer's clicks landing in the club's figures.
+`tests/specs/consent-analytics.spec.ts` watches the network for that host: nothing before consent, nothing
+after a refusal, and the request on the wire once a visitor agrees.
 
 ## The theme
 

@@ -88,6 +88,29 @@ Config::define('WP_DEFAULT_THEME', 'twentytwentyfive');
 Config::define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
 
 /**
+ * Analytics
+ *
+ * The club's existing PostHog property, which `base-analytics.php` prints only to
+ * a visitor who has agreed to it. It belongs to an environment rather than to the
+ * code, so it is read from there; either value unset means no analytics at all,
+ * because an environment is never guessed into reporting somewhere.
+ *
+ * Development falls back to a property nothing answers for: `.invalid` is
+ * reserved by RFC (Request For Comments) 2606 and resolves nowhere, so the
+ * consent gate can be exercised — by hand and by `consent-analytics.spec.ts`,
+ * which matches requests against that host by name — without a developer's clicks
+ * landing in the club's figures. Either can still be set in `.env` to point a
+ * local site at a real property. See
+ * `docs/adr/0009-analytics-is-printed-by-the-server-only-after-consent.md`.
+ */
+$analytics_fallback = WP_ENV === 'development'
+    ? ['key' => 'phc_development', 'host' => 'https://analytics.invalid']
+    : ['key' => '', 'host' => ''];
+
+Config::define('BASE_POSTHOG_KEY', env('POSTHOG_KEY') ?: $analytics_fallback['key']);
+Config::define('BASE_POSTHOG_HOST', env('POSTHOG_HOST') ?: $analytics_fallback['host']);
+
+/**
  * Debugging
  */
 Config::define('WP_DEBUG_DISPLAY', false);

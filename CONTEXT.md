@@ -65,3 +65,12 @@ _Avoid_: signup, registration, enrolment form
 **Video** (`videó`, URL `/galeria`):
 A YouTube recording embedded in the gallery.
 _Avoid_: gallery item, media
+
+**Consent** (`hozzájárulás`):
+A visitor's answer to whether the site may measure their visit, given or declined in the banner and changeable
+afterwards. Nothing is measured until it is given.
+_Avoid_: cookie banner, GDPR notice, opt-in
+
+**Analytics** (`látogatottsági mérés`):
+What the club learns about how the site is used, from the same PostHog property the outgoing site reported to.
+_Avoid_: tracking, statistics, metrics

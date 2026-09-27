@@ -68,8 +68,16 @@ $contact = Base\contact_link();
             <?php endif; ?>
         </div>
 
-        <p class="mt-14 border-t border-white/15 pt-6 text-sm text-line">
-            <?php echo esc_html(sprintf('© %s %s', wp_date('Y'), get_bloginfo('name'))); ?>
+        <p class="mt-14 flex flex-wrap items-baseline gap-x-6 gap-y-2 border-t border-white/15 pt-6 text-sm text-line">
+            <span><?php echo esc_html(sprintf('© %s %s', wp_date('Y'), get_bloginfo('name'))); ?></span>
+
+            <?php if (base_analytics_answered()) : ?>
+                <?php // Reopens the consent banner: the class is what the consent
+                      // plugin's own script listens on, so there is no address here. ?>
+                <a class="cn-revoke-cookie cursor-pointer text-line no-underline hover:text-gold" href="#">
+                    <?php esc_html_e('Süti beállítások', 'base'); ?>
+                </a>
+            <?php endif; ?>
         </p>
     </div>
 </footer>
