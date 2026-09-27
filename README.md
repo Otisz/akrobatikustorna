@@ -74,7 +74,20 @@ control.
 | `web/app/` | Themes, plugins, uploads (`wp-content` by another name) |
 | `web/app/themes/base/` | The club's theme |
 | `docker/` | Container definitions for the local environment |
+| `deploy.sh` | Everything a deploy does once the branch has been pulled |
 | `tests/` | The browser test suite |
+
+## Deploying
+
+Hosting is **Laravel Forge**, as a new site on the club's existing VPS (Virtual Private Server). A deploy is
+Forge pulling the `wordpress` branch and running `deploy.sh`, which installs the pinned dependencies with
+`--no-dev`, builds the theme's assets, and settles what lives in the database rather than in the checkout:
+the active plugins, the Hungarian translation, a core schema change, the rewrite rules.
+
+Setting the site up — the web directory, the environment file, the one-off install, the backups and the
+cutover — is `docs/deployment.md`. Deploys update one directory in place rather than building into a
+release, which is what keeps `web/app/uploads` out of harm's way; see
+`docs/adr/0011-deploys-are-in-place-so-the-uploads-directory-is-left-alone.md` before changing that.
 
 ## Dependencies
 
@@ -84,7 +97,7 @@ would be discarded by the next deploy. Core *minor* releases still auto-update, 
 releases; the pin is then raised to match.
 
 Whether a plugin is *active* is a database fact rather than a file, so `docker/php/entrypoint.sh` activates
-the ones the site depends on on first container start.
+the ones the site depends on on first container start, and `deploy.sh` does the same on a deployed site.
 
 | Plugin | Supplies |
 | --- | --- |
@@ -294,4 +307,5 @@ that `editor.css` carries into the block editor, so the Site Owner composes the 
 will read.
 
 Built assets live in `web/app/themes/base/build/` and are **not** in version control, so every deploy must
-run the build step before the site is served.
+run the build step before the site is served — `deploy.sh` does, between the dependency install and
+anything that touches the database.

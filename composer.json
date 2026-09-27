@@ -30,6 +30,7 @@
     "roots/wordpress": "6.8.2",
     "roots/wp-config": "^1.0",
     "vlucas/phpdotenv": "^5.6",
+    "wp-cli/wp-cli-bundle": "^2.11",
     "wpackagist-plugin/advanced-custom-fields": "6.5.0",
     "wpackagist-plugin/cookie-notice": "3.1.12",
     "wpackagist-plugin/slim-seo": "4.10.1",
@@ -54,8 +55,5 @@
     "post-root-package-install": [
       "php -r \"copy('.env.example', '.env');\""
     ]
-  },
-  "require-dev": {
-    "wp-cli/wp-cli-bundle": "^2.11"
   }
 }

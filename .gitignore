@@ -15,7 +15,7 @@
 *.log
 .DS_Store
 /node_modules/
-/web/app/themes/base/build/
+/web/app/themes/base/build*/
 /tests/node_modules/
 /tests/playwright/
 /tests/playwright-report/
