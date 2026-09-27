@@ -88,6 +88,41 @@ Config::define('WP_DEFAULT_THEME', 'twentytwentyfive');
 Config::define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
 
 /**
+ * Mail
+ *
+ * The transport WP Mail SMTP carries the site's email over, which it reads from
+ * these constants in preference to anything on its settings screen — so the
+ * mailbox password stays in `.env` and a fresh install needs no setup wizard. Why
+ * SMTP (Simple Mail Transfer Protocol) at all, and what `base-mail.php` settles
+ * instead of this file, is in
+ * `docs/adr/0010-mail-goes-over-smtp-because-a-lost-password-reset-is-a-lockout.md`.
+ *
+ * Defined only where a host was given, so an environment with none is left
+ * unconfigured and saying so in the admin rather than pointed at a host guessed
+ * here.
+ */
+if (env('SMTP_HOST')) {
+    Config::define('WPMS_ON', true);
+    Config::define('WPMS_MAILER', 'smtp');
+    Config::define('WPMS_SMTP_HOST', env('SMTP_HOST'));
+    Config::define('WPMS_SMTP_PORT', (int) (env('SMTP_PORT') ?: 587));
+    Config::define('WPMS_SSL', env('SMTP_ENCRYPTION') ?: 'tls');
+
+    // Authentication is what a real mailbox needs and what Mailpit has no use for,
+    // so it follows whether a user was given rather than being asserted here.
+    Config::define('WPMS_SMTP_AUTH', (bool) env('SMTP_USER'));
+    Config::define('WPMS_SMTP_USER', env('SMTP_USER') ?: '');
+    Config::define('WPMS_SMTP_PASS', env('SMTP_PASSWORD') ?: '');
+
+    // Who the mail comes from, forced over core's own `wordpress@` on this host:
+    // Gmail refuses to send as any address but the account that authenticated. The
+    // return path follows, so a bounce lands somewhere the club reads.
+    Config::define('WPMS_MAIL_FROM', env('MAIL_FROM'));
+    Config::define('WPMS_MAIL_FROM_FORCE', true);
+    Config::define('WPMS_SET_RETURN_PATH', true);
+}
+
+/**
  * Analytics
  *
  * The club's existing PostHog property, which `base-analytics.php` prints only to

@@ -32,6 +32,16 @@ services:
       - .:/var/www/html
       - node-modules:/var/www/html/web/app/themes/base/node_modules
 
+  mailpit:
+    # Stands in for the club's mailbox locally: an SMTP (Simple Mail Transfer
+    # Protocol) server that accepts everything, delivers nothing, and shows what
+    # was sent at http://localhost:8025. The PHP container has no sendmail binary,
+    # so mail that arrives here is mail that went through SMTP rather than mail
+    # that fell back to something else.
+    image: axllent/mailpit:v1.27
+    ports:
+      - "8025:8025"
+
   playwright:
     # End-to-end browser tests, the project's only testing seam. Kept out of
     # `docker compose up` by a profile, so tests run when asked for.
@@ -47,6 +57,7 @@ services:
       - playwright-node-modules:/var/www/html/tests/node_modules
     depends_on:
       - nginx
+      - mailpit
 
   mysql:
     # Matches production, so problems surface locally rather than on the VPS (Virtual Private Server).

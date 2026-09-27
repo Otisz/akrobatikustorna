@@ -32,3 +32,11 @@ whose field group never loads gives the Site Owner no way to enter the field. Lo
 `docker/php/entrypoint.sh` activates it on container start; the deploy script needs the same step
 (`wp plugin activate advanced-custom-fields`, guarded by `wp plugin is-active` so it is idempotent). The list
 grows as the SEO, redirection, SMTP (Simple Mail Transfer Protocol) and cookie-consent plugins arrive.
+
+**From 15 (SMTP and password reset):** the deployed `.env` must carry `SMTP_HOST`, `SMTP_PORT`,
+`SMTP_ENCRYPTION`, `SMTP_USER`, `SMTP_PASSWORD` and `MAIL_FROM` for the club's Gmail account —
+`smtp.gmail.com`, port 587, `tls`, with an app password rather than the account's own. Without `SMTP_HOST` the
+site falls back to the server's own mail transport, which is the lockout ticket 15 exists to avoid, and nothing
+visible says so outside the admin. `wp-mail-smtp` joins the plugins the deploy script activates. Ticket 15's
+last acceptance criterion is left for this one: request a password reset from the deployed login screen, confirm
+it arrives in the club's mailbox, and tick it there.

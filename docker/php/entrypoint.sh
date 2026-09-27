@@ -26,6 +26,15 @@ set +a
 # Unconditional, so that raising a pin in composer.json takes effect on restart.
 composer install --no-interaction --no-progress
 
+# A clone whose .env predates the mail variables sends nothing at all, and the
+# failure is otherwise silent until somebody wonders why a password reset never
+# came. `.env` is never rewritten here — it may hold real credentials — so this
+# says what is missing and leaves it to the developer.
+if [ -z "${SMTP_HOST:-}" ]; then
+  echo "WARNING: SMTP_HOST is unset in .env, so the site will not send mail." >&2
+  echo "         Copy the SMTP_ and MAIL_FROM lines from .env.example." >&2
+fi
+
 # Uploads are excluded from version control, so the directory may not exist yet.
 mkdir -p web/app/uploads
 chown -R www-data:www-data web/app/uploads
@@ -56,11 +65,11 @@ if ! wp user get "${WP_OWNER_USER:-owner}" --allow-root >/dev/null 2>&1; then
 fi
 
 # Advanced Custom Fields supplies the structured fields the content types are
-# built from, Slim SEO the title and description a search engine shows, and
-# Cookie Notice the consent a visitor gives before analytics loads. Composer
-# installs all three, but whether a plugin is active is a database fact, so a
-# fresh clone has to switch them on here.
-for plugin in advanced-custom-fields slim-seo cookie-notice; do
+# built from, Slim SEO the title and description a search engine shows, Cookie
+# Notice the consent a visitor gives before analytics loads, and WP Mail SMTP the
+# transport that carries a password reset. Composer installs them, but whether a
+# plugin is active is a database fact, so a fresh clone has to switch them on here.
+for plugin in advanced-custom-fields slim-seo cookie-notice wp-mail-smtp; do
   if ! wp plugin is-active "$plugin" --allow-root >/dev/null 2>&1; then
     wp plugin activate "$plugin" --allow-root
   fi

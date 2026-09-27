@@ -24,6 +24,7 @@ docker compose run --rm --no-deps node npm run build
 
 - Site: <http://localhost:8080>
 - Admin: <http://localhost:8080/wp/wp-admin> — `admin` / `admin`
+- Mail: <http://localhost:8025> — everything the site sends, delivered nowhere
 
 The admin also holds an `owner` / `owner` account with the **Editor** role, which is the Site Owner's own
 access: it can edit every kind of content but cannot reach templates, plugins or site configuration. Use it
@@ -90,6 +91,7 @@ the ones the site depends on on first container start.
 | Advanced Custom Fields (free) | The structured fields each content type is built from |
 | Slim SEO | The title and description a search engine shows, and a redirection module |
 | Cookie Notice | The consent a visitor gives before analytics loads |
+| WP Mail SMTP | The transport that carries a password reset to the Site Owner |
 
 The plugin list is deliberately short: each addition is a thing the Site Owner can trip over and the
 developer must maintain, so anything beyond it needs a reason written down.
@@ -236,6 +238,26 @@ path and sends it, permanently, to whichever file a published Document now offer
 nobody transferred 404s, which is the club retiring it. There is no list of redirects, and the SEO plugin's
 own redirection module is left for the addresses nobody foresaw — see
 `docs/adr/0008-moved-document-files-redirect-by-name-rather-than-by-a-list.md`.
+
+## Mail
+
+**The site's mail goes out over SMTP (Simple Mail Transfer Protocol) through the club's own Gmail mailbox**,
+because the one email this site really sends is a password reset and the Site Owner has no other way back in.
+The server's own transport fails silently at both ends. See
+`docs/adr/0010-mail-goes-over-smtp-because-a-lost-password-reset-is-a-lockout.md`.
+
+`SMTP_HOST`, `SMTP_PORT`, `SMTP_ENCRYPTION`, `SMTP_USER`, `SMTP_PASSWORD` and `MAIL_FROM` come from `.env`;
+the password is a Gmail app password and is set by hand on each deployed environment. **WP Mail SMTP** reads
+them as constants defined in `config/application.php` in preference to its own settings screen, so the
+transport survives a fresh install with nobody opening a setup wizard. What the mail looks like — the club as
+the sender, under the site's own title — is filtered over the plugin's options in `base-mail.php`, the way
+`base-analytics.php` configures the consent banner.
+
+Locally the mailbox is **Mailpit**, a `compose.yaml` service that accepts everything, delivers nothing and
+shows what was sent at <http://localhost:8025>. The PHP container has no sendmail binary, so mail that arrives
+there went over SMTP rather than falling back to something else.
+`tests/specs/password-reset.spec.ts` walks the whole journey: ask for a reset at the login screen, read the
+email out of Mailpit, follow the link, sign in with the new password.
 
 ## Analytics
 
