@@ -205,6 +205,9 @@ wrong site. Anything the Site Owner typed on staging is gone afterwards, which i
 
 ## Cutover and rollback
 
+The walkthrough the Site Owner is put through before any of this, and what each step below is waiting on, is
+[handover.md](handover.md).
+
 The outgoing Laravel site stays exactly as it is — its own Forge site, its own database, its own directory —
 until this one is proven. Nothing in this setup touches it.
 
@@ -215,7 +218,9 @@ until this one is proven. Nothing in this setup touches it.
    to an address of its own (`regi.akrobatikustorna.hu`, say) so it stays deployable and reachable for
    checking; move `akrobatikustorna.hu` onto this site; set `WP_HOME` to it, run
    `vendor/bin/wp search-replace <temporary-address> https://akrobatikustorna.hu --skip-columns=guid` so the
-   content's own links follow; issue the certificate.
+   content's own links follow; issue the certificate. Then `bash verify-urls.sh https://akrobatikustorna.hu`,
+   which asks for every address the outgoing site published and fails if one of them stopped resolving — the
+   cutover is not finished until it passes.
 4. Leave the Laravel site in place for roughly two weeks, deployable at its own address. Rolling back is
    moving the domain back and setting `WP_HOME` back with it — nothing about this site is deleted.
 5. Archive the Laravel branch.
@@ -224,5 +229,6 @@ until this one is proven. Nothing in this setup touches it.
 
 - Request a password reset from `/wp/wp-login.php` and confirm it arrives in the club's mailbox. This is the
   one thing local Mailpit cannot prove: that Gmail accepts these credentials from this server.
-- Ask for a few of the preserved addresses from `tests/support/preserved-urls.ts` and confirm they resolve.
+- `bash verify-urls.sh <the site's address>`, which asks for every preserved address rather than a few of
+  them. On staging, `STAGING_USER` and `STAGING_PASSWORD` in the environment, so it can get past the password.
 - Check that the site is styled — an unstyled page means the theme's asset build did not run.

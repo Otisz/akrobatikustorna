@@ -75,6 +75,7 @@ control.
 | `web/app/themes/base/` | The club's theme |
 | `docker/` | Container definitions for the local environment |
 | `deploy.sh` | Everything a deploy does once the branch has been pulled |
+| `verify-urls.sh` | Asks a deployed site for every address the outgoing site published |
 | `tests/` | The browser test suite |
 
 ## Deploying
@@ -88,6 +89,11 @@ Setting the site up — the web directory, the environment file, the one-off ins
 cutover — is `docs/deployment.md`. Deploys update one directory in place rather than building into a
 release, which is what keeps `web/app/uploads` out of harm's way; see
 `docs/adr/0011-deploys-are-in-place-so-the-uploads-directory-is-left-alone.md` before changing that.
+
+Handing the site over — the walkthrough the Site Owner is put through on staging, the cutover, the rollback
+window and archiving the Laravel branch — is `docs/handover.md`. The guide they keep afterwards is
+`docs/site-owner-guide.hu.md`, written in Hungarian and against the admin's own Hungarian labels: it is the
+one document in this repository whose reader is not a developer.
 
 **Staging** is a second Forge site on the same server, on a subdomain, deploying the same branch through the
 same `deploy.sh` with `WP_ENV=staging` — so that the handover can be rehearsed on a copy of the club's real
