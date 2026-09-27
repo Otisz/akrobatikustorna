@@ -74,3 +74,10 @@ _Avoid_: cookie banner, GDPR notice, opt-in
 **Analytics** (`látogatottsági mérés`):
 What the club learns about how the site is used, from the same PostHog property the outgoing site reported to.
 _Avoid_: tracking, statistics, metrics
+
+**Staging** (`próbaoldal`):
+A second deployed site on a subdomain of the same server, holding a copy of production's content, which the
+Site Owner practises on before the handover. Reached only with the one shared password it is shut behind, and
+kept out of every search engine's index. Its counterpart is **production** — the live site, the one visitors
+read.
+_Avoid_: test site, dev site, sandbox, preview

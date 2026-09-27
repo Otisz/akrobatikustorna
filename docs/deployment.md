@@ -132,6 +132,77 @@ depend on WordPress being able to run. Daily, to off-server storage, before the 
 A deploy can be rolled back by reverting the branch; the database cannot. Applying a core schema change is
 one-way, which is what these backups are for.
 
+## Staging
+
+A second Forge site on the same server, deploying the same `wordpress` branch through the same `deploy.sh`,
+holding a copy of production's content. It exists so the handover can be rehearsed — the Site Owner editing
+the real pages, with the real media, without a mistake landing on the live site or in a search engine's index.
+
+Why the password is a must-use plugin in this repository rather than nginx configuration, and what that does
+and does not cover, is in
+[ADR-0012](adr/0012-staging-is-shut-in-php-so-the-gate-deploys-with-the-site.md).
+
+### Creating it
+
+Everything above, with four differences:
+
+1. **Domain:** `proba.akrobatikustorna.hu`, a subdomain of the club's own, with an A record pointing at this
+   server. A subdomain rather than a separate address because the certificate, the cookies and the mail all
+   behave here as they will on the live domain.
+2. **Database:** its own, never production's. `staging-refresh.sh` refuses to run if the two `.env` files name
+   the same one, because refreshing staging empties the database it is pointed at.
+3. **`.env`:** production's, with `WP_ENV=staging`, staging's own `WP_HOME`, staging's own database, **no
+   `POSTHOG_KEY` or `POSTHOG_HOST`** — a rehearsal does not belong in the club's figures — and:
+
+   ```dotenv
+   WP_ENV=staging
+   WP_HOME=https://proba.akrobatikustorna.hu
+   WP_SITEURL=${WP_HOME}/wp
+
+   # The password staging is shut behind, shared by the Site Owner and the
+   # developer. Not production's password, and not one of anybody's own.
+   STAGING_USER=proba
+   STAGING_PASSWORD=...
+   ```
+
+   The salts are generated fresh, as production's were: sharing them would mean a session on one site being
+   accepted by the other. The SMTP (Simple Mail Transfer Protocol) block is copied as it is — a rehearsal in
+   which the password reset does not arrive rehearses nothing — so remember that mail sent from staging is
+   real mail to the club's real mailbox.
+
+   Without `STAGING_PASSWORD` the deploy fails, and the site answers 503 rather than serving the club's
+   content to anyone who asks. That is the guard working.
+4. **No `wp core install`.** Staging's content is a copy of production's, so the database arrives with the
+   next step rather than being installed empty. Until it has, `deploy.sh` says the database is not installed
+   and stops short of its database half — so a staging site that has been deployed but never refreshed has no
+   active plugins either. The refresh runs `deploy.sh` again at the end, which is where they are switched on.
+
+### Filling it with production's content
+
+Over SSH, from staging's directory, passing production's:
+
+```sh
+cd /home/forge/proba.akrobatikustorna.hu
+bash staging-refresh.sh /home/forge/akrobatikustorna.hu
+```
+
+It exports production's database, empties staging's and imports it, rewrites production's addresses to
+staging's, copies the media library with `rsync`, and runs `deploy.sh` to settle the plugins and the rewrite
+rules. Production is only ever read. It asks for confirmation first, and refuses outright if the site it is
+run from is not staging.
+
+Run it **before** a rehearsal rather than once at setup: practising against last month's content teaches the
+wrong site. Anything the Site Owner typed on staging is gone afterwards, which is what staging is for.
+
+### Checking it
+
+- Ask for `https://proba.akrobatikustorna.hu/` in a browser with no credentials: a password prompt, and no
+  page behind it.
+- Ask for it with the credentials: the club's own content, at staging's address, with its images loading.
+- `curl -sI https://proba.akrobatikustorna.hu/ -u proba:...` shows `X-Robots-Tag: noindex, nofollow`.
+- `curl -s https://proba.akrobatikustorna.hu/robots.txt -u proba:...` disallows everything.
+- Give the Site Owner the address and the password, and watch them reach it.
+
 ## Cutover and rollback
 
 The outgoing Laravel site stays exactly as it is — its own Forge site, its own database, its own directory —
@@ -139,7 +210,7 @@ until this one is proven. Nothing in this setup touches it.
 
 1. Build and populate this site at the temporary address Forge gives it, while the Laravel site keeps the
    domain. `WP_HOME` is that temporary address until step 3.
-2. Rehearse the handover on staging (ticket 17).
+2. Rehearse the handover on staging, above.
 3. Cut over. Two Forge sites cannot hold one domain, so the order matters: change the Laravel site's domain
    to an address of its own (`regi.akrobatikustorna.hu`, say) so it stays deployable and reachable for
    checking; move `akrobatikustorna.hu` onto this site; set `WP_HOME` to it, run

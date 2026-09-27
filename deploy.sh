@@ -40,6 +40,24 @@ if [ ! -f .env ]; then
   exit 1
 fi
 
+# One variable out of `.env`, unquoted. The shell does not read that file, and
+# sourcing it here would put a mailbox password and eight salts into this script's
+# environment for no reason.
+env_value() {
+  sed -n "s/^$1=//p" .env | tail -n 1 | sed "s/^['\"]//;s/['\"]\$//"
+}
+
+# Staging carries production's content on an address with no password on it unless
+# this is set, and `base-staging.php` answers 503 rather than serving the club's
+# pages when it is missing. Saying so here is the difference between a deploy that
+# failed for a stated reason and a site nobody can reach for an unstated one.
+if [ "$(env_value WP_ENV)" = "staging" ] && [ -z "$(env_value STAGING_PASSWORD)" ]; then
+  echo "ERROR: this is the staging site and STAGING_PASSWORD is unset in .env, so" >&2
+  echo "       the site would refuse every request. Set it and deploy again." >&2
+  echo "       See the staging section of docs/deployment.md." >&2
+  exit 1
+fi
+
 # PHP dependencies, WordPress core and the plugins among them, all pinned.
 composer install --no-dev --no-interaction --no-progress --prefer-dist --optimize-autoloader
 

@@ -89,6 +89,13 @@ cutover — is `docs/deployment.md`. Deploys update one directory in place rathe
 release, which is what keeps `web/app/uploads` out of harm's way; see
 `docs/adr/0011-deploys-are-in-place-so-the-uploads-directory-is-left-alone.md` before changing that.
 
+**Staging** is a second Forge site on the same server, on a subdomain, deploying the same branch through the
+same `deploy.sh` with `WP_ENV=staging` — so that the handover can be rehearsed on a copy of the club's real
+content. What that environment changes is the whole of `config/environments/staging.php` and
+`web/app/mu-plugins/base-staging.php`: a password in front of every request PHP answers, and indexing refused
+four ways. `staging-refresh.sh` is how it is filled from production. See
+`docs/adr/0012-staging-is-shut-in-php-so-the-gate-deploys-with-the-site.md`.
+
 ## Dependencies
 
 WordPress core and every plugin are pinned to explicit versions in `composer.json` and updated by pull
