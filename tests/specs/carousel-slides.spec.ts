@@ -2,13 +2,12 @@ import { test, expect, type Page } from '@playwright/test';
 import {
   openNewSlide,
   publishSlide,
-  saveSlide,
   setCaption,
   setImage,
   setLink,
   setOrder,
-  trashSlide,
 } from '../support/slide-editor';
+import { save, trash } from '../support/classic-editor';
 import { asVisitor } from '../support/visitor';
 
 /**
@@ -60,7 +59,7 @@ test('a Slide the Site Owner publishes appears in the home page carousel with it
     }
   } finally {
     await page.goto(editorUrl);
-    await trashSlide(page);
+    await trash(page);
   }
 });
 
@@ -83,7 +82,7 @@ test("the Site Owner can replace a Slide's image and see the new image on the ho
 
     await page.goto(editorUrl);
     await setImage(page, 'carousel-second');
-    await saveSlide(page);
+    await save(page);
 
     await page.goto('/');
 
@@ -93,7 +92,7 @@ test("the Site Owner can replace a Slide's image and see the new image on the ho
     await expect(image).not.toHaveAttribute('src', /carousel-first/);
   } finally {
     await page.goto(editorUrl);
-    await trashSlide(page);
+    await trash(page);
   }
 });
 
@@ -128,7 +127,7 @@ test('the Site Owner controls the order Slides appear in', async ({ page }) => {
   } finally {
     for (const url of editorUrls) {
       await page.goto(url);
-      await trashSlide(page);
+      await trash(page);
     }
   }
 });
@@ -150,6 +149,6 @@ test('a Slide saved without an image is kept out of the carousel', async ({ page
     await expect(carousel(page).filter({ hasText: caption })).toHaveCount(0);
   } finally {
     await page.goto(editorUrl);
-    await trashSlide(page);
+    await trash(page);
   }
 });

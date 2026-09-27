@@ -96,6 +96,7 @@ content outlives any theme and cannot be deactivated from the admin. See
 | `slide` | Diák | The home page carousel: image, caption, optional link, in the Site Owner's own order |
 | `trainer` | Edzők | The club's coaches at `/edzok`: portrait, role, biography, in the Site Owner's own order |
 | `department` | Szakosztályok | The club's Departments at `/szakosztalyok`: picture, description, in the Site Owner's own order |
+| `document` | Dokumentumok | The club's forms and regulations at `/dokumentumok`: a title and a file, listed by name |
 
 A Trainer's order is changed through Quick Edit in the admin list, which prints each Trainer's number in a
 column of its own: the block editor's sidebar no longer offers the order field, and the list is where one
@@ -111,6 +112,19 @@ deploy that has never had them, so that staging and production come up with them
 **initial content**, like the Schedule's times, never written again and skipped entirely where a Department
 already exists. The outgoing site held no Department descriptions at all, so this text is authored rather
 than transferred, and is the Site Owner's to correct.
+
+A Document is a title and a file in the media library, and nothing else — no order to maintain, because the
+listing is alphabetical and a form a parent came for is looked up by name. Its own URL redirects to the
+listing for the same reason a Department's does, and no preview is exempted from that redirect: unlike a
+Department's prose, a Document draft is a file the editing screen already names, sizes and links to. The
+file field is required, so a Document that downloads nothing cannot be published, and one whose file is
+deleted from the media library afterwards drops off the listing rather than linking to nothing. The admin
+list prints each Document's file name, which is where either case becomes visible.
+
+The club's own Documents are **not** written in code, unlike the Departments and the Schedule: their files
+are real and are transferred by hand into the media library. The outgoing site's copies are on the `main`
+branch under `public/documents/`. Their URLs (Uniform Resource Locators) change in the move, so redirects
+for the ones that receive real traffic are part of the SEO (Search Engine Optimisation) work.
 
 One *page* is created in code too. `base-schedule.php` publishes the Schedule at `/edzeseink` on the first
 request after a deploy that has never had one, and holds it at that slug, because the URL (Uniform Resource

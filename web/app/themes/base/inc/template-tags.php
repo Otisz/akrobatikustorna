@@ -133,3 +133,39 @@ function trainer_role(int $id): ?string
 
     return $role === '' ? null : $role;
 }
+
+/**
+ * The file a Document offers, described in the terms the listing prints: the
+ * address to download it from, the name to save it under, its extension and its
+ * size. Null
+ * where the Site Owner has yet to choose a file, or where the one they chose has
+ * since been deleted from the media library — a row that downloads nothing is
+ * worse than no row.
+ *
+ * Read from post meta rather than through the fields plugin, so the template
+ * renders whether or not that plugin is loaded.
+ *
+ * @return array{url: string, name: string, extension: string, size: ?string}|null
+ */
+function document_file(int $id): ?array
+{
+    $file = (int) get_post_meta($id, \BASE_DOCUMENT_FILE_META, true);
+    $url = $file > 0 ? wp_get_attachment_url($file) : false;
+    $path = $file > 0 ? get_attached_file($file) : false;
+
+    if (!is_string($url) || !is_string($path)) {
+        return null;
+    }
+
+    $name = wp_basename($path);
+    $bytes = is_file($path) ? filesize($path) : false;
+
+    return [
+        'url' => $url,
+        'name' => $name,
+        // What a parent recognises: whether this opens in a reader or in a word
+        // processor, before they click it.
+        'extension' => strtoupper(pathinfo($name, PATHINFO_EXTENSION)),
+        'size' => is_int($bytes) ? size_format($bytes) : null,
+    ];
+}
