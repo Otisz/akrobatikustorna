@@ -1,9 +1,19 @@
-<?php declare(strict_types=1); ?>
+<?php
+
+declare(strict_types=1);
+
+// The same details the Contact page carries, on every page: a parent who has
+// scrolled to the bottom is looking for a way to get in touch.
+$phones = base_contact_phones();
+$emails = base_contact_emails();
+$postal = base_contact_detail('base_contact_postal_address');
+$contact = Base\contact_link();
+?>
 </main>
 
 <footer class="mt-24 bg-ink text-paper">
     <div class="wrap py-16">
-        <div class="grid gap-12 md:grid-cols-[minmax(0,1fr)_auto]">
+        <div class="grid gap-12 md:grid-cols-[minmax(0,1fr)_auto_auto]">
             <div class="max-w-[38ch]">
                 <?php echo Base\logo('h-16 w-auto'); ?>
                 <p class="mt-5 font-display text-2xl leading-tight"><?php bloginfo('name'); ?></p>
@@ -11,6 +21,45 @@
                     <p class="mt-3 text-base text-line"><?php echo esc_html($tagline); ?></p>
                 <?php endif; ?>
             </div>
+
+            <?php if ($phones !== [] || $emails !== [] || $postal !== null) : ?>
+                <div data-contact class="max-w-[28ch] text-base">
+                    <p class="font-display text-lg font-semibold"><?php esc_html_e('Kapcsolat', 'base'); ?></p>
+
+                    <?php foreach ($phones as $phone) : ?>
+                        <p class="mt-3">
+                            <a class="text-paper no-underline hover:text-gold"
+                               href="tel:<?php echo esc_attr($phone['dialable']); ?>">
+                                <?php echo esc_html($phone['number']); ?>
+                            </a>
+                            <?php if ($phone['label'] !== null) : ?>
+                                <span class="block text-sm text-line"><?php echo esc_html($phone['label']); ?></span>
+                            <?php endif; ?>
+                        </p>
+                    <?php endforeach; ?>
+
+                    <?php foreach ($emails as $email) : ?>
+                        <p class="mt-3">
+                            <a class="break-all text-paper no-underline hover:text-gold"
+                               href="mailto:<?php echo esc_attr($email); ?>">
+                                <?php echo esc_html($email); ?>
+                            </a>
+                        </p>
+                    <?php endforeach; ?>
+
+                    <?php if ($postal !== null) : ?>
+                        <p class="mt-3 text-line"><?php echo esc_html($postal); ?></p>
+                    <?php endif; ?>
+
+                    <?php if ($contact !== null) : ?>
+                        <p class="mt-3">
+                            <a class="text-gold" href="<?php echo esc_url($contact); ?>">
+                                <?php esc_html_e('Kapcsolat és térkép', 'base'); ?>
+                            </a>
+                        </p>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
 
             <?php if (has_nav_menu('footer')) : ?>
                 <nav aria-label="<?php esc_attr_e('Lábléc menü', 'base'); ?>">

@@ -187,3 +187,16 @@
     font-size: var(--text-sm);
   }
 }
+
+/*
+ * A Google Form the Site Owner pasted the address of — see
+ * `web/app/mu-plugins/base-google-forms.php`. How tall the form is cannot be
+ * measured from this page, because the frame is another origin, so it is given a
+ * height long enough for most of one and scrolls within itself beyond that.
+ */
+.google-form {
+  display: block;
+  width: 100%;
+  border: 0;
+  background-color: var(--color-paper);
+}

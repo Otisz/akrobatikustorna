@@ -154,8 +154,13 @@ convention in `CONTEXT.md`.
 | Sponsor | custom post type — logo, name, URL | none |
 | Video | custom post type — YouTube identifier, title | `/galeria` |
 | Schedule | a page containing an editable table | `/edzeseink` |
-| Contact details | theme options, surfaced on a page | `/kapcsolat` |
+| Contact details | site options, surfaced on a page | `/kapcsolat` |
 | Apply | a page containing a Google Form embed | `/jelentkezes` |
+
+Contact details are WordPress's own site options on an admin screen gated on `edit_pages`, rather than
+theme options in the Customizer or fields in the fields plugin: the Customizer needs `edit_theme_options`,
+which the Editor role does not hold, and the free edition of the fields plugin has no options-page API
+(Application Programming Interface). See `docs/adr/0006-contact-details-are-site-options-on-an-editor-reachable-screen.md`.
 
 - The old per-Trainer hex colour field is **dropped**. If the new design wants a per-Trainer accent, it is a
   selection from a fixed palette, never a free colour picker.

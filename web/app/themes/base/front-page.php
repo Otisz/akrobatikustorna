@@ -8,8 +8,8 @@ get_header();
 $front = get_option('show_on_front') === 'page'
     ? get_post((int) get_option('page_on_front'))
     : null;
-$schedule = Base\page_link('edzeseink');
-$apply = Base\page_link('jelentkezes');
+$schedule = Base\page_link(BASE_SCHEDULE_SLUG);
+$apply = Base\page_link(BASE_APPLY_SLUG);
 $news_page = Base\news_link();
 // post_status is spelled out because WP_Query would otherwise add the signed-in
 // Site Owner's own private posts to what is a public listing.

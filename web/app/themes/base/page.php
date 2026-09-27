@@ -8,4 +8,13 @@
     <?php the_content(); ?>
 </div>
 
+<?php
+// The Contact page carries the club's details and its map beneath whatever the
+// Site Owner wrote. A template of its own would have to be named for the page's
+// Hungarian slug, which is a visitor-facing string rather than a name for code.
+if (Base\is_contact_page()) {
+    get_template_part('template-parts/contact');
+}
+?>
+
 <?php get_footer();

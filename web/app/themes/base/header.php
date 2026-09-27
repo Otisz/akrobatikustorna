@@ -25,7 +25,7 @@
             <?php Base\nav_menu('primary', 'nav-list'); ?>
         </nav>
 
-        <?php if ($apply = Base\page_link('jelentkezes')) : ?>
+        <?php if ($apply = Base\page_link(BASE_APPLY_SLUG)) : ?>
             <a class="btn btn-primary hidden shrink-0 lg:inline-flex" href="<?php echo esc_url($apply); ?>">
                 <?php esc_html_e('Jelentkezés', 'base'); ?>
             </a>
@@ -41,7 +41,7 @@
         <nav aria-label="<?php esc_attr_e('Főmenü', 'base'); ?>">
             <?php Base\nav_menu('primary', 'nav-list nav-list-stacked'); ?>
         </nav>
-        <?php if ($apply = Base\page_link('jelentkezes')) : ?>
+        <?php if ($apply = Base\page_link(BASE_APPLY_SLUG)) : ?>
             <a class="btn btn-primary mt-5 w-full" href="<?php echo esc_url($apply); ?>">
                 <?php esc_html_e('Jelentkezés', 'base'); ?>
             </a>

@@ -107,51 +107,15 @@ function base_schedule_cells(array $values, string $tag): string
 }
 
 /**
- * Creates the Schedule page once, on the first request after a deploy that has
- * never had one — adopting a page already published at the slug rather than
- * publishing a second one beside it.
- *
- * Deliberately not repeated: a Site Owner who deletes the Schedule has decided
- * something, and a page that grew back would be a haunting rather than a feature.
+ * Publishes the Schedule and holds it at its slug — see `base-pages.php` for what
+ * that means for a page the site's structure depends on. Late in `init`, so that
+ * nothing about the page is written before the content types exist.
  */
 add_action('init', static function (): void {
-    if (get_option(BASE_SCHEDULE_PAGE_OPTION) !== false) {
-        return;
-    }
-
-    $existing = get_page_by_path(BASE_SCHEDULE_SLUG);
-    $id = $existing instanceof WP_Post ? $existing->ID : 0;
-
-    if ($id === 0) {
-        $id = wp_insert_post([
-            'post_type' => 'page',
-            'post_status' => 'publish',
-            'post_title' => 'Edzéseink',
-            'post_name' => BASE_SCHEDULE_SLUG,
-            'post_content' => base_schedule_initial_content(),
-        ]);
-    } elseif (trim($existing->post_content) === '') {
-        // A page left empty by an earlier deploy is still a blank Schedule, so it
-        // gets the times too. Anything already written is left alone.
-        wp_update_post(['ID' => $id, 'post_content' => base_schedule_initial_content()]);
-    }
-
-    if (is_int($id) && $id > 0) {
-        update_option(BASE_SCHEDULE_PAGE_OPTION, $id, false);
-    }
+    base_structural_page(
+        BASE_SCHEDULE_PAGE_OPTION,
+        BASE_SCHEDULE_SLUG,
+        __('Edzéseink', 'base'),
+        'base_schedule_initial_content'
+    );
 }, 20);
-
-/**
- * Holds the Schedule at its slug. Retitling a page renames its URL along with
- * it, which here would silently break the club's search rankings and every link
- * a parent has saved — and the Site Owner has no way to see that happen.
- */
-add_filter('wp_insert_post_data', static function (array $data, array $post): array {
-    $schedule = (int) get_option(BASE_SCHEDULE_PAGE_OPTION);
-
-    if ($schedule > 0 && (int) ($post['ID'] ?? 0) === $schedule && $data['post_status'] !== 'trash') {
-        $data['post_name'] = BASE_SCHEDULE_SLUG;
-    }
-
-    return $data;
-}, 10, 2);

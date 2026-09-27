@@ -161,11 +161,39 @@ The club's own Sponsors and Recommended Pages are **not** written in code: the l
 property and the links are the Site Owner's to keep current. The outgoing site's copies are on the `main`
 branch under `resources/js/data/sponsors.ts` and in the `recommended_pages` table.
 
-One *page* is created in code too. `base-schedule.php` publishes the Schedule at `/edzeseink` on the first
-request after a deploy that has never had one, and holds it at that slug, because the URL (Uniform Resource
-Locator) is part of the site's search parity and the Site Owner cannot see a retitled page silently move. Its times are **initial
-content**, transferred by hand from the outgoing site and written once — they belong to the Site Owner from
-then on, so the file is never read again.
+Three *pages* are created in code too. `base-pages.php` publishes a structural page on the first request
+after a deploy that has never had one and holds it at its slug, because the URLs (Uniform Resource Locators)
+are part of the site's search parity and the Site Owner cannot see a retitled page silently move. What each
+page opens with is **initial content**, transferred by hand from the outgoing site and written once — the
+words belong to the Site Owner from then on, so the files are never read again.
+
+| Page | Declared in | Opens with |
+| --- | --- | --- |
+| `/edzeseink` | `base-schedule.php` | The club's weekly training times, as a table |
+| `/kapcsolat` | `base-contact.php` | A short introduction; the details themselves come from the options below |
+| `/jelentkezes` | `base-apply.php` | The address of the club's Google Form, on a line of its own |
+
+The club's contact details — two telephone numbers, two email addresses, the postal address, the venue and
+its map — are **site options**, edited on one admin screen and shown both on `/kapcsolat` and in the footer
+of every page, so that changing a number is never editing a page. They are options rather than a content
+type or page fields, on a menu page gated on `edit_pages` rather than in the Customizer, because there is one
+set of them and the Site Owner holds the Editor role. The club's real details are registered defaults, so a
+fresh install comes up with them; the first save makes them the Site Owner's. See
+`docs/adr/0006-contact-details-are-site-options-on-an-editor-reachable-screen.md`.
+
+Applications go through the club's Google Form, as they always have. `base-google-forms.php` turns a Google
+Form's own address, pasted on a line of its own, into the form — so the Apply page carries one, and so the
+Site Owner can put a signup or a survey in a page of their own making without being asked to understand
+embeds or to write an `iframe` in a Custom HTML block. Google publishes no oEmbed service for Forms, so this
+handler is what there is to discover. How tall a form is cannot be measured from this page — the frame is
+another origin — so a form is given a height long enough for most of one and scrolls within itself beyond
+that.
+
+What the Site Owner pastes has to be the form's own `docs.google.com/forms/…/viewform` address, which is
+what Google's Send dialog offers by default; the shortened `forms.gle` link is a redirect this site cannot
+resolve, and stays an ordinary link. Pasting the address rather than typing it makes the editor turn it into
+an embed block, which it then shows as "could not be embedded" — the published page carries the form either
+way, and both routes are covered in `tests/specs/contact-and-apply.spec.ts`.
 
 ## The theme
 

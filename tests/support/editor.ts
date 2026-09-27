@@ -105,6 +105,29 @@ export async function setBody(page: Page, ...paragraphs: string[]): Promise<void
   await expect(written).toHaveText(paragraphs);
 }
 
+/**
+ * Pastes text into whatever block is being edited. The event is made here rather
+ * than taken from the system clipboard, which needs the browser window to be the
+ * frontmost one — not something a suite running several browsers beside each
+ * other can promise.
+ */
+export async function paste(page: Page, text: string): Promise<void> {
+  const frame = page.frames().find((candidate) => candidate.name() === 'editor-canvas');
+
+  if (frame === undefined) {
+    throw new Error('The editor is not showing its canvas.');
+  }
+
+  await frame.evaluate((pasted) => {
+    const clipboardData = new DataTransfer();
+
+    clipboardData.setData('text/plain', pasted);
+    document.activeElement?.dispatchEvent(
+      new ClipboardEvent('paste', { clipboardData, bubbles: true, cancelable: true })
+    );
+  }, text);
+}
+
 /** Opens an existing post in the editor. */
 export async function openPost(page: Page, id: number): Promise<void> {
   await openEditor(page, `post.php?post=${id}&action=edit`);
@@ -204,6 +227,12 @@ export async function publish(page: Page): Promise<string> {
   if (url === null) {
     throw new Error('WordPress published the post without offering a link to it.');
   }
+
+  // The editor rewrites the address bar to the new post's own a moment after the
+  // panel appears. Waited for here, because a caller that reads the address too
+  // early gets `post-new.php` back and, coming to clean up, opens a fresh empty
+  // draft and trashes that instead of the post it just made.
+  await page.waitForURL(/[?&]post=\d+/);
 
   return url;
 }

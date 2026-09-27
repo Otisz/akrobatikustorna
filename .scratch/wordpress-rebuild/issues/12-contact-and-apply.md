@@ -11,12 +11,12 @@ carries across unchanged.
 
 **Blocked by:** 02, 03.
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] Contact details are edited in one place and resolve at `/kapcsolat`, appearing everywhere they are used
-- [ ] `/kapcsolat` shows a working Google Maps embed of the club's location
-- [ ] `/jelentkezes` embeds the existing Google Form
-- [ ] An obvious apply call to action is reachable from the home page
-- [ ] The Site Owner can create a new page and embed a Google Form in it themselves
-- [ ] Owner journey test: sign in as the Site Owner, change the phone number, see it updated everywhere it
+- [x] Contact details are edited in one place and resolve at `/kapcsolat`, appearing everywhere they are used
+- [x] `/kapcsolat` shows a working Google Maps embed of the club's location
+- [x] `/jelentkezes` embeds the existing Google Form
+- [x] An obvious apply call to action is reachable from the home page
+- [x] The Site Owner can create a new page and embed a Google Form in it themselves
+- [x] Owner journey test: sign in as the Site Owner, change the phone number, see it updated everywhere it
       appears

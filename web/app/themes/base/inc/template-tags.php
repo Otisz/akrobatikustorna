@@ -228,3 +228,31 @@ function recommended_page_url(int $id): ?string
 
     return $url === '' ? null : $url;
 }
+
+/**
+ * Whether this is the Contact page, asked of the page the Contact details were
+ * published on rather than of its path: the slug is held in code, but the
+ * question is which page carries the details, not what it is called.
+ */
+function is_contact_page(): bool
+{
+    return contact_page() > 0 && is_page(contact_page());
+}
+
+/**
+ * The permalink of the Contact page, or null while it is still to be created.
+ * Asked of the page the details were published on rather than of the slug, which
+ * is a visitor-facing string rather than a name for code.
+ */
+function contact_link(): ?string
+{
+    $link = contact_page() > 0 ? get_permalink(contact_page()) : false;
+
+    return is_string($link) ? $link : null;
+}
+
+/** Which page carries the club's contact details. */
+function contact_page(): int
+{
+    return (int) get_option(\BASE_CONTACT_PAGE_OPTION);
+}

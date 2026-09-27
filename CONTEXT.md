@@ -47,6 +47,16 @@ _Avoid_: banner, hero image
 An organisation supporting the club, shown as a logo linking to their site.
 _Avoid_: partner, supporter
 
+**Contact details** (`kapcsolati adatok`, URL `/kapcsolat`):
+The club's telephone numbers, email addresses, postal address and the venue it trains in, edited on one
+screen and shown on the Contact page and in the footer of every page.
+_Avoid_: contact info, contact form, address book
+
+**Venue** (`tornacsarnok`):
+The gymnasium the club trains in, named and mapped on the Contact page. One of the Contact details rather
+than a thing of its own: the club trains in one hall.
+_Avoid_: gym, hall, location, site
+
 **Apply** (`jelentkezés`, URL `/jelentkezes`):
 The page carrying the Google Form a parent fills in to enrol a child. The club takes no applications any
 other way.
