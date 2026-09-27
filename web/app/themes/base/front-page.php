@@ -14,6 +14,7 @@ $news_page = Base\news_link();
 // post_status is spelled out because WP_Query would otherwise add the signed-in
 // Site Owner's own private posts to what is a public listing.
 $slides = Base\slides();
+$sponsors = Base\sponsors();
 $news = new WP_Query([
     'posts_per_page' => 3,
     'post_status' => 'publish',
@@ -81,6 +82,25 @@ $news = new WP_Query([
                 <?php get_template_part('template-parts/post-card', null, ['heading_tag' => 'h3']); ?>
             <?php endwhile; ?>
             <?php wp_reset_postdata(); ?>
+        </div>
+    </section>
+<?php endif; ?>
+
+<?php // The credits close the home page, as they did on the outgoing site: a parent reads about the club first, and its Sponsors last. ?>
+<?php if ($sponsors->have_posts()) : ?>
+    <section class="bg-surface py-20">
+        <div class="wrap">
+            <h2 class="text-center font-display text-2xl font-semibold tracking-tight">
+                <?php esc_html_e('Támogatóink', 'base'); ?>
+            </h2>
+
+            <?php // The list is reset here: Tailwind's Preflight is not loaded, so a list carries its browser defaults. ?>
+            <ul data-sponsors class="mx-auto mt-12 grid max-w-4xl list-none grid-cols-2 items-start gap-8 p-0 sm:grid-cols-3 lg:grid-cols-4">
+                <?php while ($sponsors->have_posts()) : $sponsors->the_post(); ?>
+                    <?php get_template_part('template-parts/sponsor'); ?>
+                <?php endwhile; ?>
+                <?php wp_reset_postdata(); ?>
+            </ul>
         </div>
     </section>
 <?php endif; ?>

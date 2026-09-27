@@ -182,3 +182,49 @@ function video_identifier(int $id): ?string
 {
     return \base_video_identifier((string) get_post_meta($id, \BASE_VIDEO_YOUTUBE_META, true));
 }
+
+/**
+ * The published Sponsors, alphabetically. A Sponsor is its logo, so one saved
+ * before the logo arrived is left out rather than credited as a blank space with a
+ * name under it. Uncapped: silently dropping a Sponsor the club promised to
+ * credit is worse than a longer row of logos.
+ *
+ * post_status is spelled out because WP_Query would otherwise add the signed-in
+ * Site Owner's own private posts to what is a public listing.
+ */
+function sponsors(): \WP_Query
+{
+    return new \WP_Query([
+        'post_type' => \BASE_SPONSOR_POST_TYPE,
+        'post_status' => 'publish',
+        'posts_per_page' => -1,
+        'orderby' => \BASE_SPONSOR_ORDER,
+        'meta_key' => '_thumbnail_id',
+        'no_found_rows' => true,
+    ]);
+}
+
+/**
+ * The Sponsor's own site, or null where the Site Owner has yet to fill it in — a
+ * credit that leads nowhere fails the only thing the sponsor was promised, so it
+ * is left off instead. Read from post meta rather than through the fields plugin,
+ * so the template renders whether or not that plugin is loaded.
+ */
+function sponsor_url(int $id): ?string
+{
+    $url = trim((string) get_post_meta($id, \BASE_SPONSOR_URL_META, true));
+
+    return $url === '' ? null : $url;
+}
+
+/**
+ * The organisation a Recommended Page points at, or null where the Site Owner has
+ * yet to fill the address in. Read from post meta rather than through the fields
+ * plugin, so the template renders whether or not that plugin is loaded.
+ */
+function recommended_page_url(int $id): ?string
+{
+    $url = trim((string) get_post_meta($id, \BASE_RECOMMENDED_PAGE_URL_META, true));
+
+    return $url === '' ? null : $url;
+}

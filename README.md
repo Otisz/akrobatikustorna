@@ -98,6 +98,8 @@ content outlives any theme and cannot be deactivated from the admin. See
 | `department` | Szakosztályok | The club's Departments at `/szakosztalyok`: picture, description, in the Site Owner's own order |
 | `document` | Dokumentumok | The club's forms and regulations at `/dokumentumok`: a title and a file, listed by name |
 | `video` | Galéria | The club's YouTube recordings at `/galeria`: a title and a pasted link, newest first |
+| `sponsor` | Támogatók | The club's Sponsors, credited on the home page: a name, a logo and their own address |
+| `recommended_page` | Ajánlott oldalak | The club's outbound links at `/ajanlott-oldalak`: a name and an address, listed by name |
 
 A Trainer's order is changed through Quick Edit in the admin list, which prints each Trainer's number in a
 column of its own: the block editor's sidebar no longer offers the order field, and the list is where one
@@ -139,6 +141,25 @@ Nothing about embeds is asked of the Site Owner, and nothing is loaded from YouT
 play: the gallery renders the recording's own thumbnail under a play control, and `resources/js/app.js`
 swaps in the player in place, on the no-cookie host. Without JavaScript that control is an ordinary link to
 YouTube rather than a dead button.
+
+A Sponsor is a name, a logo and the organisation's own address. It has no public URL at all — unlike a Document
+or a Video, whose own address redirects to their listing — because the only address a visitor wants here is
+the Sponsor's own, and a Sponsor is seen solely among the credits that close the home page. The address field
+is required, so a logo cannot be published leading nowhere; the logo is the featured image, which cannot be
+required, so a Sponsor saved before its logo arrived is left out of the credits rather than shown as a blank
+space with a name under it. The admin list prints each Sponsor's logo and address, which is where either case
+becomes visible. Credits are alphabetical: the club credits its Sponsors as equals, which also leaves the Site
+Owner no order to maintain.
+
+A Recommended Page is a name and an address, and nothing else. The listing is alphabetical for the same
+reason a Document's is — the list is scanned for a name — and each row opens in a new tab, as the outgoing
+site's did, because the visitor is being sent somewhere the club does not own. Its own URL redirects to the
+listing rather than to the organisation's site, which would hand this site's address to a page it does not
+own.
+
+The club's own Sponsors and Recommended Pages are **not** written in code: the logos are the Sponsors' own
+property and the links are the Site Owner's to keep current. The outgoing site's copies are on the `main`
+branch under `resources/js/data/sponsors.ts` and in the `recommended_pages` table.
 
 One *page* is created in code too. `base-schedule.php` publishes the Schedule at `/edzeseink` on the first
 request after a deploy that has never had one, and holds it at that slug, because the URL (Uniform Resource
